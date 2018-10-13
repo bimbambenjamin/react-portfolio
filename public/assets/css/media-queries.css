@@ -1,0 +1,170 @@
+/* MARK: media querries */
+/*
+@media screen and (max-width: var( --smallest-screen-width ) ) {
+}
+*/
+
+/* --- apple ios --- */
+/* iphone se 320 x 568 */
+/* iphone 8 375 x 667 */
+/* iphone 8 plus 414 x 736 */
+/* iphone x 375 x 812 */
+/* ipad 768 x 1024 */
+/* ipad pro 834 x 1112 */
+/* ipad pro 1024 x 1366 */
+
+/* --- android --- */
+/* 411 x 731 */
+/* 480 x 853 */
+/* 360 x 740 */
+/* 600 x 960 */
+/* 768 x 1024 */
+/* 800 x 1280 */
+/* 850 x 1280 */
+
+/* --- desktop --- */
+/* 800 x 600 / 1366 x 768 / 1920 x 1080 */
+
+/* iphone se */
+@media screen 
+and ( max-width: 319px ) {
+    :root {
+        --item-width: calc( 320px - calc( var( --page-frame ) * 2 ) );
+    }
+}
+
+@media screen 
+and ( min-width: 320px ) 
+and ( max-width: 414px ) {
+    :root {
+        --item-width: calc( 100vw - calc( var( --page-frame ) * 2 ) );
+    }
+}
+@media screen 
+and ( max-width: 264px ) {
+    .space {
+        display: none !important;
+    }
+    .social a br {
+        display: inline;
+    }
+}
+@media screen 
+and ( max-width: 374px ) {
+    .big-text {
+        font-size: 1em;
+        line-height: 1.4em;
+        letter-spacing: 0.03em;
+    }
+}
+@media screen 
+and ( max-width: 414px ) {
+}
+@media screen 
+and ( max-width: 568px ) {
+}
+@media screen 
+and ( max-width: 666px ) {
+    :root {
+        --columns: 1;
+/*        --alignment: "center";*/
+    }
+	header {
+		var( --page-frame-big );
+		
+	}
+	header nav {
+/*		height: calc( calc( var( --page-frame ) + var( --logo-height ) ) );*/
+		flex-flow: column wrap !important;
+	}
+	#header-logo {
+		width: calc( 100% - calc( var( --page-frame ) * 2) );
+	}
+    #header-logo a object {
+		width: 100%;
+    }
+	.row {
+/*		flex-flow: column wrap;		*/
+	}
+}
+@media screen 
+and ( min-width: 667px ) 
+and ( max-width: 1111px ) {
+}
+
+@media screen 
+and ( min-width: 1112px ) 
+and ( max-width: 1919px ) {
+}
+/* iphone 8 */
+@media screen 
+and ( min-width: 375px ) 
+and ( max-width: 414px ) {
+}
+/* iphone 8 plus, iphone x */
+@media screen 
+and ( min-width: 415px ) 
+and ( max-width: 736px ) {
+    :root {
+/*        --item-width: 327px;*/
+/*        --item-width: calc( calc( calc( 100vw - calc( var( --page-frame ) * 4 ) ) / 2 ) - 1px );*/
+    }
+}
+@media screen 
+and ( min-width: 375px ) 
+and ( max-width: 812px ) {
+    .big-text {
+        font-size: 1.5em;
+        line-height: 1.3em;
+        letter-spacing: -0.02em;
+    }
+}
+@media screen 
+and ( max-width: 812px ) {
+    :root {
+/*        --page-frame: 10px;*/
+/*        --font-size: 0.8rem;*/
+    }
+}
+@media screen 
+and ( min-width: 737px ) 
+and ( max-width: 834px ) {
+    :root {
+/*        --item-width: 25%;*/
+    }
+}
+@media screen and (max-width: 667px) {
+}
+@media screen and (max-width: 736px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 834px) {
+}
+@media screen and (max-width: 1023px) {
+	:root {
+		--page-frame: var( --unit );
+	}
+    .break-wide {
+        display: none;
+    }
+}
+@media screen and (max-width: 1079px) {
+}
+@media screen and (min-width: 1080px) {
+	.services {
+		display: block;
+	}
+}
+@media screen and (max-width: 1112px) {
+}
+@media screen and (min-width: 1280px) {
+}
+@media screen and (min-width: 1366px) {
+    :root {
+		--item-width: 400px;
+/*        --item-width: calc( calc( calc( 100vw - calc( var( --page-frame ) * 4 ) ) / 2 ) - 1px );*/
+    }
+}
+@media screen and (min-width: 1920px) {
+}

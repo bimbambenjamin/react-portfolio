@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "sonny-gothic-thin";
+    src: url( "webfonts/375F4B_E_0.eot" );
+	src: url( "webfonts/375F4B_E_0.eot?#iefix" ) format( "embedded-opentype" ),
+		 url( "webfonts/375F4B_E_0.woff2" ) format( "woff2" ),
+		 url( "webfonts/375F4B_E_0.woff" ) format( "woff" ),
+		 url( "webfonts/375F4B_E_0.ttf" ) format( "truetype" );
+}
+@font-face {
+    font-family: "sonny-gothic-condensed-thin";
+    src: url( "webfonts/375F4B_1E_0.eot" );
+	src: url( "webfonts/375F4B_1E_0.eot?#iefix" ) format( "embedded-opentype" ),
+		 url( "webfonts/375F4B_1E_0.woff2" ) format( "woff2" ),
+		 url( "webfonts/375F4B_1E_0.woff" ) format( "woff" ),
+		 url( "webfonts/375F4B_1E_0.ttf" ) format( "truetype" );
+}
+@font-face {
+    font-family: "sonny-gothic-ultra-light";
+	src: url( "webfonts/375F4B_11_0.eot" );
+	src: url( "webfonts/375F4B_11_0.eot?#iefix" ) format( "embedded-opentype" ),
+		 url( "webfonts/375F4B_11_0.woff2" ) format( "woff2" ),
+		 url( "webfonts/375F4B_11_0.woff" ) format( "woff" ),
+		 url( "webfonts/375F4B_11_0.ttf" ) format( "truetype" );
+}
+@font-face {
+    font-family: "sonny-gothic-condensed-ultra-light";
+	src: url( "webfonts/375F4B_22_0.eot" );
+	src: url( "webfonts/375F4B_22_0.eot?#iefix" ) format( "embedded-opentype" ),
+		 url( "webfonts/375F4B_22_0.woff2" ) format( "woff2" ),
+		 url( "webfonts/375F4B_22_0.woff" ) format( "woff" ),
+		 url( "webfonts/375F4B_22_0.ttf" ) format( "truetype" );
+}
+@font-face {
+    font-family: "sonny-gothic-regular";
+    src: url( "webfonts/375F4B_B_0.eot" );
+	src: url( "webfonts/375F4B_B_0.eot?#iefix" ) format( "embedded-opentype" ),
+		 url( "webfonts/375F4B_B_0.woff2" ) format( "woff2" ),
+		 url( "webfonts/375F4B_B_0.woff" ) format( "woff" ),
+		 url( "webfonts/375F4B_B_0.ttf" ) format( "truetype" );
+}
