@@ -149,6 +149,13 @@ and ( max-width: 834px ) {
         display: none;
     }
 }
+@media screen 
+and (min-width: 1024px)
+and (max-width: 1919px) {
+	:root {
+		--columns: 2;
+	}
+}
 @media screen and (max-width: 1079px) {
 }
 @media screen and (min-width: 1080px) {
@@ -166,5 +173,18 @@ and ( max-width: 834px ) {
 /*        --item-width: calc( calc( calc( 100vw - calc( var( --page-frame ) * 4 ) ) / 2 ) - 1px );*/
     }
 }
-@media screen and (min-width: 1920px) {
+@media screen 
+and ( min-width: 1920px )
+and ( min-width: 2559px ) {
+	:root {
+		--columns: 3;
+	}
 }
+@media screen 
+and ( min-width: 2560px ) {
+	:root {
+		--columns: 4;
+	}
+		
+}
+

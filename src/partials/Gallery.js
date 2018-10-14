@@ -29,13 +29,12 @@ function Teaser( props )  {
 
 class Gallery extends React.Component {
 
-	getFullPath( showcase ) {
+	getFullPath( showcase, path ) {
 	
-		const path = showcase.path
 		const folder = showcase.folder
 		const file = showcase.teaser
 		const filePath = path + folder + "/" + file
-
+		console.log( "filePath: ", filePath )
 		return filePath
 		
 	}
@@ -50,7 +49,7 @@ class Gallery extends React.Component {
 					{ this.props.state.showcases.map( ( showcase, i ) => (
 						<Teaser 
 							key = { i }
-							value = { this.getFullPath( showcase ) }
+							value = { this.getFullPath( showcase, this.props.state.showcasesPath ) }
 							title = { showcase.title }
 							onClick = { () => this.props.onClick( i ) }
 						/>

@@ -4,9 +4,8 @@ import React from "react"
 
 class HandleImages extends React.Component {
 
-	getFullPath( showcase, image ) {
+	getFullPath( showcase, image, path ) {
 	
-		const path = showcase.path
 		const folder = showcase.folder
 		const file = image
 		const filePath = path + folder + "/" + file
@@ -19,8 +18,8 @@ class HandleImages extends React.Component {
 		
 		const showcase = this.props.showcase
 		const classNames = this.props.classNames
+		const path = this.props.path
 		const id = this.props.id
-		console.log( "showcase.images: ", showcase.images )
 
 		return (
 			<div 
@@ -31,7 +30,7 @@ class HandleImages extends React.Component {
 				{ showcase.images.map( ( image, i ) => ( 
 					<img
 						key = { i }
-						src = { this.getFullPath( showcase, image ) }
+						src = { this.getFullPath( showcase, image, path ) }
 						title = { showcase.title }
 						alt = { showcase.title }
 						onLoad = { () => this.props.imageStatus( "loaded" ) }

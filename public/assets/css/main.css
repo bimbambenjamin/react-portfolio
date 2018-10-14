@@ -366,9 +366,9 @@ header nav button {
             transition: opacity .25s ease-in-out;
 }
 #bouncer {
-    width: 80px;
-    height: 80px;
-    left: calc( 50% - 40px );
+    width: 60px;
+    height: 60px;
+    left: calc( 50% - 30px );
     bottom: var( --page-frame );
     position: absolute;
     display: block;
@@ -378,8 +378,8 @@ header nav button {
             animation: 2s bounce 2s infinite;
 }
 #bouncer:before {
-    top: calc( 50% - 40px );
-    left: calc( 50% - 40px );
+    top: calc( 50% - 20px );
+    left: calc( 50% - 20px );
 
     width: 40px;
     height: 40px;
@@ -560,6 +560,8 @@ header nav button {
 
 /* lists */
 .list {
+	columns: 1 !important;
+	max-width: 60em;
     padding-bottom: var( --font-height );
 }
 .list * {
@@ -649,7 +651,7 @@ header nav button {
 #disclaimer p, #privacy .list {
     overflow: hidden;
     column-count: var( --columns );
-    column-gap: var( --page-frame );
+    column-gap: var( --unit );
 }
 #disclaimer p {
     margin-top: var( --font-height );

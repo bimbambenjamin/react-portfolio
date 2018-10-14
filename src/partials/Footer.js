@@ -1,5 +1,5 @@
 import React from 'react'
-
+//import { NavLink } from 'react-router-dom'
 
 
 function FooterNav( props ) {
@@ -21,7 +21,7 @@ function FooterNav( props ) {
 
 			<ul className = "flexbox">
 				<li>
-		 			<button 
+					<button 
 		 				className = { imprintClasses }  
 		 				type = "button"
 		 				onClick = { () => props.onClick( "imprint" ) }

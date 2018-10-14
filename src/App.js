@@ -19,6 +19,7 @@ class App extends React.Component {
 		this.state = {
 			
 			showcases: [],
+			showcasesPath: "http://benjamin-jager.com/projects/sacha-assets/img/showcases/",
 			currentLocation: window.location.pathname,
 			targetLocation: this.handleLocation( window.location.pathname ),
 			scrolling: false,
@@ -61,11 +62,12 @@ class App extends React.Component {
 	}
     componentDidMount() {
 
-		const backend = "http://localhost:8080/public/showcases"
+		const backend = "http://h2770594.stratoserver.net/portfolio/public/showcases"
 
 		axios.get( backend )
 		.then( res => {
 			const showcases = res.data
+			console.log( "backend/showcases: ", showcases )
 			this.setState( { showcases } )
 		})
 

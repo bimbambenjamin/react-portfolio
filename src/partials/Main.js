@@ -52,6 +52,7 @@ class Main extends React.Component {
 				<main className = { mainClass }>
 					<Showcase 
 						showcase = { showcase }
+						showcasesPath = { state.showcasesPath }
 						imageStatus = { ( status ) => this.props.imageStatus( status ) }
 					/>
 					<Header 
