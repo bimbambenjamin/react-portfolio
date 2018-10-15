@@ -25,8 +25,8 @@ class App extends React.Component {
 			scrolling: false,
 			showcaseId: null,
 			mainTitle: "SASCHA TASSILO HOECHSTETTER",
-			logo: "assets/img/logo/hoechstetter.svg",
-			hero: "assets/img/hero/quest-magazine-04.jpg",
+			logo: "http://benjamin-jager.com/projects/sacha-assets/img/logo/hoechstetter.svg",
+			hero: "http://benjamin-jager.com/projects/sacha-assets/img/hero/quest-magazine-04.jpg",
 			fadeOut: false
 			
 		}
