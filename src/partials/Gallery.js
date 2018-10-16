@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -6,22 +7,24 @@ function Teaser( props )  {
 			
 	return (
 		
-		<div className = "item citizen">
-		
-			<div className = "teaser" onClick = { props.onClick }>
+			<div className = "item citizen">
 
-				<img 
-					className = "teaser-image"
-					src = { props.value }
-                    title = { props.title } 
-                    alt = { props.title } 
-				/>
+				<div className = "teaser" onClick = { props.onClick }>
 
-				<span className = "teaser-title">{ props.title }</span>
+					<Link to = { `/showcase/${ props.folder }` }>
+						<img 
+							className = "teaser-image"
+							src = { props.value }
+							title = { props.title } 
+							alt = { props.title } 
+						/>
+					</Link>
+
+					<span className = "teaser-title">{ props.title }</span>
+
+				</div>
 
 			</div>
-
-		</div>
 
 	)
 	
@@ -34,12 +37,14 @@ class Gallery extends React.Component {
 		const folder = showcase.folder
 		const file = showcase.teaser
 		const filePath = path + folder + "/" + file
-		console.log( "filePath: ", filePath )
+
 		return filePath
 		
 	}
 
 	render() {
+
+		const showcasesPath = this.props.state.imagePath + "showcases/"
 		
 		return (
 
@@ -49,7 +54,8 @@ class Gallery extends React.Component {
 					{ this.props.state.showcases.map( ( showcase, i ) => (
 						<Teaser 
 							key = { i }
-							value = { this.getFullPath( showcase, this.props.state.showcasesPath ) }
+							value = { this.getFullPath( showcase, showcasesPath ) }
+							folder = { showcase.folder }
 							title = { showcase.title }
 							onClick = { () => this.props.onClick( i ) }
 						/>

@@ -11,6 +11,7 @@
     --grid-width: calc( 100% - calc( var( --page-frame ) * 2 ) );
     --columns: 1;
     --alignment: "left";
+	--bouncer-size: 60px;
 
     --background-color: White;
     --background-color-alpha: #ffffff00;
@@ -45,7 +46,9 @@ html, body, header, main, footer, #hero, .gallery {
 
     font-feature-settings: "ss03" on;
 }
-
+main {
+	min-height: 100vh;
+}
 body, button, .normal {
     font-size: var( --font-size );
     font-family: "sonny-gothic-ultra-light", 
@@ -159,6 +162,9 @@ img {
 .dropdown-button {
     cursor: pointer;
 }
+.dropdown-button:hover + .dropdown-arrow {
+	display: block;
+}
 .hidden-button {
     visibility: hidden;
 }
@@ -215,14 +221,21 @@ header nav button {
 }
 .header-logo {
     margin: var( --page-frame );
+	width: auto;
+    height: var( --logo-height );
+	min-height: var( --logo-height );
     position: absolute;
+    display: block;
+	cursor: pointer;
 }
+.header-logo picture source, .header-logo picture img {
+	height: 100%;
+}
+/*
 .header-logo a {
-/*    height: 100%;*/
     display: block;
 }
 .header-logo a:hover {
-/*	background: violet;*/
 }
 .header-logo a object {
     display: block;
@@ -231,6 +244,7 @@ header nav button {
     height: var( --logo-height );
     pointer-events: none;
 }
+*/
 .services {
 	display: none;
 }
@@ -276,6 +290,9 @@ header nav button {
     justify-content: center;
     overflow: hidden;
     color: var( --hero-text-color );
+}
+.scroll-down {
+    animation: moveDown 1s ease-out backwards;
 }
 .hero-image {
 /*    background-image: url( "" );*/
@@ -341,6 +358,9 @@ header nav button {
     opacity: 0;
 	animation: 300ms fade-in 3s forwards ease-in-out;
 }
+.hide {
+	opacity: 0;
+}
 .vanish {
     opacity: 1;
 /*
@@ -366,9 +386,9 @@ header nav button {
             transition: opacity .25s ease-in-out;
 }
 #bouncer {
-    width: 60px;
+    width: var( --bouncer-size );
     height: 60px;
-    left: calc( 50% - 30px );
+    left: calc( 50% - calc( var( --bouncer-size ) / 2 ) );
     bottom: var( --page-frame );
     position: absolute;
     display: block;
@@ -378,11 +398,11 @@ header nav button {
             animation: 2s bounce 2s infinite;
 }
 #bouncer:before {
-    top: calc( 50% - 20px );
-    left: calc( 50% - 20px );
+    top: calc( 50% - calc( var( --bouncer-size ) / 3 ) );
+    left: calc( 50% - calc( var( --bouncer-size ) / 3 ) );
 
-    width: 40px;
-    height: 40px;
+    width: calc( calc( var( --bouncer-size ) / 3 ) * 2 );
+    height: calc( calc( var( --bouncer-size ) / 3 ) * 2 );
     position: absolute;
     display: block;
 
@@ -391,7 +411,26 @@ header nav button {
     border-width: 0px 0 1px 1px;
     content: "";
 }
-
+.dropdown-arrow {
+	margin-left: calc( var(--unit) * -3 );
+	margin-top: calc( var(--page-frame) * -0.17 );
+	position: absolute;
+	display: none;
+}
+.collapsed > .dropdown-arrow:before {
+    transform: rotate( 225deg );
+}
+.expanded > .dropdown-arrow:before {
+    transform: rotate( 315deg );
+}
+.dropdown-arrow:before {
+    width: calc( var( --font-size ) / 3 );
+    height: calc( var( --font-size ) / 3 );
+    position: absolute;
+    border: 2px solid var( --primary-color );
+    border-width: 0px 0 1px 1px;
+    content: "";
+}
 
 
 
@@ -636,11 +675,13 @@ header nav button {
     grid-column: 1 / span 12;
 	align-self: center;
 }
-#imprint ul li a, #privacy li a {
+#imprint ul li a, #privacy li a, 
+#imprint ul li a:active, #privacy li a:active {
 	padding: 2px 5px !important;
 	border: none !important
 }
 #imprint ul li a:hover, #privacy li a:hover {
+	color: white;
 	background: var( --highlight-color );
 }
 #disclaimer, #privacy {
@@ -681,14 +722,12 @@ footer ul {
     justify-content: center;
 	padding: 0 var( --page-frame );
 }
-footer a, footer button {
+footer button {
     color: var( --secondary-color );
     font-size: var( --small-font );
     letter-spacing: 0.15em;
 }
-header nav a, 
 header nav button, 
-footer a, 
 footer button, 
 .active-links a {
 	padding: 
@@ -699,17 +738,11 @@ footer button,
     border: 1px solid transparent;
     color: var( --primary-color );
 /*    border-bottom: 1px solid transparent;*/
-    -webkit-transition: all .3s linear;
-       -moz-transition: all .3s linear;
-        -ms-transition: all .3s linear;
-         -o-transition: all .3s linear;
-            transition: all .3s linear;
-}
-.dropdown-button {
-
-}
-.dropdown-button:hover {
-
+    -webkit-transition: all 150ms linear;
+       -moz-transition: all 150ms linear;
+        -ms-transition: all 150ms linear;
+         -o-transition: all 150ms linear;
+            transition: all 150ms linear;
 }
 .active-links .footnotes a {
 	padding: 0;
@@ -720,12 +753,10 @@ footer button,
 	background: var( --lowlight-color );
 }
 
-header nav a, header nav button {
+header nav button {
 	width: calc( var( --unit ) * 6 );
 }
-header nav a:hover, 
 header nav button:hover, 
-footer a:hover, 
 footer button:hover,
 .active-links a:hover {
     border: 1px solid var( --primary-color );
@@ -1020,4 +1051,14 @@ input:focus {
 /*        height: 5.7em;*/
     }
 
+}
+@keyframes moveDown {
+    0% { 
+        transform: translateY( -100vh ); 
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY( 0 );
+        opacity: 1;
+    }
 }

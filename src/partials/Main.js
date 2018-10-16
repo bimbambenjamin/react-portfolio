@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 
 import Hero from './Hero'
 import Header from './Header'
@@ -11,104 +12,265 @@ import Privacy from './Privacy'
 
 
 
+class HomeStory extends React.Component {
+	
+	render() {
+		
+		console.log( "HomeStory" )
+	
+		const state = this.props.state
+		const mainClass = this.props.mainClass
+		const onClick = ( i ) => this.props.onClick( i )
+		
+		return(
+			
+			<main className = { mainClass }>
+			
+				<Hero 
+					state = { state } 
+					onClick = { onClick }
+				/>
+				<Gallery 
+					state = { state } 
+					onClick = { onClick }
+				/>
+				<Social />
+			
+			</main>
+			
+		)
+		
+	}
+	
+}
+//const ShowcaseStory = ( { props } ) => (
+//	
+//	<div>
+//		{ props.match.params }
+//	</div>
+//
+//)
+class ShowcaseStory extends React.Component {
+		
+	render() {
+		
+		const match = this.props.props.match
+		console.log( "MATCH: ", match )
+		const matching = match.params.showcaseId
+		console.log( "MATCHING: ", matching )
+		const history = this.props.props.history
+		console.log( "history: ", history )
+		const location = this.props.props.history.location
+		console.log( "location: ", location )
+		
+//		const pusher = history.push( target )
+
+		
+		const state = this.props.state
+		const mainClass = this.props.mainClass
+		const onClick = ( i ) => this.props.onClick( i )
+		
+		const imageStatus = ( status ) => this.props.imageStatus( status )
+
+		return(
+			
+			<main className = { mainClass }>
+			
+				<Showcase 
+					state = { state }
+					imageStatus = { imageStatus }
+				/>
+				<Header 
+					state = { state }
+					onClick = { onClick }
+				/>
+				<Gallery 
+					state = { state }
+					onClick = { onClick }
+				/>
+				<Social />
+
+			</main>
+			
+		)
+		
+	}
+	
+}
+
+class ContactStory extends React.Component {
+	
+	render() {
+
+		const mainClass = this.props.mainClass
+
+		return (
+			<main className = { mainClass }>
+				<Contact />
+			</main>
+		)
+
+	}	
+
+}
+class ImprintStory extends React.Component {
+	
+	render() {
+
+		const mainClass = this.props.mainClass
+
+		return (			
+			<main className = { mainClass }>
+				<Imprint />
+			</main>
+		)
+
+	}	
+
+}
+class PrivacyStory extends React.Component {
+	
+	render() {
+
+		const mainClass = this.props.mainClass
+		
+		return (			
+			<main className = { mainClass }>
+				<Privacy />
+			</main>
+		)
+
+	}	
+
+}
+
 class Main extends React.Component {
 
-	renderComponents( targetLocation ) {
+	componentDidMount() {
+		console.log("MAIN MOUNTED ", this.props.state.targetLocation )
+	}
+	
+	handleRoutes( state ) {
 		
-		const target = !isNaN( targetLocation ) ? "showcase" : targetLocation
-		const state = this.props.state
-		const showcaseId = targetLocation
-		const showcase = state.showcases[ showcaseId ]
-		const mainTitle = state.mainTitle
-		const onClick = ( i ) => this.props.onClick( i )
-		const hero = state.hero
-		
+		let target = !isNaN( state.targetLocation ) ? 
+			"/showcase" : 
+			state.targetLocation
+
 		let mainClass = "appear"
+		console.log( "handle: ", target )
+				
+		const current = state.currentLocation
+		const imageStatus = ( status ) => this.props.imageStatus( status )
+		const onClick = ( i ) => this.props.onClick( i )
+
 		if ( state.fadeOut ) {
-			console.log("F A D E O U T:  ", state.fadeOut )
-			mainClass = "vanish"
+			console.log( "fadeOut: ", state.fadeOut, current )
+			target = current
+			mainClass = "hide"
 		}
 		
-	
-		switch ( target ) {
+		
+		switch( target ) {
+				
+			case "/":
+			return (
+				<Route
+					name = "home"
+					exact = { true }
+					path = "/" 
+					component = { ( props ) => ( 
+						<HomeStory 
+							state = { state } 
+							props = { props } 
+							mainClass = { mainClass }
+							onClick = { onClick }
+						/> 
+					) }
+				/>
+			)
+			case "/showcase" :
+			return (
+				
+				<Route
+					name = "showcase"
+					path = "/showcase/:showcaseId?" 
+					component = { ( props ) => ( 
+						<ShowcaseStory 
+							state = { state } 
+							props = { props } 
+							mainClass = { mainClass }
+							onClick = { onClick }
+							imageStatus = { imageStatus }
+						/> 
+					) }
+				/>
 
-			case "home":
-			return (
-				<main className = { mainClass }>
-					<Hero 
-						mainTitle = { mainTitle }
-						hero = { hero }
-						onClick = { onClick }
-					/>
-					<Gallery 
-						state = { state } 
-						onClick = { onClick }
-					/>
-					<Social />
-				</main>
 			)
-			case "showcase": 
+			case "/contact":
 			return (
-				<main className = { mainClass }>
-					<Showcase 
-						showcase = { showcase }
-						showcasesPath = { state.showcasesPath }
-						imageStatus = { ( status ) => this.props.imageStatus( status ) }
-					/>
-					<Header 
-						mainTitle = { state.mainTitle }
-						logo = { state.logo }
-						onClick = { ( i ) => this.handleClick( i ) }
-						targetLocation = { target }
-
-					/>
-					<Gallery 
-						state = { state }
-						onClick = { onClick }
-					/>
-					<Social />
-				</main>
-			)	
-			case "contact":
-			return (
-				<main className = { mainClass }>
-					<Contact />
-				</main>
+				<Route
+					name = "contact"
+					exact = { true }
+					path = "/contact" 
+					component = { ( props ) => ( 
+						<ContactStory 
+							mainClass = { mainClass }
+						/> 
+					) }
+				/>
 			)
-			case "imprint":
+			case "/imprint":
 			return (
-				<main className = { mainClass }>
-					<Imprint />
-				</main>
+				<Route
+					name = "imprint"
+					exact = { true }
+					path = "/imprint" 
+					render = { ( { match } ) => (
+						<ImprintStory 
+							mainClass = { mainClass }
+						/> 
+					) }
+				/>
 			)
-			case "privacy":
+			case "/privacy":
 			return (
-				<main className = { mainClass }>
-					<Privacy />
-				</main>
+				<Route
+					name = "privacy"
+					exact = { true }
+					path = "/privacy" 
+					component = { ( props ) => ( 
+						<PrivacyStory 
+							mainClass = { mainClass }
+						/> 
+					) }
+				/>
 			)
-			default: 
+			default :
 			return (
-				<main className = { mainClass }>
-					<Hero 
-						mainTitle = { mainTitle }
-						hero = { hero }
-						onClick = { onClick }
-					/>
-					<Gallery 
-						state = { state } 
-						onClick = { onClick }
-					/>
-					<Social />
-				</main>
+				<Route
+					name = "home"
+					exact = { true }
+					path = "/" 
+					component = { ( props ) => ( 
+						<HomeStory 
+							state = { state } 
+							props = { props } 
+							mainClass = { mainClass }
+							onClick = { onClick }
+						/> 
+					) }
+				/>
 			)
+			
 		}
 		
 	}
 
 	render() {
 
-		return this.renderComponents( this.props.targetLocation )
+		const state = this.props.state
+
+		return this.handleRoutes( state )
 
 	}
 }

@@ -6,16 +6,20 @@ class Hero extends React.Component {
 
 	getFiletype( filename ) {
 
-		const extension = filename.split( '.' ).pop()
+		if ( typeof filename === "string" ) {
+			
+			const extension = filename.split( '.' ).pop()
 		
-		if ( extension === "jpg" || extension === "gif" || extension === "png" || extension === "jpeg" ) {
-			return "image"
-		} else if ( extension === "mp4" ) {
-			return "video"
-		} else {
-			return "not valid"
+			if ( extension === "jpg" || extension === "gif" || extension === "png" || extension === "jpeg" ) {
+				return "image"
+			} else if ( extension === "mp4" ) {
+				return "video"
+			} else {
+				return "not valid"
+			}
+
 		}
-		
+
 	}
 
 	imageOrVideo( alt, src ) {
@@ -60,10 +64,24 @@ class Hero extends React.Component {
 
 	}
 	
+	whiteLogo( logo ) {
+		
+		if ( typeof logo === "string" ) {
+			const filename = logo.split( '.' ).shift()
+			const extension = logo.split( '.' ).pop()
+			const whiteLogo = filename + "-white." + extension
+			return whiteLogo
+		}
+		
+	}
+	
 	render() {
 
-		const mainTitle = this.props.mainTitle
-		const hero = this.props.hero
+		const state = this.props.state
+		const mainTitle = state.mainTitle
+		const hero = state.hero
+		const logo = this.whiteLogo( state.logo )
+		const logoPath = state.imagePath + "logo/" + logo
 		const bouncerClasses = "appear-delayed"
 
 		return (
@@ -74,12 +92,10 @@ class Hero extends React.Component {
 
 				<div className = "infobox no-select" id = "logo">
 
-					<object
-						id = "logo-svg"
-						data = "assets/img/logo/hoechstetter-white.svg" 
-						type = "image/svg+xml">
-						<span>{ this.props.mainTitle }</span>
-					</object>
+					<picture>
+						<source srcSet = { logoPath } type = "image/svg+xml" />
+						<img src = { logoPath } alt = { mainTitle } />
+					</picture>
 
 				</div>
 

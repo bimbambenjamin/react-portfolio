@@ -1,5 +1,5 @@
 import React from 'react'
-//import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 function FooterNav( props ) {
@@ -17,16 +17,18 @@ function FooterNav( props ) {
 
 	return (
 
-		<footer className = "uppercase freedom-above">
+		<footer className = "uppercase freedom-above appear-delayed">
 
 			<ul className = "flexbox">
 				<li>
 					<button 
 		 				className = { imprintClasses }  
 		 				type = "button"
-		 				onClick = { () => props.onClick( "imprint" ) }
+		 				onClick = { () => props.onClick( "/imprint" ) }
 					>
-						imprint
+					<Link to = "/imprint">
+						<span>imprint</span>
+					</Link>
 					</button>
 		 		</li>
 				<li>&emsp;</li>
@@ -34,9 +36,11 @@ function FooterNav( props ) {
 					<button 
 		 				className = { privacyClasses } 
 		 				type = "button"
-		 				onClick = { () => props.onClick( "privacy" ) }
+		 				onClick = { () => props.onClick( "/privacy" ) }
 					>
-						privacy&nbsp;policy
+					<Link to = "/privacy">
+						<span>privacy&nbsp;policy</span>
+					</Link>
 					</button>
 
 				</li>

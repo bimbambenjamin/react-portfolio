@@ -7,15 +7,17 @@ import HandleImages from '../handler/HandleImages'
 class Showcase extends React.Component {
 	
 	render() {
-		
-		const showcase = this.props.showcase
-		const path = this.props.showcasesPath
+
+		const state = this.props.state
+		const showcaseId = state.showcaseId
+		const showcase = state.showcases[ showcaseId ]
+		const path = state.imagePath + "showcases/"
 		const classNames = "flexbox column uppercase"
 		const id = "showcase-work"
 
 		return (
 			
-			<section className = "grid appear uppercase" id = "showcase">
+			<section className = "grid appear uppercase" id = "showcase" key = { showcaseId }>
 
 				<div className = "freedom-above big-text uppercase" id = "showcase-title">
 					<h1>{ showcase.title }</h1>

@@ -68,6 +68,7 @@ class PrivacyContent extends React.Component {
 							>
 								<span>1. </span>Name und Kontaktdaten des für die Verarbeitung Verantwortlichen sowie des betrieblichen Datenschutzbeauftragten
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>
 								Diese Datenschutz-Information gilt für die Datenverarbeitung durch:
@@ -99,6 +100,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>2. </span>Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck von deren Verwendung
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<ol>
 
@@ -106,6 +108,7 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 2 ) }>
 										<span>a) </span>Beim Besuch der Website
 									</h3>
+									<div className = "dropdown-arrow"></div>
 
 									<p>
 										Beim Aufrufen unserer Website <a href = "http://www.sachahoechstetter.com" target = "_blank" rel = "noopener noreferrer">www.sachahoechstetter.com</a> werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sog. Logfile gespeichert. Folgende Informationen werden dabei ohne Ihr Zutun erfasst und bis zur automatisierten Löschung gespeichert:
@@ -140,6 +143,7 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 3 ) }>
 										<span>b) </span>Bei Anmeldung für unseren Newsletter
 									</h3>
+									<div className = "dropdown-arrow"></div>
 
 									<p>
 										Sofern Sie nach Art.&thinsp;6 Abs.&thinsp;1 S.&thinsp;1 lit.&thinsp;a DSGVO ausdrücklich eingewilligt haben, verwenden wir Ihre E-Mail-Adresse dafür, Ihnen regelmäßig unseren Newsletter zu übersenden. Für den Empfang des Newsletters ist die Angabe einer E-Mail-Adresse ausreichend.
@@ -154,6 +158,7 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 4 ) }>
 										<span>c) </span>Bei Nutzung unseres Kontaktformulars
 									</h3>
+									<div className = "dropdown-arrow"></div>
 
 									<p>
 										Bei Fragen jeglicher Art bieten wir Ihnen die Möglichkeit, mit uns über ein auf der Website bereitgestelltes Formular Kontakt aufzunehmen. Dabei ist die Angabe einer gültigen E-Mail-Adresse erforderlich, damit wir wissen, von wem die Anfrage stammt und um diese beantworten zu können. Weitere Angaben können freiwillig getätigt werden.
@@ -179,6 +184,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>3. </span>Weitergabe von Daten
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>Eine Übermittlung Ihrer persönlichen Daten an Dritte zu anderen als den im Folgenden aufgeführten Zwecken findet nicht statt.</p>
 							<p>Wir geben Ihre persönlichen Daten nur an Dritte weiter, wenn:</p>
@@ -208,6 +214,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>4. </span>Cookies
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>
 								Wir setzen auf unserer Seite Cookies ein. Hierbei handelt es sich um kleine Dateien, die Ihr Browser automatisch erstellt und die auf Ihrem Endgerät (Laptop, Tablet, Smartphone o.ä.) gespeichert werden, wenn Sie unsere Seite besuchen. Cookies richten auf Ihrem Endgerät keinen Schaden an, enthalten keine Viren, Trojaner oder sonstige Schadsoftware.
@@ -241,6 +248,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>5. </span>Analyse-Tools
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<ol>
 
@@ -248,6 +256,7 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 8 ) }>
 										<span>a) </span>Tracking-Tools
 									</h3>
+									<div className = "dropdown-arrow"></div>
 
 									<p>
 										Die im Folgenden aufgeführten und von uns eingesetzten Tracking-Maßnahmen werden auf Grundlage des Art.&thinsp;6 Abs.&thinsp;1 S.&thinsp;1 lit.&thinsp;f DSGVO durchgeführt. Mit den zum Einsatz kommenden Tracking-Maßnahmen wollen wir eine bedarfsgerechte Gestaltung und die fortlaufende Optimierung unserer Webseite sicherstellen. Zum anderen setzen wir die Tracking-Maßnahmen ein, um die Nutzung unserer Webseite statistisch zu erfassen und zum Zwecke der Optimierung unseres Angebotes für Sie auszuwerten. Diese Interessen sind als berechtigt im Sinne der vorgenannten Vorschrift anzusehen.
@@ -261,6 +270,7 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 9 ) }>
 										<span>b) </span>Google Analytics<span className = "footnote">&#42;</span>
 									</h3>
+									<div className = "dropdown-arrow"></div>
 
 									<p>
 										Zum Zwecke der bedarfsgerechten Gestaltung und fortlaufenden Optimierung unserer Seiten nutzen wir Google Analytics, ein Webanalysedienst der Google Inc. (<a href="https://www.google.de/intl/de/about/" target="_blank" rel="noopener noreferrer">https://www.google.de/intl/de/about/</a>) (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA; im Folgenden „Google“). In diesem Zusammenhang werden pseudonymisierte Nutzungsprofile erstellt und Cookies (siehe unter Ziff. 4) verwendet. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website wie
@@ -293,6 +303,7 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 10 ) }>
 										<span>c) </span>Google Adwords Conversion Tracking
 									</h3>
+									<div className = "dropdown-arrow"></div>
 
 									<p>
 										Um die Nutzung unserer Webseite statistisch zu erfassen und zum Zwecke der Optimierung unserer Website für Sie auszuwerten, nutzen wir ferner das Google Conversion Tracking. Dabei wird von Google Adwords ein Cookie (siehe Ziffer 4) auf Ihrem Rechner gesetzt, sofern Sie über eine Google-Anzeige auf unsere Webseite gelangt sind.
@@ -318,6 +329,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>6. </span>Social Media Plug-ins
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>
 								Wir setzen auf unserer Website auf Grundlage des Art.&thinsp;6 Abs.&thinsp;1 S.&thinsp;1 lit.&thinsp;f DSGVO Social Plug-ins der sozialen Netzwerke Facebook und Instagram ein, um unsere Firma hierüber bekannter zu machen. Der dahinterstehende werbliche Zweck ist als berechtigtes Interesse im Sinne der DSGVO anzusehen. Die Verantwortung für den datenschutzkonformen Betrieb ist durch deren jeweiligen Anbieter zu gewährleisten. Die Einbindung dieser Plug-ins durch uns erfolgt im Wege der sogenannten Zwei-Klick-Methode um Besucher unserer Webseite bestmöglich zu schützen. 
@@ -327,6 +339,8 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 12 ) }>
 										<span>a) </span>Facebook
 									</h3>
+									<div className = "dropdown-arrow"></div>
+
 									<p>
 										Auf unserer Website kommen Social-Media Plugins von Facebook zum Einsatz, um deren Nutzung persönlicher zu gestalten. Hierfür nutzen wir den „LIKE“ oder „TEILEN“-Button. Es handelt sich dabei um ein Angebot von Facebook.
 									</p>
@@ -353,6 +367,8 @@ class PrivacyContent extends React.Component {
 									<h3 className = "dropdown-button" onClick = { () => this.handleDropdown( 13 ) }>
 										<span>b) </span>Instagram
 									</h3>
+									<div className = "dropdown-arrow"></div>
+
 									<p>
 										Auf unserer Website werden auch sogenannte Social Plugins („Plugins“) von Instagram verwendet, das von der Instagram LLC., 1601 Willow Road, Menlo Park, CA 94025, USA („Instagram“) betrieben wird.
 									</p>
@@ -386,6 +402,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>7. </span>Betroffenenrechte
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>Sie haben das Recht:</p>
 							<p>
@@ -420,6 +437,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>8. </span>Widerspruchsrecht
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>
 								Sofern Ihre personenbezogenen Daten auf Grundlage von berechtigten Interessen gemäß Art.&thinsp;6 Abs.&thinsp;1 S.&thinsp;1 lit.&thinsp;f DSGVO verarbeitet werden, haben Sie das Recht, gemäß Art.&thinsp;21 DSGVO Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten einzulegen, soweit dafür Gründe vorliegen, die sich aus Ihrer besonderen Situation ergeben oder sich der Widerspruch gegen Direktwerbung richtet. Im letzteren Fall haben Sie ein generelles Widerspruchsrecht, das ohne Angabe einer besonderen Situation von uns umgesetzt wird.
@@ -437,6 +455,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>9. </span>Datensicherheit
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>
 								Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser unterstützt wird. In der Regel handelt es sich dabei um eine 256 Bit Verschlüsselung. Falls Ihr Browser keine 256-Bit Verschlüsselung unterstützt, greifen wir stattdessen auf 128-Bit v3 Technologie zurück. Ob eine einzelne Seite unseres Internetauftrittes verschlüsselt übertragen wird, erkennen Sie an der geschlossenen Darstellung des Schüssel- beziehungsweise Schloss-Symbols in der unteren Statusleiste Ihres Browsers.
@@ -454,6 +473,7 @@ class PrivacyContent extends React.Component {
 							>
 									<span>10. </span>Aktualität und Änderung dieser Datenschutzerklärung
 							</h2>
+							<div className = "dropdown-arrow"></div>
 
 							<p>Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Mai 2018.</p>
 						</li>
