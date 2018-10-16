@@ -58,11 +58,11 @@ class App extends React.Component {
 	}
     componentDidMount() {
 
-		const backend = process.env.NODE_ENV === "production" ? 
-			"http://localhost:3000" : 
-			process.env.REACT_APP_BACKEND_URL
+		const backend = process.env.REACT_APP_BACKEND_URL || 8080 
 
-		console.log("backend url: ", backend)
+		console.log( "backend url: ", backend)
+		console.log( "PORT: ", process.env.PORT )
+		console.log( "REACT_APP_: ", process.env.REACT_APP_BACKEND_URL )
 		axios.get( backend )
 		.then( res => {
 			const showcases = res.data
