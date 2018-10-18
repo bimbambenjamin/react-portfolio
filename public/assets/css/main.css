@@ -37,6 +37,9 @@
 /*	--footer-height: calc( var( --unit ) * 5 );*/		
 	
 }
+::-webkit-scrollbar { 
+	display: none; 
+}
 * {
     margin: 0;
     padding: 0;
@@ -246,7 +249,7 @@ button:hover,
 
 /* cursors */
 .down {
-	cursor: url( "../img/cursors/arrow-down-h30px-black.png" ) 13 15, s-resize;
+	cursor: url( "../img/cursors/arrow-down.png" ) 25 29, s-resize;
 }
 
 
@@ -411,6 +414,7 @@ header nav button {
     z-index: 1;
     position: absolute;
 	margin-top: -1em;
+	max-width: 1190px;
 	min-width: 280px;
 	width: calc( 100% - calc( var( --page-frame ) * 2 ) );
 /*    width: 38%;*/
@@ -478,6 +482,25 @@ header nav button {
     -webkit-transition: opacity .25s ease-in-out;
        -moz-transition: opacity .25s ease-in-out;
             transition: opacity .25s ease-in-out;
+}
+#bouncer-text {
+    font-family: "sonny-gothic-regular", 
+                 "Helvetica Neue", 
+                 "Helvetica", 
+                 "Arial", 
+                 sans-serif;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+	color: var( --background-color );
+
+	width: 136px;
+    height: 60px;
+    left: calc( 50% - 68px );
+    bottom: calc( var( --unit ) * 7 );
+    position: absolute;
+
+	-webkit-animation: 2s bounce 2s infinite;
+            animation: 2s bounce 2s infinite;
 }
 #bouncer {
     width: var( --bouncer-size );

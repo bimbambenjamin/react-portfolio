@@ -87,7 +87,6 @@ class Hero extends React.Component {
 		const hero = state.hero
 		const logo = this.whiteLogo( state.logo )
 		const logoPath = state.imagePath + "logo/" + logo
-		const bouncerClasses = ""
 		const heroIsActive = state.heroIsActive
 		const onLoad = heroIsActive ? 
 			null : 
@@ -114,8 +113,8 @@ class Hero extends React.Component {
 
 				</div>
 
-				<div className = { bouncerClasses }>
-					<div id = "bouncer"></div>
+				<div className = "appear-delayed">
+					<div id = "bouncer-text"><span>please scroll</span></div>
 				</div>
 
 			</section>
