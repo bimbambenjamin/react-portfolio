@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import Hero from './Hero'
 import Header from './Header'
@@ -54,6 +54,8 @@ class ShowcaseStory extends React.Component {
 		
 	render() {
 		
+		console.log( "ShowcaseStory" )
+
 		const match = this.props.props.match
 		console.log( "MATCH: ", match )
 		const matching = match.params.showcaseId
@@ -62,10 +64,7 @@ class ShowcaseStory extends React.Component {
 		console.log( "history: ", history )
 		const location = this.props.props.history.location
 		console.log( "location: ", location )
-		
-//		const pusher = history.push( target )
-
-		
+				
 		const state = this.props.state
 		const mainClass = this.props.mainClass
 		const onClick = ( i ) => this.props.onClick( i )
@@ -102,6 +101,8 @@ class ContactStory extends React.Component {
 	
 	render() {
 
+		console.log( "ContactStory" )
+
 		const mainClass = this.props.mainClass
 
 		return (
@@ -117,6 +118,8 @@ class ImprintStory extends React.Component {
 	
 	render() {
 
+		console.log( "ImprintStory" )
+
 		const mainClass = this.props.mainClass
 
 		return (			
@@ -131,6 +134,8 @@ class ImprintStory extends React.Component {
 class PrivacyStory extends React.Component {
 	
 	render() {
+
+		console.log( "PrivacyStory" )
 
 		const mainClass = this.props.mainClass
 		
@@ -157,23 +162,32 @@ class Main extends React.Component {
 			state.targetLocation
 
 		let mainClass = "appear"
-		console.log( "handle: ", target )
+		console.log( "handle target: ", target )
+		console.log( "handle this: ", this )
 				
 		const current = state.currentLocation
+		console.log( "handle current: ", current )
 		const imageStatus = ( status ) => this.props.imageStatus( status )
 		const onClick = ( i ) => this.props.onClick( i )
+		const targetURL = target === "/showcase" ? 
+			target + "/" + 
+			state.showcases[ state.targetLocation ].folder :
+			target
+
+		console.log( "targetURL: ", targetURL )
+		console.log( "target: ", target )
 
 		if ( state.fadeOut ) {
 			console.log( "fadeOut: ", state.fadeOut, current )
 			target = current
 			mainClass = "hide"
-		}
+		}		
 		
-		
-		switch( target ) {
-				
-			case "/":
+//		switch( target ) {
+//			
+//			case "/":
 			return (
+			<BrowserRouter>
 				<Route
 					name = "home"
 					exact = { true }
@@ -187,9 +201,9 @@ class Main extends React.Component {
 						/> 
 					) }
 				/>
-			)
-			case "/showcase" :
-			return (
+//			)
+//			case "/showcase" :
+//			return (
 				
 				<Route
 					name = "showcase"
@@ -205,9 +219,9 @@ class Main extends React.Component {
 					) }
 				/>
 
-			)
-			case "/contact":
-			return (
+//			)
+//			case "/contact":
+//			return (
 				<Route
 					name = "contact"
 					exact = { true }
@@ -218,9 +232,9 @@ class Main extends React.Component {
 						/> 
 					) }
 				/>
-			)
-			case "/imprint":
-			return (
+//			)
+//			case "/imprint":
+//			return (
 				<Route
 					name = "imprint"
 					exact = { true }
@@ -231,9 +245,9 @@ class Main extends React.Component {
 						/> 
 					) }
 				/>
-			)
-			case "/privacy":
-			return (
+//			)
+//			case "/privacy":
+//			return (
 				<Route
 					name = "privacy"
 					exact = { true }
@@ -244,9 +258,9 @@ class Main extends React.Component {
 						/> 
 					) }
 				/>
-			)
-			default :
-			return (
+//			)
+//			default :
+//			return (
 				<Route
 					name = "home"
 					exact = { true }
@@ -260,9 +274,10 @@ class Main extends React.Component {
 						/> 
 					) }
 				/>
+			</BrowserRouter>
 			)
 			
-		}
+//		}
 		
 	}
 

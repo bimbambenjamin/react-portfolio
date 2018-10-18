@@ -1,7 +1,7 @@
 import React from 'react'
 import Email from './Email'
 import Phone from './Phone'
-
+import Label from './Label'
 
 
 class ImprintContent extends React.Component {
@@ -43,7 +43,7 @@ function DisclaimerContent() {
 	return (
 
 		<div 
-			className = "active-links freedom-above" 
+			className = "active-links freedom-above freedom-below" 
 			id = "disclaimer">
 			
 			<div>
@@ -68,7 +68,7 @@ class Imprint extends React.Component {
 
 		return (
 
-			<section className = "grid">
+			<section className = "grid header-space">
 
 				<ImprintContent />
 				<DisclaimerContent />

@@ -21,9 +21,9 @@ class Contact extends React.Component {
 		
 		return (
 
-			<section className = "active-links">
+			<div className = "active-links freedom-below">
 
-				<div className = "freedom-above freedom-below uppercase big-text" id = "contact">
+				<div className = "header-space freedom-below uppercase big-text" id = "contact">
 
 					<h1>contact</h1>
 
@@ -47,7 +47,7 @@ class Contact extends React.Component {
 				<Social />
 				<Copyright />
 			
-			</section>
+			</div>
 
 		)
 		

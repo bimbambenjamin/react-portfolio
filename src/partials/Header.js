@@ -1,25 +1,36 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
+
+const CheckActive = ( match, location ) => {
+
+	console.log( "CheckActive ", match, location )
+	console.log( "CheckActive ", this )
+	
+	return match ? true : false
+	
+}
 
 function HeaderLogo( props ) {
 	
 	return (
 		
+		<NavLink 
+			to = "/"
+		>
 			<div 
 				className = "header-logo" 
 				id = "header-logo" 
 				onClick = { () => props.onClick( "/" ) }
 			>
-				<Link to = "/">
-					<picture>
-						<source srcSet = { props.logo } type = "image/svg+xml" />
-						<img src = { props.logo } alt = { props.mainTitle } />
-					</picture>
-				</Link>
+				<picture>
+					<source srcSet = { props.logo } type = "image/svg+xml" />
+					<img src = { props.logo } alt = { props.mainTitle } />
+				</picture>
 
 			</div>
+		</NavLink>
 
 	)
 
@@ -27,13 +38,6 @@ function HeaderLogo( props ) {
 
 function HeaderNav( props ) {
 	
-	const targetLocation = props.targetLocation
-	let contactClasses = "uppercase active"
-	
-	if ( targetLocation === "/contact" ) {
-		contactClasses = "uppercase inactive" 
-	}
-
 	return (
 
 		<nav className="flexbox row">
@@ -53,18 +57,22 @@ function HeaderNav( props ) {
 					<li>art direction</li>
 				</ul>
 			</div>
-
-			<button 
-				className = { contactClasses }
-				type = "button" 
-				onClick = { () => props.onClick( "/contact" ) }
-			>
-				<Link to = "/contact">
-					<span>contact</span>
-				</Link>
-
-			</button>
 			
+			<NavLink 
+				to = "/contact"
+				activeClassName = "vanish no-select"
+				isActive = { CheckActive }
+			>
+				<button 
+					className = "uppercase"
+					type = "button" 
+					onClick = { () => props.onClick( "/contact" ) }
+				>
+					<span>contact</span>
+				</button>
+
+			</NavLink>
+
 		</nav>
 
 	)
@@ -74,28 +82,31 @@ function HeaderNav( props ) {
 class Header extends React.Component {
 
 	render() {
-		
-		const targetLocation = this.props.targetLocation
-		const logo = this.props.imagePath + "logo/" + this.props.logo
-		let classNames = "uppercase appear"
-		
-		console.log("logo: ", logo)
 
-		if ( targetLocation === "/" || targetLocation === "heroClick" ) {
-			classNames = "uppercase stick-to-second-section appear" 
-		}
+		const state = this.props.state
+		const targetLocation = state.targetLocation
+		const mainTitle = state.mainTitle
+		const logo = state.imagePath + "logo/" + state.logo
+		const heroIsActive = this.props.heroIsActive
+
+		console.log( "HEADER ", this )
+		console.log( "HEADER ", heroIsActive )
+		
+		const classNames = heroIsActive ? 
+			  "uppercase appear stick-to-second-section" :
+			  "uppercase appear"
 
 		return (
 
 			<header className = { classNames } id = "header" >
 
 				<HeaderLogo
-					mainTitle = { this.props.mainTitle }
+					mainTitle = { mainTitle }
 					logo = { logo }
 					onClick = { ( i ) => this.props.onClick( i ) }
 				/>
 				<HeaderNav
-					targetLocation = { this.props.targetLocation }
+					targetLocation = { targetLocation }
 					onClick = { ( i ) => this.props.onClick( i ) }
 				/>
 

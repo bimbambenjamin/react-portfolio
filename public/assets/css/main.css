@@ -1,12 +1,15 @@
 :root {
+	
 	--unit: 20px;
     --page-frame-big: calc( var( --unit ) * 5 );
     --page-frame: var( --page-frame-big );
-    --item-width: 328px;
+	--min-width: 320px;
+
+	--item-width: 328px;
     --item-max-height: 80vh;
     --indent-gap: calc( var( --font-size ) * 2 );
-	--freedom: 5vh;
-	--button-space: calc( var( --font-size) / 2 );
+	--freedom: var( --page-frame-big );
+	--button-space: var( --font-size);
 
     --grid-width: calc( 100% - calc( var( --page-frame ) * 2 ) );
     --columns: 1;
@@ -25,10 +28,14 @@
     --hero-text-color: var( --primary-color );
 
 	--font-size: 1rem;
-    --font-height: 1.6em;
+    --font-height: 1.4em;
 	--small-font: 0.7em;
+
+	--logo-height: 40px;
+	--header-height: calc( calc( var( --page-frame ) * 2 ) + var( --logo-height ) );
+	--footer-height: calc( var( --font-size ) + var( --font-height ) + var( --page-frame  ) );
+/*	--footer-height: calc( var( --unit ) * 5 );*/		
 	
-	--logo-height: 2.7rem;
 }
 * {
     margin: 0;
@@ -46,10 +53,17 @@ html, body, header, main, footer, #hero, .gallery {
 
     font-feature-settings: "ss03" on;
 }
-main {
-	min-height: 100vh;
+body {
+	overflow-x:hidden;
+	min-width: var( --min-width );
 }
-body, button, .normal {
+main {
+	min-height: calc( 100vh - var( --footer-height ) );
+	overflow-x: hidden;
+}
+body, 
+button, 
+.normal {
     font-size: var( --font-size );
     font-family: "sonny-gothic-ultra-light", 
                  "Helvetica Neue", 
@@ -60,13 +74,6 @@ body, button, .normal {
     text-align: center;
     line-height: var( --font-height );
     letter-spacing: 0.05em;
-}
-button {
-	background: var( --background-color );
-	cursor: pointer;
-}
-button:focus {
-	outline: none;
 }
 
 *::selection {
@@ -101,6 +108,7 @@ a {
 }
 section {
     min-height: 100vh;
+	height: 100%;
 }
 hr {
     border: 0;
@@ -125,7 +133,7 @@ img {
 }
 .big-text {
     font-size: 2em;
-    line-height: 1.5em;
+    line-height: 1.1em;
     letter-spacing: -0.05em;
 }
 .footnote {
@@ -159,15 +167,68 @@ img {
 
 
 /* buttons */
+button, 
+.social a {
+	padding: var( --button-space ) var( --button-space ) calc( var( --button-space ) * 0.85 );
+	background: var( --background-color );
+    color: var( --primary-color );
+	cursor: pointer;
+
+	-webkit-transition: all 150ms linear;
+       -moz-transition: all 150ms linear;
+        -ms-transition: all 150ms linear;
+         -o-transition: all 150ms linear;
+            transition: all 150ms linear;
+}
+button, 
+.services {
+    font-size: var( --small-font );
+    letter-spacing: 0.15em;
+}
+button:focus {
+	outline: none;
+}
+button:active {
+	outline: none;
+}
+button:hover,
+.social a:hover {
+	background: black;
+	color: white;
+/*	transform: translate( 0, 0 );*/
+
+    font-family: "sonny-gothic-regular", 
+                 "Helvetica Neue", 
+                 "Helvetica", 
+                 "Arial", 
+                 sans-serif;
+    font-weight: normal;
+
+	-webkit-transition: all 150ms linear;
+       -moz-transition: all 150ms linear;
+        -ms-transition: all 150ms linear;
+         -o-transition: all 150ms linear;
+            transition: all 150ms linear;
+
+}
+
+.hidden-button {
+    visibility: hidden;
+}
+
+/*
+.active-links .footnotes a {
+	padding: 0;
+}
+*/
 .dropdown-button {
     cursor: pointer;
 }
 .dropdown-button:hover + .dropdown-arrow {
 	display: block;
 }
-.hidden-button {
-    visibility: hidden;
-}
+
+
 
 /* cursors */
 .down {
@@ -186,28 +247,34 @@ img {
 
 /* header */
 header {
+	position: absolute;
     z-index: 10;
     width: 100%;
+	height: var( --header-height );
     transition: transform 500ms ease-in-out;
+/*
 	background: linear-gradient( 
 		to bottom, 
 		var( --background-color ),
 		var( --background-color ), 
 		var( --background-color-alpha )
-/*		rgba( 255, 255, 255, 0 )*/
 	);
+*/
 }
 header nav {
 	height: 100%;
+	min-width: var( --min-width );
 /*	height: calc( calc( var( --page-frame ) * 2 ) + var( --logo-height ) );*/
 	align-content: center !important;
     justify-content: space-between !important;
 }
 header nav button {
-    margin: var( --page-frame ) calc( var( --page-frame ) - var( --button-space ) );
-    line-height: var( --font-size );
+	margin: 0 calc( var( --page-frame ) - var( --button-space ) );
+/*    margin: var( --page-frame ) calc( var( --page-frame ) - var( --button-space ) );*/
 }
-
+.header-space {
+	padding-top: var( --header-height );
+}
 
 .left-aligned {
     left: var( --page-frame );
@@ -221,6 +288,8 @@ header nav button {
 }
 .header-logo {
     margin: var( --page-frame );
+	min-width: 142px;
+/*	min-width: calc( var( --min-width ) - calc( var( --page-frame )  * 2 ) );*/
 	width: auto;
     height: var( --logo-height );
 	min-height: var( --logo-height );
@@ -228,8 +297,14 @@ header nav button {
     display: block;
 	cursor: pointer;
 }
-.header-logo picture source, .header-logo picture img {
+.header-logo source, .header-logo img {
 	height: 100%;
+}
+.header-logo picture {
+	position: absolute;
+	height: 100%;
+	width: auto;
+	left: 0;
 }
 /*
 .header-logo a {
@@ -246,7 +321,15 @@ header nav button {
 }
 */
 .services {
+	top: 12px;
+	left: 50%;
+	transform: translate( -50%, 0 );	
+    margin: var( --page-frame ) 0;
+    line-height: var( --font-size );
 	display: none;
+	position: absolute;
+	pointer-events: none;
+	cursor: default;
 }
 .services ul li {
 	padding: 0.35em;
@@ -295,18 +378,11 @@ header nav button {
     animation: moveDown 1s ease-out backwards;
 }
 .hero-image {
-/*    background-image: url( "" );*/
 }
 #background {
-/*    left: 50%;*/
-/*    top: 50%;*/
-/*    transform: translate( -50%, -50% );*/
     width: 100vw;
     height: 100vh;
     z-index: 0;
-/*    position: absolute;*/
-/*    opacity: 0;*/
-/*	animation: 300ms fade-in forwards ease-in;*/
 }
 #background img, #background video {
     position: absolute;
@@ -322,10 +398,14 @@ header nav button {
     position: absolute;
 	margin-top: -1em;
 	min-width: 280px;
-    width: 38%;
+	width: calc( 100% - calc( var( --page-frame ) * 2 ) );
+/*    width: 38%;*/
 	height: auto;
     overflow: hidden;
 	pointer-events: none;
+}
+#logo picture {
+	display: block;
 }
 .rise {
 /*    height: 3.7em !important;*/
@@ -389,7 +469,7 @@ header nav button {
     width: var( --bouncer-size );
     height: 60px;
     left: calc( 50% - calc( var( --bouncer-size ) / 2 ) );
-    bottom: var( --page-frame );
+    bottom: calc( var( --unit ) * 7 );
     position: absolute;
     display: block;
     z-index: 1;
@@ -408,13 +488,13 @@ header nav button {
 
     transform: rotate( -45deg );
     border: 2px solid var( --background-color );
-    border-width: 0px 0 1px 1px;
+    border-width: 0px 0 2px 2px;
     content: "";
 }
 .dropdown-arrow {
-	margin-left: calc( var(--unit) * -3 );
-	margin-top: calc( var(--page-frame) * -0.17 );
+	top: 0;
 	position: absolute;
+	transform: translate( calc( var( --font-size ) * -2.75 ), calc( var( --font-size ) * 0.5 ) );
 	display: none;
 }
 .collapsed > .dropdown-arrow:before {
@@ -424,8 +504,8 @@ header nav button {
     transform: rotate( 315deg );
 }
 .dropdown-arrow:before {
-    width: calc( var( --font-size ) / 3 );
-    height: calc( var( --font-size ) / 3 );
+    width: calc( var( --font-size ) / 5 );
+    height: calc( var( --font-size ) / 5 );
     position: absolute;
     border: 2px solid var( --primary-color );
     border-width: 0px 0 1px 1px;
@@ -444,8 +524,6 @@ header nav button {
     justify-items: center;
 }
 #works {
-    margin-top: calc( var( --page-frame-big ) * 2 );
-    margin-bottom: calc( var( --page-frame-big ) * 2 );
 	align-items: flex-start;
 }
 .flexbox {
@@ -496,11 +574,11 @@ header nav button {
         calc( var( --unit ) * 2 ) 
         var( --unit );
     background: var( --primary-color);
-	font-size: 1.5em;
+	font-size: 2em;
 	cursor: pointer;
 }
 .teaser:hover .teaser-image {
-    opacity: 0.3;
+    opacity: 0.2;
     -webkit-filter: grayscale( 100% );
             filter: grayscale( 100% );
     -webkit-transition: all .25s ease-in-out;
@@ -607,11 +685,7 @@ header nav button {
     width: fit-content;
 }
 .list h1 {
-    padding-bottom: var( --font-height );
-	padding-top: 5px;
-}
-.list p, .list h2, .list h3 {
-    margin-top: var( --font-height );
+    padding: var( --font-height ) 0;
 }
 .list span {
 	position: absolute;
@@ -620,24 +694,32 @@ header nav button {
 }
 .list li {
     display: block;
+	position: relative;
     margin-left: var(--indent-gap);
 }
 .list ul li {
     margin: 0 !important;
 }
-
-/* drowdown */
-.collapsed {
-	height: auto;
+.list a:hover {
+	padding: var( --button-space ) var( --button-space ) calc( var( --button-space ) * 0.85 );
+	background: black;
+	color: white;
 }
+
 .collapsed ol, 
 .collapsed ul, 
 .collapsed p {
 	display: none;
 }
-.expanded {
-	height: auto;
+.expanded,
+.expanded > ol > li:last-child {
+    padding-bottom: var( --font-height );	
 }
+.expanded > ol > li:first-child > h3,
+.expanded p {
+    margin-top: var( --font-height );
+}
+
 
 
 
@@ -673,16 +755,18 @@ header nav button {
 /* imprint content */
 #imprint {
     grid-column: 1 / span 12;
-	align-self: center;
+	align-self: start;
 }
 #imprint ul li a, #privacy li a, 
 #imprint ul li a:active, #privacy li a:active {
+/*
 	padding: 2px 5px !important;
 	border: none !important
+*/
 }
 #imprint ul li a:hover, #privacy li a:hover {
 	color: white;
-	background: var( --highlight-color );
+	background: var( --primary-color );
 }
 #disclaimer, #privacy {
     text-align: left;
@@ -690,7 +774,6 @@ header nav button {
     grid-column: 1 / span 12;
 }
 #disclaimer p, #privacy .list {
-    overflow: hidden;
     column-count: var( --columns );
     column-gap: var( --unit );
 }
@@ -715,52 +798,16 @@ header nav button {
 
 /* footer header a */
 footer {
-    height: var( --page-frame-big );
+    height: var( --footer-height );
 }
 footer ul {
     flex-flow: row wrap;
-    justify-content: center;
-	padding: 0 var( --page-frame );
-}
-footer button {
-    color: var( --secondary-color );
-    font-size: var( --small-font );
-    letter-spacing: 0.15em;
-}
-header nav button, 
-footer button, 
-.active-links a {
-	padding: 
-		var( --button-space )
-		var( --button-space )
-		calc( var( --button-space ) - calc( var( --button-space ) / 5 ) )
-		var( --button-space );
-    border: 1px solid transparent;
-    color: var( --primary-color );
-/*    border-bottom: 1px solid transparent;*/
-    -webkit-transition: all 150ms linear;
-       -moz-transition: all 150ms linear;
-        -ms-transition: all 150ms linear;
-         -o-transition: all 150ms linear;
-            transition: all 150ms linear;
-}
-.active-links .footnotes a {
-	padding: 0;
-	border: none;
-}
-.active-links .footnotes a:hover {
-	border: none;
-	background: var( --lowlight-color );
+    justify-content: space-between;
+	padding: 0 calc( var( --page-frame ) - var( --button-space ) );
 }
 
-header nav button {
-	width: calc( var( --unit ) * 6 );
-}
-header nav button:hover, 
-footer button:hover,
-.active-links a:hover {
-    border: 1px solid var( --primary-color );
-}
+
+
 
 
 
@@ -780,7 +827,7 @@ footer button:hover,
     left: 0;
     position: fixed;
     z-index: 20;
-    border: calc( var( --page-frame) / 1 ) solid var( --highlight-color );
+/*    border: calc( var( --page-frame) / 1 ) solid var( --highlight-color );*/
     pointer-events: none;
 }
 .show-frame {
@@ -916,6 +963,19 @@ input:focus {
 }
 
 
+#label {
+	text-align: left:
+/*	position: absolute;*/
+/*
+	left: var( --page-frame );
+	bottom: var( --page-frame );
+*/
+/*	padding: var( --font-size );*/
+}
+#label a:hover {
+	background: black;
+	color: white;
+}
 
 
 /* admin */
@@ -993,6 +1053,7 @@ input:focus {
     background: var( --highlight-color);
     color: var( --background-color );   
 }
+
     
     
 /* animations */

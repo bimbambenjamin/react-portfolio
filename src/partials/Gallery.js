@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -11,14 +11,14 @@ function Teaser( props )  {
 
 				<div className = "teaser" onClick = { props.onClick }>
 
-					<Link to = { `/showcase/${ props.folder }` }>
+					<NavLink to = { `/showcase/${ props.folder }` }>
 						<img 
 							className = "teaser-image"
 							src = { props.value }
 							title = { props.title } 
 							alt = { props.title } 
 						/>
-					</Link>
+					</NavLink>
 
 					<span className = "teaser-title">{ props.title }</span>
 
@@ -48,7 +48,7 @@ class Gallery extends React.Component {
 		
 		return (
 
-			<div className = "grid" id = "works">
+			<div className = "grid header-space" id = "works">
 				<div className = "flexbox row freedom-above freedom-below uppercase">
 			
 					{ this.props.state.showcases.map( ( showcase, i ) => (

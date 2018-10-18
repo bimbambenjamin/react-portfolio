@@ -6,7 +6,7 @@ function Social() {
 			
 	return (
 		
-		<div className = "social uppercase active-links">
+		<div className = "social uppercase">
 		
 			<h4>
 				<a 

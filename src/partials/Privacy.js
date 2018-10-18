@@ -53,7 +53,7 @@ class PrivacyContent extends React.Component {
 
 		return (
 
-			<div className = "active-links freedom-above freedom-below" id="privacy">
+			<div className = "active-links header-space freedom-above freedom-below" id="privacy">
 
 				<div className = "list">
 					<h1>Datenschutzerklärung</h1>

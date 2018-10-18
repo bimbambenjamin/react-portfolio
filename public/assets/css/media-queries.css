@@ -37,7 +37,7 @@ and ( max-width: 319px ) {
 and ( min-width: 320px ) 
 and ( max-width: 414px ) {
     :root {
-        --item-width: calc( 100vw - calc( var( --page-frame ) * 2 ) );
+/*        --item-width: calc( 100vw - calc( var( --page-frame ) * 2 ) );*/
     }
 }
 @media screen 
@@ -51,6 +51,9 @@ and ( max-width: 264px ) {
 }
 @media screen 
 and ( max-width: 374px ) {
+}
+@media screen 
+and ( max-width: 414px ) {
     .big-text {
         font-size: 1em;
         line-height: 1.4em;
@@ -58,23 +61,14 @@ and ( max-width: 374px ) {
     }
 }
 @media screen 
-and ( max-width: 414px ) {
-}
-@media screen 
-and ( max-width: 568px ) {
-}
-@media screen 
-and ( max-width: 666px ) {
+and ( max-width: 480px ) {
+	
+	/* changing header to vertical layout */
+/*
     :root {
-        --columns: 1;
-/*        --alignment: "center";*/
+		--header-height: calc( calc( var( --page-frame ) + var( --logo-height ) ) + var( --page-frame-big ) );
     }
-	header {
-		var( --page-frame-big );
-		
-	}
 	header nav {
-/*		height: calc( calc( var( --page-frame ) + var( --logo-height ) ) );*/
 		flex-flow: column wrap !important;
 	}
 	#header-logo {
@@ -83,9 +77,17 @@ and ( max-width: 666px ) {
     #header-logo a object {
 		width: 100%;
     }
-	.row {
-/*		flex-flow: column wrap;		*/
+*/
+}
+@media screen 
+and ( max-width: 568px ) {	
+	:root {
+		--logo-height: 28px;
+		--font-size: 0.7rem;
 	}
+}
+@media screen 
+and ( max-width: 666px ) {
 }
 @media screen 
 and ( min-width: 667px ) 
@@ -126,6 +128,9 @@ and ( max-width: 812px ) {
 /*        --page-frame: 10px;*/
 /*        --font-size: 0.8rem;*/
     }
+	#contact ul li a {
+		padding: 5px 10px 1px 10px;
+	}
 }
 @media screen 
 and ( min-width: 737px ) 
@@ -145,6 +150,9 @@ and ( max-width: 834px ) {
 @media screen and (max-width: 1023px) {
 	:root {
 		--page-frame: var( --unit );
+	}
+	.header-space {
+		padding-top: calc( var( --header-height ) * 2 );
 	}
     .break-wide {
         display: none;

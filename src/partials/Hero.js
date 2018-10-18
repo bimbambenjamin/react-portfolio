@@ -4,6 +4,11 @@ import React from 'react'
 
 class Hero extends React.Component {
 
+	componentDidMount() {
+		
+		const activateHero = () => { this.props.ativateHero( true ) }
+		console.log( "hero mounted ", activateHero )
+	}
 	getFiletype( filename ) {
 
 		if ( typeof filename === "string" ) {
@@ -82,11 +87,21 @@ class Hero extends React.Component {
 		const hero = state.hero
 		const logo = this.whiteLogo( state.logo )
 		const logoPath = state.imagePath + "logo/" + logo
-		const bouncerClasses = "appear-delayed"
+		const bouncerClasses = ""
+		const heroIsActive = state.heroIsActive
+		const onLoad = heroIsActive ? 
+			null : 
+			() => this.props.activateHero( true )
 
 		return (
 
-			<section className = "uppercase down" id = "hero" onClick = { () => this.props.onClick( "heroClick" ) } >
+			<section 
+				className = "uppercase down" 
+				id = "hero" 
+				onClick = { () => this.props.onClick( "heroClick" ) }						onLoad = { onLoad }
+				onError = { () => this.props.activateHero( false ) }
+ 
+			>
 
 				{ this.imageOrVideo( mainTitle, hero ) }
 

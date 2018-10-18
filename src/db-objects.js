@@ -1,6 +1,6 @@
 // 1
 {
-	folder: "JOOP-SS18/JOOP-ss18",
+	folder: "JOOP-SS18",
 	title: "joop!",
 	subtitle: "ss 18",
 	teaser: "JOOP-SS18-05.jpg",
@@ -123,7 +123,7 @@
 
 // 8
 {
-    folder: "JOOP-FW17/Joop_bags_FW116-17",
+    folder: "FW16-17-Joop_bags",
     title: "joop! fw 17",
     subtitle: "",
     teaser: "JOOP-FW17-02.jpg",

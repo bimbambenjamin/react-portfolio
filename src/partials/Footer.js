@@ -1,6 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
+
+
+const CheckActive = ( match, location ) => {
+	
+	console.log( "CheckActive Footer", match, location )
+	console.log( "CheckActive Footer", this )
+
+	return match ? true : false
+
+}
 
 function FooterNav( props ) {
 	
@@ -17,33 +27,47 @@ function FooterNav( props ) {
 
 	return (
 
-		<footer className = "uppercase freedom-above appear-delayed">
+		<footer className = "uppercase appear">
 
 			<ul className = "flexbox">
+
 				<li>
-					<button 
-		 				className = { imprintClasses }  
-		 				type = "button"
-		 				onClick = { () => props.onClick( "/imprint" ) }
+		
+					<NavLink 
+						to = "/imprint"
+						activeClassName = "vanish no-select"
+						isActive = { CheckActive }
 					>
-					<Link to = "/imprint">
-						<span>imprint</span>
-					</Link>
-					</button>
+						<button 
+							className = { imprintClasses }  
+							type = "button"
+							onClick = { () => props.onClick( "/imprint" ) }
+						>
+							<span>imprint</span>
+						</button>
+					</NavLink>
+
 		 		</li>
+
 				<li>&emsp;</li>
-		 		<li>
-					<button 
-		 				className = { privacyClasses } 
-		 				type = "button"
-		 				onClick = { () => props.onClick( "/privacy" ) }
+
+				<li>
+					<NavLink 
+						to = "/privacy"
+						activeClassName = "vanish no-select"
+						isActive = { CheckActive }
 					>
-					<Link to = "/privacy">
-						<span>privacy&nbsp;policy</span>
-					</Link>
-					</button>
+						<button 
+							className = { privacyClasses } 
+							type = "button"
+							onClick = { () => props.onClick( "/privacy" ) }
+						>
+							<span>privacy&nbsp;policy</span>
+						</button>
+					</NavLink>
 
 				</li>
+
 			</ul>
 
 		</footer>

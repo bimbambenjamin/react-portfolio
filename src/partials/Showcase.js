@@ -9,15 +9,17 @@ class Showcase extends React.Component {
 	render() {
 
 		const state = this.props.state
-		const showcaseId = state.showcaseId
+		console.log( "showcase this: ", this)
+		const showcaseId = this.props.showcaseId
 		const showcase = state.showcases[ showcaseId ]
 		const path = state.imagePath + "showcases/"
 		const classNames = "flexbox column uppercase"
 		const id = "showcase-work"
+		const imageStatus = ( status ) => this.props.imageStatus( status )
 
 		return (
 			
-			<section className = "grid appear uppercase" id = "showcase" key = { showcaseId }>
+			<section className = "grid appear header-space freedom-below uppercase" id = "showcase" key = { showcaseId }>
 
 				<div className = "freedom-above big-text uppercase" id = "showcase-title">
 					<h1>{ showcase.title }</h1>
@@ -29,7 +31,7 @@ class Showcase extends React.Component {
 					path = { path }
 					classNames = { classNames }
 					id = { id }
-					imageStatus = { ( status ) => this.props.imageStatus( status ) }
+					imageStatus = { imageStatus }
 				/>
 
 			</section>
