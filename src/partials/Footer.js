@@ -35,7 +35,7 @@ function FooterNav( props ) {
 		
 					<NavLink 
 						to = "/imprint"
-						activeClassName = "vanish no-select"
+						activeClassName = "vanish no-select current"
 						isActive = { CheckActive }
 					>
 						<button 
@@ -54,7 +54,7 @@ function FooterNav( props ) {
 				<li>
 					<NavLink 
 						to = "/privacy"
-						activeClassName = "vanish no-select"
+						activeClassName = "vanish no-select current"
 						isActive = { CheckActive }
 					>
 						<button 

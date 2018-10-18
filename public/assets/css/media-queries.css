@@ -27,7 +27,7 @@
 
 /* iphone se */
 @media screen 
-and ( max-width: 319px ) {
+and ( max-width: 834px ) {
     :root {
         --item-width: calc( 320px - calc( var( --page-frame ) * 2 ) );
     }

@@ -60,7 +60,7 @@ function HeaderNav( props ) {
 			
 			<NavLink 
 				to = "/contact"
-				activeClassName = "vanish no-select"
+				activeClassName = "vanish no-select current"
 				isActive = { CheckActive }
 			>
 				<button 

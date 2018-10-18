@@ -68,12 +68,12 @@ class Imprint extends React.Component {
 
 		return (
 
-			<section className = "grid header-space">
+			<div className = "grid header-space">
 
 				<ImprintContent />
 				<DisclaimerContent />
 
-			</section>
+			</div>
 
 		)
 			

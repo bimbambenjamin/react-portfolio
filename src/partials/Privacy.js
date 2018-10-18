@@ -502,11 +502,11 @@ class Privacy extends React.Component {
 			
 		return (
 
-            <section className = "grid">
+            <div className = "grid header-space">
 
 				<PrivacyContent />
 
-            </section>
+            </div>
 
 		)
 

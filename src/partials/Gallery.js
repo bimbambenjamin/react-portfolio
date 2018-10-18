@@ -9,7 +9,7 @@ function Teaser( props )  {
 		
 			<div className = "item citizen">
 
-				<div className = "teaser" onClick = { props.onClick }>
+				<div className = "teaser one-word-per-line" onClick = { props.onClick }>
 
 					<NavLink to = { `/showcase/${ props.folder }` }>
 						<img 
