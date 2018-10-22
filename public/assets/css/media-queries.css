@@ -53,6 +53,12 @@ and ( max-width: 264px ) {
 and ( max-width: 374px ) {
 }
 @media screen 
+and ( max-height: 414px ) {
+	#bouncer-text {
+		display: none;
+	}
+}
+@media screen 
 and ( max-width: 414px ) {
     .big-text {
         font-size: 1em;
@@ -128,9 +134,6 @@ and ( max-width: 812px ) {
 /*        --page-frame: 10px;*/
 /*        --font-size: 0.8rem;*/
     }
-	#contact ul li a {
-		padding: 5px 10px 1px 10px;
-	}
 }
 @media screen 
 and ( min-width: 737px ) 

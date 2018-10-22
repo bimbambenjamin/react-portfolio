@@ -3,12 +3,16 @@ import React from 'react'
 
 
 class Hero extends React.Component {
-
-	componentDidMount() {
-		
-		const activateHero = () => { this.props.ativateHero( true ) }
-		console.log( "hero mounted ", activateHero )
+	
+	scrollToTop() {
+		window.scroll( { top: 0 } )
 	}
+	componentDidMount() {		
+		this.scrollToTop();
+		console.log( "i am your hero!" )
+		return () => { this.props.ativateHero( true ) }
+	}
+	
 	getFiletype( filename ) {
 
 		if ( typeof filename === "string" ) {
@@ -33,12 +37,14 @@ class Hero extends React.Component {
 		
 		const videoDataPath = "http://www.mariotestino.com/wp-content/uploads/2017/07/"
 		const videoURL = "CHNY_AW17.mp4"
+		const backgroundImage = `url( ${ src } )`	
+		const id = "background"
 		
 		switch( type ) {
 
 			case "image":
 			return (
-				<figure id = "background">
+				<figure id = { id }>
 					<img 
 						src = { src }
 						alt = { alt }
@@ -48,7 +54,7 @@ class Hero extends React.Component {
 				
 			case "video":
 			return (
-				<figure id = "background">
+				<figure id = { id }>
 					<video 
 						aria-hidden = "true" 
 						className = "background" 
@@ -63,7 +69,11 @@ class Hero extends React.Component {
 				</figure>
 			)
 			default:
-			return
+			return (
+				<div id = { id }>
+					<div style = { backgroundImage }></div>
+				</div>
+			)
 		
 		}
 
@@ -114,7 +124,7 @@ class Hero extends React.Component {
 				</div>
 
 				<div className = "appear-delayed">
-					<div id = "bouncer-text"><span>please scroll</span></div>
+					<div className = "fat" id = "bouncer-text"><span>scroll</span></div>
 				</div>
 
 			</section>

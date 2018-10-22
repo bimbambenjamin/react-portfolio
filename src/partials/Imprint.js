@@ -1,7 +1,7 @@
 import React from 'react'
 import Email from './Email'
 import Phone from './Phone'
-import Label from './Label'
+//import Label from './Label'
 
 
 class ImprintContent extends React.Component {
@@ -52,7 +52,7 @@ function DisclaimerContent() {
 
 			<div>
 				<p>
-					Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß §&thinsp;7 Abs.&thinsp;1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§&thinsp;8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+					Die In&shy;hal&shy;te un&shy;se&shy;rer Sei&shy;ten wur&shy;den mit größ&shy;ter Sorg&shy;falt er&shy;stellt. Für die Rich&shy;tig&shy;keit, Voll&shy;stän&shy;dig&shy;keit und Ak&shy;tuali&shy;tät der In&shy;hal&shy;te kön&shy;nen wir je&shy;doch kei&shy;ne Ge&shy;währ über&shy;neh&shy;men. Als Dienste&shy;anbieter sind wir ge&shy;mäß §&nbsp;7 Abs.&nbsp;1 TMG für ei&shy;ge&shy;ne In&shy;hal&shy;te auf die&shy;sen Sei&shy;ten nach den all&shy;ge&shy;mei&shy;nen Ge&shy;setz&shy;en ver&shy;ant&shy;wort&shy;lich. Nach §§&nbsp;8 bis 10&nbsp;TMG sind wir als Diens&shy;te&shy;an&shy;bie&shy;ter je&shy;doch nicht ver&shy;pflich&shy;tet, über&shy;mit&shy;tel&shy;te oder ge&shy;spei&shy;cher&shy;te frem&shy;de In&shy;for&shy;ma&shy;tio&shy;nen zu über&shy;wa&shy;chen oder nach Um&shy;stän&shy;den zu for&shy;schen, die auf ei&shy;ne rechts&shy;widri&shy;ge Tä&shy;tig&shy;keit hin&shy;wei&shy;sen. Ver&shy;pflich&shy;tungen zur Ent&shy;fer&shy;nung oder Sper&shy;rung der Nut&shy;zung von In&shy;for&shy;ma&shy;tio&shy;nen nach den all&shy;ge&shy;mei&shy;nen Ge&shy;setz&shy;en blei&shy;ben hier&shy;von un&shy;be&shy;rührt. Eine dies&shy;be&shy;züg&shy;liche Haf&shy;tung ist je&shy;doch erst ab dem Zeit&shy;punkt der Kenn&shy;tnis ei&shy;ner kon&shy;kre&shy;ten Rechts&shy;ver&shy;let&shy;zung mög&shy;lich. Bei Be&shy;kannt&shy;wer&shy;den von ent&shy;spre&shy;chen&shy;den Rechts&shy;ver&shy;let&shy;zungen wer&shy;den wir die&shy;se In&shy;hal&shy;te um&shy;gehend ent&shy;fer&shy;nen.
 				</p>
 			</div>
 
@@ -63,6 +63,11 @@ function DisclaimerContent() {
 }
 
 class Imprint extends React.Component {
+	
+	componentDidMount() {		
+		window.scroll( { top: 0 } )
+		return () => { this.props.ativateHero( true ) }
+	}
 	
 	render() {
 

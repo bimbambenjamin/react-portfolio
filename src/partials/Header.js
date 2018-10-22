@@ -5,9 +5,6 @@ import { NavLink } from 'react-router-dom'
 
 const CheckActive = ( match, location ) => {
 
-	console.log( "CheckActive ", match, location )
-	console.log( "CheckActive ", this )
-	
 	return match ? true : false
 	
 }
@@ -89,9 +86,6 @@ class Header extends React.Component {
 		const logo = state.imagePath + "logo/" + state.logo
 		const heroIsActive = this.props.heroIsActive
 
-		console.log( "HEADER ", this )
-		console.log( "HEADER ", heroIsActive )
-		
 		const classNames = heroIsActive ? 
 			  "uppercase appear stick-to-second-section" :
 			  "uppercase appear"

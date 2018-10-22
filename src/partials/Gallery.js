@@ -1,30 +1,37 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import ImageLoader from '../handler/ImageLoader'
+
 
 
 function Teaser( props )  {
 			
+	const preloaderImg = ""
+	
 	return (
 		
-			<div className = "item citizen">
+		<div className = "item citizen">
 
-				<div className = "teaser one-word-per-line" onClick = { props.onClick }>
+			<div className = "teaser one-word-per-line" onClick = { props.onClick }>
 
-					<NavLink to = { `/showcase/${ props.folder }` }>
-						<img 
-							className = "teaser-image"
-							src = { props.value }
-							title = { props.title } 
-							alt = { props.title } 
-						/>
-					</NavLink>
+				<NavLink to = { `/showcase/${ props.folder }` }>
 
-					<span className = "teaser-title">{ props.title }</span>
+					<ImageLoader 
+						className = "teaser-image"
+						unloadedSrc = { preloaderImg } 
+						src = { props.value }
+						title = { props.title } 
+						alt = { props.title } 
+					/>
 
-				</div>
+				</NavLink>
+
+				<span className = "teaser-title">{ props.title }</span>
 
 			</div>
+
+		</div>
 
 	)
 	

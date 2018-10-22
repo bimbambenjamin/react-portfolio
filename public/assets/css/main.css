@@ -81,10 +81,15 @@ button,
     letter-spacing: 0.05em;
 }
 
-*::selection {
+::selection {
 	color: var(--highlight-color);
 	background-color: transparent;
 }
+::-moz-selection {
+	color: var(--highlight-color);
+	background-color: transparent;
+}
+
 h1, h2, h3, h4, h5, h6, strong, .fat {
     margin: 0;
     display: block;
@@ -104,7 +109,6 @@ p {
     margin-bottom: var( --font-height );
 }
 ol, ul, li {
-    display: inline;
     list-style: none;
 }
 a {
@@ -167,7 +171,12 @@ img {
 .invisible {
 	display: none !important;
 }
-
+.waiting {
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	position: absolute;
+}
 
 /* buttons */
 button, 
@@ -285,6 +294,9 @@ header nav {
 	align-content: center !important;
     justify-content: space-between !important;
 }
+header nav li {
+    display: inline;
+}
 header nav button {
 	margin: 0 calc( var( --page-frame ) - var( --button-space ) );
 /*    margin: var( --page-frame ) calc( var( --page-frame ) - var( --button-space ) );*/
@@ -382,7 +394,7 @@ header nav button {
 /* hero */
 #hero {
     background: var( --background-color );
-    z-index: 0;
+	z-index: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -401,6 +413,12 @@ header nav button {
     height: 100vh;
     z-index: 0;
 }
+#background div {
+	background: url( https://www.benjamin-jager.com/projects/sacha-assets/img/hero/The-future-is-now04.jpg ) no-repeat center;
+	background-size: cover;
+	height: 100%;
+	overflow: hidden;
+}
 #background img, #background video {
     position: absolute;
     left: 50%;
@@ -413,8 +431,7 @@ header nav button {
 #logo {
     z-index: 1;
     position: absolute;
-	margin-top: -1em;
-	max-width: 1190px;
+	max-width: 600px;
 	min-width: 280px;
 	width: calc( 100% - calc( var( --page-frame ) * 2 ) );
 /*    width: 38%;*/
@@ -484,19 +501,21 @@ header nav button {
             transition: opacity .25s ease-in-out;
 }
 #bouncer-text {
-    font-family: "sonny-gothic-regular", 
+/*
+    font-family: "sonny-gothic-regular",
                  "Helvetica Neue", 
                  "Helvetica", 
                  "Arial", 
                  sans-serif;
     font-weight: normal;
     letter-spacing: -0.01em;
+*/
 	color: var( --background-color );
 
 	width: 140px;
     height: 60px;
     left: calc( 50% - 70px );
-    bottom: calc( var( --unit ) * 7 );
+    top: calc( 100vh - var( --page-frame-big ) );
     position: absolute;
 
 	-webkit-animation: 2s bounce 2s infinite;
@@ -727,7 +746,7 @@ header nav button {
     padding-bottom: var( --font-height );
 }
 .list * {
-    width: fit-content;
+/*    width: fit-content;*/
 }
 .list h1 {
     padding: var( --font-height ) 0;
@@ -839,11 +858,12 @@ header nav button {
 
 /* footer header a */
 footer {
+	font-size: 0.7em;
     height: var( --footer-height );
 }
 footer ul {
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
 	padding: 0 calc( var( --page-frame ) - var( --button-space ) );
 }
 

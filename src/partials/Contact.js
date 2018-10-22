@@ -10,13 +10,17 @@ function Copyright() {
 	return (
 		<div className = "uppercase" id = "copyright">
 			<p>
-				All images and texts are <br className = "break-narrow"/>copyrighted and owned by <br className = "break-narrow"/>Sacha Tassilo Hoechstetter. <br className = "break-wide"/>Under no circumstances <br className = "break-narrow"/>shall these digital files, <br className = "break-narrow"/>images and videos <br className = "break-wide"/>be used, <br className = "break-narrow"/>copied, displayed or pulled <br className = "break-narrow"/>from this site without the expressed <br className = "break-wide"/>written agreement <br className = "break-narrow"/>of Sacha Tassilo Hoechstetter.
+				All im&shy;ages and texts are cop&shy;y&shy;right&shy;ed and own&shy;ed by Sacha&nbsp;Tassilo Hoechstetter. Un&shy;der no cir&shy;cum&shy;stances shall these dig&shy;i&shy;tal files, im&shy;ages and vid&shy;eos be used, cop&shy;ied, dis&shy;play&shy;ed or pull&shy;ed from this site with&shy;out the ex&shy;press&shy;ed writ&shy;ten agree&shy;ment of Sacha&nbsp;Tassilo Hoechstetter.
 			</p>
 		</div>
 	)
 }
 class Contact extends React.Component {
 
+	componentDidMount() {
+		window.scroll( { top: 0 } )
+	}
+		
 	render() {
 		
 		return (

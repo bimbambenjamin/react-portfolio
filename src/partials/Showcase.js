@@ -5,17 +5,23 @@ import HandleImages from '../handler/HandleImages'
 
 
 class Showcase extends React.Component {
-	
+
+	componentDidMount() {
+		window.scroll( { top: 0 } )
+		return () => { this.props.ativateHero( true ) }
+	}
+	componentWillUnmount() {
+//		console.log( "UNMOUNTING SHOWCASE ", this )
+//		return () => { this.props.fadeOut( true ) }
+	}
 	render() {
 
 		const state = this.props.state
-		console.log( "showcase this: ", this)
 		const showcaseId = this.props.showcaseId
 		const showcase = state.showcases[ showcaseId ]
 		const path = state.imagePath + "showcases/"
 		const classNames = "flexbox column uppercase"
 		const id = "showcase-work"
-		const imageStatus = ( status ) => this.props.imageStatus( status )
 
 		return (
 			
@@ -27,11 +33,13 @@ class Showcase extends React.Component {
 				</div>
 
 				<HandleImages
-					showcase = { showcase }
+					images = { showcase }
 					path = { path }
 					classNames = { classNames }
 					id = { id }
-					imageStatus = { imageStatus }
+					alt = { showcase.title }
+					handleLoadedImage = { ( bool ) => this.props.handleLoadedImage( bool ) }
+					handleErroredImage = { ( bool ) => this.props.handleErroredImage( bool ) }
 				/>
 
 			</section>

@@ -1,42 +1,51 @@
 import React from "react"
+import ImageLoader from './ImageLoader'
 
 
 
 class HandleImages extends React.Component {
 
-	getFullPath( showcase, image, path ) {
+	getFullPath( images, image, path ) {
 	
-		const folder = showcase.folder
+		const folder = images.folder
 		const file = image
 		const filePath = path + folder + "/" + file
+		
+		console.log( "fullPath: ", filePath )
 
 		return filePath
 		
 	}
-	
+
 	render() {
 		
-		const showcase = this.props.showcase
-		const classNames = this.props.classNames
+		const images = this.props.images
 		const path = this.props.path
+		const classNames = this.props.classNames
 		const id = this.props.id
+		const alt = this.props.alt
+		
+		// TODO: change this
+		const preloaderImg = ""
+
+		const getImages = images.images.map( ( image, i ) => ( 
+			
+			<ImageLoader 
+				key = { i }
+				unloadedSrc = { preloaderImg } 
+				src = { this.getFullPath( images, image, path ) }
+				alt = { alt }
+			/>
+
+		) )
 
 		return (
+
 			<div 
 				className = { classNames }
 				id = { id }
 			>
-			
-				{ showcase.images.map( ( image, i ) => ( 
-					<img
-						key = { i }
-						src = { this.getFullPath( showcase, image, path ) }
-						title = { showcase.title }
-						alt = { showcase.title }
-						onLoad = { () => this.props.imageStatus( "loaded" ) }
-						onError = { () => this.props.imageStatus( "error" ) }
-					/>
-				) ) }
+				{ getImages }
 
 			</div>
 		)

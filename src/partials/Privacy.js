@@ -8,6 +8,10 @@ import Phone from './Phone'
 
 class PrivacyContent extends React.Component {
 
+	componentDidMount() {
+		window.scroll( { top: 0 } )
+	}
+	
 //	$( function() {
 //		$( ".dropdown-button" ).click( function() {
 //			$( this ).parent( ".dropdown" ).toggleClass( "collapsed" );
@@ -66,17 +70,23 @@ class PrivacyContent extends React.Component {
 								className = "dropdown-button"
 								onClick = { () => this.handleDropdown( 0 ) }
 							>
-								<span>1. </span>Name und Kontaktdaten des für die Verarbeitung Verantwortlichen sowie des betrieblichen Datenschutzbeauftragten
+								<span>1. </span>Name und Kon&shy;takt&shy;daten des für die Ver&shy;ar&shy;bei&shy;tung Ver&shy;antwortl&shy;ich&shy;en so&shy;wie des be&shy;trieb&shy;lich&shy;en Da&shy;ten&shy;schutz&shy;beauf&shy;trag&shy;ten
 							</h2>
 							<div className = "dropdown-arrow"></div>
 
 							<p>
-								Diese Datenschutz-Information gilt für die Datenverarbeitung durch:
+								Diese Daten&shy;schutz-In&shy;for&shy;ma&shy;tion gilt für die Daten&shy;ver&shy;arbei&shy;tung durch:
 							</p>
 
 							<ul>
 								<li>
-									Verantwortlicher: Sacha Tassilo Höchstetter, Jahnstraße 5, 80469 München
+									Verantwortlicher:
+								</li>
+								<li>
+									Sacha&nbsp;Tassilo Höchstetter
+								</li>
+								<li>
+									Jahnstraße&nbsp;5, 80469&nbsp;München
 								</li>
 								<li>
 									<Email />
@@ -87,7 +97,7 @@ class PrivacyContent extends React.Component {
 							</ul>
 
 							<p>
-								Der/die betriebliche Datenschutzbeauftragte der Sacha Tassilo Höchstetter Photography ist unter der o. g. Anschrift, zu Hd. Sacha Tassilo Höchstetter, beziehungsweise unter <Email /> erreichbar.
+								Der/die be&shy;trieb&shy;liche Da&shy;ten&shy;schutz&shy;beauf&shy;trag&shy;te der Sacha Tassilo Höchstetter Photography ist un&shy;ter der o. g. An&shy;schrift, zu Hd. Sacha Tassilo Höchstetter, be&shy;zieh&shy;ungs&shy;weise un&shy;ter <Email /> er&shy;reich&shy;bar.
 							</p>
 
 						</li>
@@ -98,7 +108,7 @@ class PrivacyContent extends React.Component {
 								className = "dropdown-button"
 								onClick = { () => this.handleDropdown( 1 ) }
 							>
-									<span>2. </span>Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck von deren Verwendung
+									<span>2. </span>Er&shy;he&shy;bung und Spei&shy;che&shy;rung per&shy;sonen&shy;bezo&shy;gen&shy;er Da&shy;ten so&shy;wie Art und Zweck von de&shy;ren Ver&shy;wen&shy;dung
 							</h2>
 							<div className = "dropdown-arrow"></div>
 
@@ -111,30 +121,30 @@ class PrivacyContent extends React.Component {
 									<div className = "dropdown-arrow"></div>
 
 									<p>
-										Beim Aufrufen unserer Website <a href = "http://www.sachahoechstetter.com" target = "_blank" rel = "noopener noreferrer">www.sachahoechstetter.com</a> werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sog. Logfile gespeichert. Folgende Informationen werden dabei ohne Ihr Zutun erfasst und bis zur automatisierten Löschung gespeichert:
+										Beim Auf&shy;rufen un&shy;se&shy;rer Web&shy;site <a href = "http://www.sachahoechstetter.com" target = "_blank" rel = "noopener noreferrer">www.sachahoechstetter.com</a> wer&shy;den durch den auf Ih&shy;rem End&shy;gerät zum Ein&shy;satz kom&shy;men&shy;den Brow&shy;ser auto&shy;ma&shy;tisch In&shy;for&shy;ma&shy;tio&shy;nen an den Ser&shy;ver un&shy;se&shy;rer Web&shy;site ge&shy;sen&shy;det. Die&shy;se In&shy;for&shy;ma&shy;tio&shy;nen wer&shy;den tem&shy;po&shy;rär in ei&shy;nem sog. Log&shy;file ge&shy;spei&shy;chert. Fol&shy;ge&shy;nde In&shy;for&shy;ma&shy;tio&shy;nen wer&shy;den da&shy;bei ohne Ihr Zu&shy;tun er&shy;fasst und bis zur auto&shy;ma&shy;ti&shy;sier&shy;ten Lö&shy;schung ge&shy;spei&shy;chert:
 									</p>
 
 									<ol>
-										<li><span>&minus;</span>IP-Adresse des anfragenden Rechners,</li>
-										<li><span>&minus;</span>Datum und Uhrzeit des Zugriffs,</li>
-										<li><span>&minus;</span>Name und URL der abgerufenen Datei,</li>
-										<li><span>&minus;</span>Website, von der aus der Zugriff erfolgt (Referrer-URL),</li>
-										<li><span>&minus;</span>verwendeter Browser und ggf. das Betriebssystem Ihres Rechners sowie der Name Ihres Access-Providers.</li>
+										<li><span>&minus;</span>IP-Adresse des an&shy;fra&shy;gen&shy;den Rechners,</li>
+										<li><span>&minus;</span>Da&shy;tum und Uhr&shy;zeit des Zu&shy;griffs,</li>
+										<li><span>&minus;</span>Name und URL der ab&shy;ge&shy;ru&shy;fen&shy;en Datei,</li>
+										<li><span>&minus;</span>Web&shy;site, von der aus der Zu&shy;griff er&shy;folgt (Referrer-URL),</li>
+										<li><span>&minus;</span>ver&shy;wen&shy;de&shy;ter Brow&shy;ser und ggf. das Be&shy;triebs&shy;sys&shy;tem Ih&shy;res Rech&shy;ners so&shy;wie der Name Ih&shy;res Access-Pro&shy;vi&shy;ders.</li>
 									</ol>
 
-									<p>Die genannten Daten werden durch uns zu folgenden Zwecken verarbeitet:</p>
+									<p>Die ge&shy;nann&shy;ten Da&shy;ten wer&shy;den durch uns zu fol&shy;gen&shy;den Zwecken ver&shy;ar&shy;bei&shy;tet:</p>
 
 									<ol>
-										<li><span>&minus;</span>Gewährleistung eines reibungslosen Verbindungsaufbaus der Website,</li>
-										<li><span>&minus;</span>Auswertung der Systemsicherheit und -stabilität sowie</li>
-										<li><span>&minus;</span>zu weiteren administrativen Zwecken.</li>
+										<li><span>&minus;</span>Gew&shy;ähr&shy;leis&shy;tung ei&shy;nes rei&shy;bungs&shy;losen Ver&shy;bin&shy;dungs&shy;auf&shy;baus der Web&shy;site,</li>
+										<li><span>&minus;</span>Aus&shy;wer&shy;tung der Sys&shy;tem&shy;sicher&shy;heit und -sta&shy;bi&shy;li&shy;tät so&shy;wie</li>
+										<li><span>&minus;</span>zu wei&shy;te&shy;ren ad&shy;min&shy;is&shy;tra&shy;ti&shy;ven Zwe&shy;cken.</li>
 									</ol>
 
 									<p>
-										Die Rechtsgrundlage für die Datenverarbeitung ist Art.&thinsp;6 Abs.&thinsp;1 S.&thinsp;1 lit.&thinsp;f DSGVO. Unser berechtigtes Interesse folgt aus oben aufgelisteten Zwecken zur Datenerhebung. In keinem Fall verwenden wir die erhobenen Daten zu dem Zweck, Rückschlüsse auf Ihre Person zu ziehen.
+										Die Rechts&shy;grund&shy;lage für die Daten&shy;ver&shy;arbei&shy;tung ist Art.&thinsp;6 Abs.&thinsp;1 S.&thinsp;1 lit.&thinsp;f DSGVO. Un&shy;ser be&shy;rech&shy;tig&shy;tes In&shy;ter&shy;esse folgt aus oben auf&shy;ge&shy;lis&shy;te&shy;ten Zwe&shy;cken zur Da&shy;ten&shy;erhe&shy;bung. In kei&shy;nem Fall ver&shy;wen&shy;den wir die er&shy;ho&shy;be&shy;nen Da&shy;ten zu dem Zweck, Rück&shy;schlüs&shy;se auf Ih&shy;re Per&shy;son zu zie&shy;hen.
 									</p>
 									<p>
-										Darüber hinaus setzen wir beim Besuch unserer Website Cookies sowie Analysedienste ein. Nähere Erläuterungen dazu erhalten Sie unter den Ziff. 4 und 5 dieser Datenschutzerklärung.
+										Da&shy;rü&shy;ber hin&shy;aus set&shy;zen wir beim Be&shy;such un&shy;ser&shy;er Web&shy;site Coo&shy;kies so&shy;wie Ana&shy;lyse&shy;dienste ein. Nähe&shy;re Er&shy;läu&shy;te&shy;rungen da&shy;zu er&shy;hal&shy;ten Sie un&shy;ter den Ziff. 4 und 5 die&shy;ser Daten&shy;schutz&shy;erklä&shy;rung.
 									</p>
 
 								</li>

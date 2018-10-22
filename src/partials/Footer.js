@@ -5,9 +5,6 @@ import { NavLink } from 'react-router-dom'
 
 const CheckActive = ( match, location ) => {
 	
-	console.log( "CheckActive Footer", match, location )
-	console.log( "CheckActive Footer", this )
-
 	return match ? true : false
 
 }
@@ -49,8 +46,6 @@ function FooterNav( props ) {
 
 		 		</li>
 
-				<li>&emsp;</li>
-
 				<li>
 					<NavLink 
 						to = "/privacy"
@@ -79,6 +74,8 @@ function FooterNav( props ) {
 class Footer extends React.Component {
 
 	render() {
+		
+		console.log( "rendering footer" )
 
 		return (
 		
