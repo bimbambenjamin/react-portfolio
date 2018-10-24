@@ -7,28 +7,25 @@ import ImageLoader from '../handler/ImageLoader'
 
 function Teaser( props )  {
 			
-	const preloaderImg = ""
-	
 	return (
 		
 		<div className = "item citizen">
 
-			<div className = "teaser one-word-per-line" onClick = { props.onClick }>
+			<div className = "teaser one-word-per-line">
 
-				<NavLink to = { `/showcase/${ props.folder }` }>
+				<NavLink exact to = { `/showcase/${ props.folder }` }>
 
 					<ImageLoader 
 						className = "teaser-image"
-						unloadedSrc = { preloaderImg } 
 						src = { props.value }
 						title = { props.title } 
 						alt = { props.title } 
 					/>
 
+					<span className = "teaser-title">{ props.title }</span>
+
 				</NavLink>
-
-				<span className = "teaser-title">{ props.title }</span>
-
+	
 			</div>
 
 		</div>
@@ -56,7 +53,7 @@ class Gallery extends React.Component {
 		return (
 
 			<div className = "grid header-space" id = "works">
-				<div className = "flexbox row freedom-above freedom-below uppercase">
+				<div className = "flexbox row freedom-below uppercase">
 			
 					{ this.props.state.showcases.map( ( showcase, i ) => (
 						<Teaser 

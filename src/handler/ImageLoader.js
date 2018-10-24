@@ -10,7 +10,9 @@ class ImageLoader extends React.Component {
 		
 		this.state = {
 			loaded: false,
-			error: false
+			error: false,
+			width: null,
+			height: null
 		}
 		
 	}
@@ -19,22 +21,16 @@ class ImageLoader extends React.Component {
 	
 		const img = new Image()
 		
-//		TODO: lift state up
-		
 		img.onload = () => {
-			console.log( "mount ", img )
 			this.setState( {
 				loaded: true
 			} )
 		}
-		
-
 		img.onerror = () => {
 			this.setState( {
 				error: true
 			} )
 		}
-		
 		img.src = this.props.src
 		
 	}
@@ -44,48 +40,25 @@ class ImageLoader extends React.Component {
 	}
 
 	render() {
-		
+
 		const classNames = this.props.className
-		const unloadedSrc = this.props.unloadedSrc
-		const src = this.props.src
+
 		const alt = this.props.alt
 		const title = this.props.title
 		
-		if ( this.state.error ) {
-		
-			return (
-			
-				<img
-					className = { classNames }
-					src = { unloadedSrc }
-					title = { title } 
-					alt = { alt } 
-				/>
-
-			)
+		const unloadedSrc = "https://www.benjamin-jager.com/projects/sacha-assets/img/cover.gif"
+		const src = this.props.src
+		const imgSrc = this.state.loaded ? src : unloadedSrc
 				
-		} else if ( !this.state.loaded ) {
-
-			return (
-				<img
-					className = { classNames }
-					src = { unloadedSrc }
-					title = { title }
-					alt = { alt }
-				/>
-
-			)
-		}
-		
 		return (
 		
 			<img
 				className = { classNames }
-				src = { src }
-				title = { title }
-				alt = { alt }
+				src = { imgSrc }
+				title = { title } 
+				alt = { alt } 
 			/>
-			
+		
 		)
 		
 	}

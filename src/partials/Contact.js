@@ -10,7 +10,7 @@ function Copyright() {
 	return (
 		<div className = "uppercase" id = "copyright">
 			<p>
-				All im&shy;ages and texts are cop&shy;y&shy;right&shy;ed and own&shy;ed by Sacha&nbsp;Tassilo Hoechstetter. Un&shy;der no cir&shy;cum&shy;stances shall these dig&shy;i&shy;tal files, im&shy;ages and vid&shy;eos be used, cop&shy;ied, dis&shy;play&shy;ed or pull&shy;ed from this site with&shy;out the ex&shy;press&shy;ed writ&shy;ten agree&shy;ment of Sacha&nbsp;Tassilo Hoechstetter.
+				All im&shy;ages and texts are cop&shy;y&shy;right&shy;ed and own&shy;ed by Sacha&nbsp;Tassilo Hoechstetter. <br className = "breaker" />Un&shy;der no cir&shy;cum&shy;stances shall these dig&shy;i&shy;tal files, im&shy;ages and vid&shy;eos be used, cop&shy;ied, dis&shy;play&shy;ed or <br className = "breaker" />pull&shy;ed from this site with&shy;out the ex&shy;press&shy;ed writ&shy;ten agree&shy;ment of Sacha&nbsp;Tassilo Hoechstetter.
 			</p>
 		</div>
 	)
@@ -18,7 +18,9 @@ function Copyright() {
 class Contact extends React.Component {
 
 	componentDidMount() {
+		console.log( "contact!" )
 		window.scroll( { top: 0 } )
+//		window.scroll( { left: 0, top: 0, behavior: "smooth" } )
 	}
 		
 	render() {

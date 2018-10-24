@@ -14,13 +14,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
 
 	<BrowserRouter>
-
-		<div>
-
-			<App />
-
-		</div>
-
+		<App />
 	</BrowserRouter>, 
 
 	document.getElementById( 'root' ) 

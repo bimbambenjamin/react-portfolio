@@ -75,8 +75,6 @@ class Footer extends React.Component {
 
 	render() {
 		
-		console.log( "rendering footer" )
-
 		return (
 		
 			<FooterNav

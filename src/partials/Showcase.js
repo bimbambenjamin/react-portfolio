@@ -8,10 +8,10 @@ class Showcase extends React.Component {
 
 	componentDidMount() {
 		window.scroll( { top: 0 } )
-		return () => { this.props.ativateHero( true ) }
+		return () => { this.props.ativateHero( false ) }
 	}
 	componentWillUnmount() {
-//		console.log( "UNMOUNTING SHOWCASE ", this )
+		console.log( "UNMOUNTING SHOWCASE ", this )
 //		return () => { this.props.fadeOut( true ) }
 	}
 	render() {
@@ -22,6 +22,7 @@ class Showcase extends React.Component {
 		const path = state.imagePath + "showcases/"
 		const classNames = "flexbox column uppercase"
 		const id = "showcase-work"
+		console.log( "SHOWCASE ", showcaseId )
 
 		return (
 			

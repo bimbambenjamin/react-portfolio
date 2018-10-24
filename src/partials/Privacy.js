@@ -10,6 +10,7 @@ class PrivacyContent extends React.Component {
 
 	componentDidMount() {
 		window.scroll( { top: 0 } )
+//		window.scroll( { left: 0, top: 0, behavior: "smooth" } )
 	}
 	
 //	$( function() {

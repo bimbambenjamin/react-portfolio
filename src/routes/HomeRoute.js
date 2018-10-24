@@ -11,6 +11,8 @@ class HomeRoute extends React.Component {
 
 		console.log( "HomeRoute" )
 
+		const showcasesAvailable = this.props.showcasesAvailable
+
 		const state = this.props.state
 		const onClick = ( i ) => this.props.onClick( i )
 		const activateHero = ( i ) => this.props.activateHero( i )
@@ -24,11 +26,25 @@ class HomeRoute extends React.Component {
 					onClick = { onClick }
 					activateHero = { activateHero }
 				/>
-				<Gallery
-					state = { state }
-					onClick = { onClick }
-				/>
+
+				<section className = "flexbox column header-space">
+
+				{ showcasesAvailable ? (
+					<Gallery
+						state = { state }
+						onClick = { onClick }
+					/>
+				) : (
+					<div className = "message uppercase">
+						<h1>
+							error loading showcases
+						</h1>
+					</div>
+				) }
+
 				<Social />
+
+				</section>
 
 			</main>
 

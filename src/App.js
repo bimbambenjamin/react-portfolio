@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
 import Header from './partials/Header'
@@ -16,6 +16,7 @@ class App extends React.Component {
 	constructor( props ) {
 		
 		super( props )
+		
 		
 		this.state = {
 			
@@ -35,105 +36,109 @@ class App extends React.Component {
 				"/privacy"
 			],
 			imageLoaded: false,
-			imageErrored: false
+			imageErrored: false,
+			scrollPosition: window.scrollY,
+			scrollingDown: false
 		
 		}
-	
-	}
-	
-	handleLoadedImage( bool ) {
-//		this.setState( { imageLoaded: bool } )
-	}
-
-	handleFahrenheitChange( bool ) {
-//		this.setState( { imageErrored: bool } )
-	}
-	
-	componentDidMount( prevProps, prevState ) {
 		
-//		console.log( "MOUNTIE prevProps: ", prevProps )
-//		console.log( "MOUNTIE prevState: ", prevState )
-
-		console.log( "getBackendData" )
+		this.handleScroll = this.handleScroll.bind( this )
+	
+	}
+	
+	componentDidMount() {
+		
+		window.addEventListener( "scroll", this.handleScroll )
 		
 		if ( this.state.backendConnected === false ) {
 			
 			const backend = process.env.REACT_APP_BACKEND_URL || 8080
 		
-			// TODO: fake loader!
-//			setTimeout( () => {
-				axios.get( backend )
-				.then( res => {
-					console.log( "FAKER setState ", this.state )
-					const showcases = res.data
-					this.setState( { 
-						showcases,
-						backendConnected: true
-					} )
-				})
-//			}, 1000 )
+			axios.get( backend )
+			.then( res => {
+				const showcases = res.data
+				this.setState( { 
+					showcases,
+					backendConnected: true
+				} )
+			})
 			
 		}
 		
 	}
-	handleLocation( pathname ) {
-		
-		// is valid showcase?
-		const path = pathname.split( "/" )
-		
-		if ( path.length > 0 ) {
-			if ( path[ 0 ] === "" ) {
-				path.shift()
-			}
-			if ( path[ 0 ] === "showcase" ) {
-				return path[ 1 ]
-			} else {
-				return path[ 0 ]
-			}
-		}
-		
+	componentWillUnmount() {
+		window.removeEventListener( "scroll", this.handleScroll );
 	}
-	handleImages( status, i ) {
-//		console.log( "handleImages: ", status, i )
+	
+	handleScroll( e ) {
+		
+		let previousScrollPosition = this.state.scrollPosition
+		const scrollPosition = window.scrollY
+		const scrollingDown = previousScrollPosition < scrollPosition ? 
+			true : false
+		
+		this.setState( { 
+			scrollPosition: scrollPosition,
+			scrollingDown: scrollingDown
+		} )
 	}
+
 	heroScroll() {
 		window.scroll( { left: 0, top: window.innerHeight, behavior: "smooth" } )
 	}
+	
 	handleHero( heroIsActive ) {
 		this.setState( {
 			heroIsActive: heroIsActive
 		} )
 	}
+	
 	handleClick( i ) {
 
-		console.log( "---CLICK--- " )
-		
 		if ( i === "/" || i === "heroClick" ) {
-//			console.log( "---home ", i )
 			if ( i === "heroClick" ) {
 				this.heroScroll()
 			}
 		} else {
-//			console.log( "---homeless ", i )
 			if ( this.state.heroIsActive ) {
 				this.handleHero( false )
 			}
-			
-			if ( !isNaN( i ) ) {
-				const targetShowcase = this.state.showcases[ i ].folder
-//				console.log( "targetShowcase: ", targetShowcase )
-//				window.location.href = targetShowcase
-				this.setState( {
-					targetLocation: targetShowcase
-				} )
-			}
-			
-			
 		}
-		
 
 	}
+	
+	// TODO: do i need this?
+	handleLocation( pathname ) {
 
+		let newPath
+		
+		if ( pathname === "/" ) {
+			
+			newPath = pathname
+
+		} else {
+			
+			const splitPath = pathname.split( "/" )
+//			console.log( "handling location -split: ", splitPath )
+
+			if ( splitPath.length > 0 ) {
+				if ( splitPath[ 0 ] === "" ) {
+					splitPath.shift()
+				}
+				if ( splitPath[ 0 ] === "showcase" ) {
+					newPath = splitPath[ 1 ]
+				} else {
+					newPath = splitPath[ 0 ]
+				}
+			}
+
+		}
+
+		return newPath
+		
+	}
+
+	// TODO: do i need this?
 	validateShowcase( target ) {
 
 		if ( target === null ) {
@@ -150,88 +155,78 @@ class App extends React.Component {
 		}
 
 	}
+
+	// TODO: do i need this?
+	goHome() {
+		console.log( "go home" )
+		this.setState( { targetLocation: "/" } )		
+	}
 	
 	render() {
 		
-//		console.log( "showcases.length: ", this.state.showcases.length )
-		if ( this.state.showcases.length > 0 ) {
-			
-//			console.log( "YESSS ", this )
+		const showcasesAvailable = this.state.showcases.length > 0 ? true : false
 
-			const state = this.state
-			
-//			console.log( "loading target: ", this.state.targetLocation )
-			const targetLocation = state.targetLocation
-			const validShowcase = this.validateShowcase( targetLocation )
-//			console.log( "validShowcase: ", validShowcase )
-			
-			const validRoutes = this.state.validRoutes
-			
-			if ( !validRoutes.includes( targetLocation ) || !validShowcase ) {
-//				console.log( "go home" )
-//				const newTargetLocation = "/"
-//				window.location.href = newTargetLocation
-//				this.setState( { targetLocation: newTargetLocation } )
-				
-			}
-			
-			
-			const mainClass = "appear freedom-below"
-			const onClick = ( i ) => this.handleClick( i )
-			const imageStatus = ( status, i ) => this.handleImages( status, i )
-			const heroIsActive = this.state.heroIsActive
-			const activateHero = ( i ) => this.handleHero( i )
-			console.log( "validRoutes[ 1 ] ", validRoutes[ 1 ] )
-//			const handleLoadedImage = ( bool ) => this.handleLoadedImage( bool )
-//			const handleErroredImage = ( bool ) => this.handleErroredImage( bool )
+		const state = this.state
+		
+		const validRoutes = this.state.validRoutes
+		const mainClass = "appear freedom-below"
+		const onClick = ( i ) => this.handleClick( i )
+		const imageStatus = ( status, i ) => this.handleImages( status, i )
+		const heroIsActive = this.state.heroIsActive
+		const activateHero = ( i ) => this.handleHero( i )
 
-			console.log( "A P P   R E N D E R   ––– ", heroIsActive )
+		console.log( "A P P   R E N D E R   ––– ", heroIsActive )
 
-			return (
+		return (
 
-				<div>
+			<div>
 
-					<Header 
-						state = { state }
-						onClick = { onClick }
-						heroIsActive = { heroIsActive }
-					/>
+				<Header 
+					state = { state }
+					onClick = { onClick }
+					heroIsActive = { heroIsActive }
+					headerId = "1"
+				/>
 
+				<Switch>
 					<Route 
 						exact 
 						path = { validRoutes[ 0 ] } 
-						component = { ( props ) => ( 
+						render = { props => ( 
 							<HomeRoute 
+								{ ...props }
 								state = { state } 
-								props = { props } 
 								mainClass = { mainClass }
 								onClick = { onClick }
 								imageStatus = { imageStatus }
 								activateHero = { activateHero }
+								showcasesAvailable = { showcasesAvailable }
 							/>
 						) }
 					/>
 					<Route 
 						exact 
 						path = { validRoutes[ 1 ] } 
-						component = { ( props ) => ( 
+						render = { props => ( 
 							<ShowcaseRoute 
+								{ ...props }
 								state = { state } 
-								props = { props } 
 								mainClass = { mainClass }
 								onClick = { onClick }
 								imageStatus = { imageStatus }
 								activateHero = { activateHero }
-								
-							/> 
+								goHome = { () => this.goHome() }
+								showcasesAvailable = { showcasesAvailable }
+								headerId = "2"
+							/>
 						) } 
 					/>
 					<Route 
 						path = { validRoutes[ 2 ] }
-						component = { ( props ) => ( 
+						render = { props => ( 
 							<ContactRoute 
+								{ ...props }
 								state = { state } 
-								props = { props } 
 								mainClass = { mainClass }
 								activateHero = { activateHero }
 							/> 
@@ -239,10 +234,10 @@ class App extends React.Component {
 					/>
 					<Route 
 						path = { validRoutes[ 3 ] }
-						component = { ( props ) => ( 
+						render = { props => ( 
 							<ImprintRoute 
+								{ ...props }
 								state = { state } 
-								props = { props } 
 								mainClass = { mainClass }
 								activateHero = { activateHero }
 							/> 
@@ -250,56 +245,25 @@ class App extends React.Component {
 					/>
 					<Route 
 						path = { validRoutes[ 4 ] }
-						component = { ( props ) => ( 
+						render = { props => ( 
 							<PrivacyRoute 
+								{ ...props }
 								state = { state } 
-								props = { props } 
 								mainClass = { mainClass }
 								activateHero = { activateHero }
 							/> 
 						) } 
 					/>
+				</Switch>
 
-					<Footer 
-						state = { state }
-						onClick = { onClick }
-					/>
+				<Footer 
+					state = { state }
+					onClick = { onClick }
+				/>
 
-				</div>
+			</div>
 
-			)
-
-		} else {
-
-			console.log( "no showcases yet" )
-			const state = this.state
-			const onClick = ( i ) => this.handleClick( i )
-			const heroIsActive = this.state.heroIsActive
-
-			return (
-				
-				<div>
-
-					<Header 
-						state = { state }
-						onClick = { onClick }
-						heroIsActive = { heroIsActive }
-					/>
-					<main>
-						<h1 
-							className = "waiting uppercase"
-						>
-							loading showcase
-						</h1>
-					</main>
-					<Footer 
-						state = { state }
-						onClick = { onClick }
-					/>
-				</div>
-			)
-
-		}
+		)
 
 	}
 

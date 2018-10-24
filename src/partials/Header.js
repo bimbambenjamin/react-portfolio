@@ -14,6 +14,7 @@ function HeaderLogo( props ) {
 	return (
 		
 		<NavLink 
+			exact
 			to = "/"
 		>
 			<div 
@@ -56,6 +57,7 @@ function HeaderNav( props ) {
 			</div>
 			
 			<NavLink 
+				exact
 				to = "/contact"
 				activeClassName = "vanish no-select current"
 				isActive = { CheckActive }
@@ -78,6 +80,12 @@ function HeaderNav( props ) {
 
 class Header extends React.Component {
 
+	componentDidMount() {
+		console.log( "---> HEADER MOUNTED ", this )
+		
+	}
+	
+	
 	render() {
 
 		const state = this.props.state
@@ -85,14 +93,48 @@ class Header extends React.Component {
 		const mainTitle = state.mainTitle
 		const logo = state.imagePath + "logo/" + state.logo
 		const heroIsActive = this.props.heroIsActive
+		const id = this.props.headerId 
 
-		const classNames = heroIsActive ? 
-			  "uppercase appear stick-to-second-section" :
-			  "uppercase appear"
+		let headerClasses = 
+			"uppercase " +
+			( heroIsActive ? "stick-to-second-section " : "" )
+			  
+		if ( id === "3" ) {
+			
+			// reconstruted css vars
+			const unit = 20
+			const pageFrameBig = unit * 5
+			const pageFrame = window.visualViewport.width <= 1023 ? unit : pageFrameBig
+			const logoHeight = unit * 2
+			const headerHeight = pageFrame * 2 + logoHeight
+
+			const windowHeight = window.visualViewport.height
+			const headerPosition = heroIsActive ?
+				windowHeight + headerHeight :
+				headerHeight
+
+			const scrollingDown = state.scrollingDown
+			const scrollPosition = window.scrollY
+			const stickToTop = scrollPosition > headerPosition ? true : false
+			const moveUp = scrollingDown && stickToTop ? true : false
+			
+			const updateClasses = 
+				headerClasses +
+				( stickToTop ? "stick-to-top " : "" ) +
+				( moveUp ? "move-up" : "" )
+			
+			headerClasses = updateClasses
+			
+		}
+		
+		console.log( "headerClasses: ", headerClasses ) 
 
 		return (
 
-			<header className = { classNames } id = "header" >
+			<header 
+				id = { id }
+				className = { headerClasses } 
+			>
 
 				<HeaderLogo
 					mainTitle = { mainTitle }

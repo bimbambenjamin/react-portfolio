@@ -178,6 +178,9 @@ and (max-width: 1919px) {
 @media screen and (max-width: 1112px) {
 }
 @media screen and (min-width: 1280px) {
+	.breaker {
+		display: inline;
+	}
 }
 @media screen and (min-width: 1366px) {
     :root {

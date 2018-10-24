@@ -98,6 +98,9 @@ class Hero extends React.Component {
 		const logo = this.whiteLogo( state.logo )
 		const logoPath = state.imagePath + "logo/" + logo
 		const heroIsActive = state.heroIsActive
+		console.log( "scrolling? ", state.isScrolling )
+		const bouncerClass = state.scrollingDown ? "vanish" : "appear-delayed"
+		
 		const onLoad = heroIsActive ? 
 			null : 
 			() => this.props.activateHero( true )
@@ -123,7 +126,7 @@ class Hero extends React.Component {
 
 				</div>
 
-				<div className = "appear-delayed">
+				<div className = { bouncerClass }>
 					<div className = "fat" id = "bouncer-text"><span>scroll</span></div>
 				</div>
 

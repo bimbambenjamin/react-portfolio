@@ -55,6 +55,8 @@ html, body, header, main, footer, #hero, .gallery {
     color: black;
 
     font-feature-settings: "ss03" on;
+
+	-webkit-text-size-adjust: none;
 }
 body {
 /*
@@ -63,7 +65,7 @@ body {
 */
 	min-width: var( --min-width );
 }
-main {
+main, section {
 	min-height: calc( 100vh - var( --footer-height ) );
 }
 body, 
@@ -116,7 +118,6 @@ a {
     text-decoration: none;
 }
 section {
-    min-height: 100vh;
 	height: 100%;
 }
 hr {
@@ -133,6 +134,9 @@ img {
 }
 .break-wide {
     display: inline;
+}
+.breaker {
+	display: none;
 }
 
 
@@ -170,12 +174,6 @@ img {
 }
 .invisible {
 	display: none !important;
-}
-.waiting {
-	top: 50%;
-	left: 50%;
-	transform: translate( -50%, -50% );
-	position: absolute;
 }
 
 /* buttons */
@@ -287,6 +285,8 @@ header {
 	);
 */
 }
+
+
 header nav {
 	height: 100%;
 	min-width: var( --min-width );
@@ -384,8 +384,19 @@ header nav button {
     top: 0 !important;
 }
 .move-up {
-    top: -200px !important;
+	animation: moveUp 400ms ease-out forwards;
 }
+.move-down {
+	animation: moveDown 400ms ease-out forwards;
+}
+.with-transition {
+	-webkit-transition: all 150ms linear;
+       -moz-transition: all 150ms linear;
+        -ms-transition: all 150ms linear;
+         -o-transition: all 150ms linear;
+            transition: all 150ms linear;
+}
+
 .stick-to-second-section {
     position: absolute;
     top: 100vh;
@@ -402,9 +413,6 @@ header nav button {
     justify-content: center;
     overflow: hidden;
     color: var( --hero-text-color );
-}
-.scroll-down {
-    animation: moveDown 1s ease-out backwards;
 }
 .hero-image {
 }
@@ -797,8 +805,11 @@ header nav button {
 }
 */
 
-.social {
+.social, .message {
     padding: var( --page-frame );
+}
+.message > h1 {
+	color: var( --highlight-color );
 }
 .social li, #imprint li {
     display: block;
@@ -1118,6 +1129,7 @@ input:focus {
     
     
 /* animations */
+
 @keyframes bounce {
     
   0%, 20%, 50%, 80%, 100% {
@@ -1174,13 +1186,16 @@ input:focus {
     }
 
 }
+@keyframes moveUp {
+    100% { 
+        transform: translateY( calc( var( --header-height ) * -1 ) );
+    }
+}
 @keyframes moveDown {
     0% { 
-        transform: translateY( -100vh ); 
-        opacity: 0;
+        transform: translateY( calc( var( --header-height ) * -1 ) );
     }
     100% { 
         transform: translateY( 0 );
-        opacity: 1;
     }
 }

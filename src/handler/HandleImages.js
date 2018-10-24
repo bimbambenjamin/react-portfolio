@@ -11,8 +11,6 @@ class HandleImages extends React.Component {
 		const file = image
 		const filePath = path + folder + "/" + file
 		
-		console.log( "fullPath: ", filePath )
-
 		return filePath
 		
 	}
@@ -26,13 +24,11 @@ class HandleImages extends React.Component {
 		const alt = this.props.alt
 		
 		// TODO: change this
-		const preloaderImg = ""
 
 		const getImages = images.images.map( ( image, i ) => ( 
 			
 			<ImageLoader 
 				key = { i }
-				unloadedSrc = { preloaderImg } 
 				src = { this.getFullPath( images, image, path ) }
 				alt = { alt }
 			/>
