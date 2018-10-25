@@ -11,7 +11,6 @@ class Showcase extends React.Component {
 		return () => { this.props.ativateHero( false ) }
 	}
 	componentWillUnmount() {
-		console.log( "UNMOUNTING SHOWCASE ", this )
 //		return () => { this.props.fadeOut( true ) }
 	}
 	render() {
@@ -19,10 +18,7 @@ class Showcase extends React.Component {
 		const state = this.props.state
 		const showcaseId = this.props.showcaseId
 		const showcase = state.showcases[ showcaseId ]
-		const path = state.imagePath + "showcases/"
-		const classNames = "flexbox column uppercase"
-		const id = "showcase-work"
-		console.log( "SHOWCASE ", showcaseId )
+		const imagesPath = state.imagesPath
 
 		return (
 			
@@ -34,10 +30,11 @@ class Showcase extends React.Component {
 				</div>
 
 				<HandleImages
-					images = { showcase }
-					path = { path }
-					classNames = { classNames }
-					id = { id }
+					images = { showcase.images }
+					imagesPath = { imagesPath }
+					folder = { showcase.folder }
+					classNames = "flexbox column uppercase"
+					id = "showcase-work"
 					alt = { showcase.title }
 					handleLoadedImage = { ( bool ) => this.props.handleLoadedImage( bool ) }
 					handleErroredImage = { ( bool ) => this.props.handleErroredImage( bool ) }

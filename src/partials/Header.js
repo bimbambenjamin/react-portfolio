@@ -1,13 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import * as helpers from '../handler/helpers'
 
 
-const CheckActive = ( match, location ) => {
-
-	return match ? true : false
-	
-}
 
 function HeaderLogo( props ) {
 	
@@ -60,7 +56,7 @@ function HeaderNav( props ) {
 				exact
 				to = "/contact"
 				activeClassName = "vanish no-select current"
-				isActive = { CheckActive }
+				isActive = { helpers.checkActive }
 			>
 				<button 
 					className = "uppercase"
@@ -80,18 +76,12 @@ function HeaderNav( props ) {
 
 class Header extends React.Component {
 
-	componentDidMount() {
-		console.log( "---> HEADER MOUNTED ", this )
-		
-	}
-	
-	
 	render() {
 
 		const state = this.props.state
 		const targetLocation = state.targetLocation
 		const mainTitle = state.mainTitle
-		const logo = state.imagePath + "logo/" + state.logo
+		const logo = state.logo
 		const heroIsActive = this.props.heroIsActive
 		const id = this.props.headerId 
 
@@ -127,8 +117,6 @@ class Header extends React.Component {
 			
 		}
 		
-		console.log( "headerClasses: ", headerClasses ) 
-
 		return (
 
 			<header 

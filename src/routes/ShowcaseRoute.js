@@ -9,13 +9,11 @@ import Social from '../partials/Social'
 class ShowcaseRoute extends React.Component {
 	
 	render() {
-				
 		const state = this.props.state
 
+		const showcases = state.showcases
 		const showcasesAvailable = this.props.showcasesAvailable
 
-		const showcases = state.showcases
-		const imageStatus = ( status, i ) => this.props.imageStatus( status, i )
 		const onClick = ( i ) => this.props.onClick( i )
 		const heroIsActive = state.heroIsActive
 
@@ -23,7 +21,6 @@ class ShowcaseRoute extends React.Component {
 			() => this.props.activateHero( false ) : 
 			null
 		
-//		const clickedTarget = state.targetLocation		
 		const match = this.props.match
 		const folderId = match.params.folderId
 
@@ -37,7 +34,6 @@ class ShowcaseRoute extends React.Component {
 			validFolders.indexOf( folderId ) :
 			null
 
-		console.log( "SHOWCASE ROUTE ", this )
 
 		return(
 
@@ -51,7 +47,6 @@ class ShowcaseRoute extends React.Component {
 						key = { showcaseId }
 						state = { state }
 						showcaseId = { showcaseId }
-						imageStatus = { imageStatus }
 						mountImages = { ( images ) => this.props.mountImages ( images ) }
 					/>
 				) : ( null ) }

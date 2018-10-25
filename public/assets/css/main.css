@@ -256,7 +256,7 @@ button:hover,
 
 /* cursors */
 .down {
-	cursor: url( "../img/cursors/arrow-down.png" ) 25 29, s-resize;
+	cursor: url( "../img/tools/arrow-down.png" ) 25 29, s-resize;
 }
 
 
@@ -785,7 +785,10 @@ header nav button {
 }
 .expanded,
 .expanded > ol > li:last-child {
-    padding-bottom: var( --font-height );	
+    padding-bottom: var( --font-height );
+}
+.expanded > .no-gap > li:last-child {
+    padding-bottom: 0;
 }
 .expanded > ol > li:first-child > h3,
 .expanded p {

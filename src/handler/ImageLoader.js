@@ -11,8 +11,6 @@ class ImageLoader extends React.Component {
 		this.state = {
 			loaded: false,
 			error: false,
-			width: null,
-			height: null
 		}
 		
 	}
@@ -35,26 +33,20 @@ class ImageLoader extends React.Component {
 		
 	}
 	
-	componentWillUnmount() {
-//		console.log( "unmounting image loader" )
-	}
-
 	render() {
 
 		const classNames = this.props.className
-
-		const alt = this.props.alt
-		const title = this.props.title
-		
-		const unloadedSrc = "https://www.benjamin-jager.com/projects/sacha-assets/img/cover.gif"
+		const unloadedSrc = this.props.unloadedSrc
 		const src = this.props.src
-		const imgSrc = this.state.loaded ? src : unloadedSrc
+		const imageSrc = this.state.loaded ? src : unloadedSrc
+		const alt = this.props.alt
+		const title = this.props.title		
 				
 		return (
 		
 			<img
 				className = { classNames }
-				src = { imgSrc }
+				src = { imageSrc }
 				title = { title } 
 				alt = { alt } 
 			/>

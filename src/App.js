@@ -10,6 +10,12 @@ import ContactRoute from './routes/ContactRoute'
 import ImprintRoute from './routes/ImprintRoute'
 import PrivacyRoute from './routes/PrivacyRoute'
 
+import * as helpers from './handler/helpers'
+
+const backend = process.env.REACT_APP_BACKEND_URL
+const imagesPath = "/assets/img"
+
+
 
 class App extends React.Component {
 	
@@ -17,15 +23,15 @@ class App extends React.Component {
 		
 		super( props )
 		
-		
 		this.state = {
 			
 			showcases: [],
 			backendConnected: false,
-			imagePath: "https://benjamin-jager.com/projects/sacha-assets/img/",
-			logo: "hoechstetter.svg",
-			hero: "https://benjamin-jager.com/projects/sacha-assets/img/hero/The-future-is-now04.jpg",
+			imagesPath: imagesPath,
+			logo: helpers.getFullPath( imagesPath, "logo", "hoechstetter.svg" ),
+			hero: helpers.getFullPath( imagesPath, "hero", "The-future-is-now04.jpg" ),
 			heroIsActive: false,
+			heroIsVisible: true,
 			mainTitle: "SASCHA TASSILO HOECHSTETTER",
 			targetLocation: this.handleLocation( window.location.pathname ),
 			validRoutes: [
@@ -51,8 +57,8 @@ class App extends React.Component {
 		window.addEventListener( "scroll", this.handleScroll )
 		
 		if ( this.state.backendConnected === false ) {
-			
-			const backend = process.env.REACT_APP_BACKEND_URL || 8080
+						
+			console.log( backend )
 		
 			axios.get( backend )
 			.then( res => {
@@ -68,23 +74,34 @@ class App extends React.Component {
 	}
 	componentWillUnmount() {
 		window.removeEventListener( "scroll", this.handleScroll );
+		
 	}
 	
 	handleScroll( e ) {
 		
 		let previousScrollPosition = this.state.scrollPosition
 		const scrollPosition = window.scrollY
+		const windowHeight = window.innerHeight
+
 		const scrollingDown = previousScrollPosition < scrollPosition ? 
 			true : false
 		
+		const heroIsVisible = scrollPosition < windowHeight ?
+			true : false
+		
+		console.log( "heroIsVisible ", heroIsVisible )
 		this.setState( { 
 			scrollPosition: scrollPosition,
-			scrollingDown: scrollingDown
+			scrollingDown: scrollingDown,
+			heroIsVisible: heroIsVisible
 		} )
 	}
 
 	heroScroll() {
 		window.scroll( { left: 0, top: window.innerHeight, behavior: "smooth" } )
+	}
+	scrollToTop() {
+		window.scroll( { left: 0, top: 0, behavior: "smooth" } )		
 	}
 	
 	handleHero( heroIsActive ) {
@@ -95,7 +112,11 @@ class App extends React.Component {
 	
 	handleClick( i ) {
 
+		console.log( "--- CLICK --- ", i )
 		if ( i === "/" || i === "heroClick" ) {
+			if ( i === "/" ) {
+				this.scrollToTop()
+			}
 			if ( i === "heroClick" ) {
 				this.heroScroll()
 			}
@@ -119,7 +140,6 @@ class App extends React.Component {
 		} else {
 			
 			const splitPath = pathname.split( "/" )
-//			console.log( "handling location -split: ", splitPath )
 
 			if ( splitPath.length > 0 ) {
 				if ( splitPath[ 0 ] === "" ) {
@@ -171,11 +191,11 @@ class App extends React.Component {
 		const validRoutes = this.state.validRoutes
 		const mainClass = "appear freedom-below"
 		const onClick = ( i ) => this.handleClick( i )
-		const imageStatus = ( status, i ) => this.handleImages( status, i )
 		const heroIsActive = this.state.heroIsActive
 		const activateHero = ( i ) => this.handleHero( i )
+		const heroIsVisible = this.state.heroIsVisible
 
-		console.log( "A P P   R E N D E R   ––– ", heroIsActive )
+		console.log( "A P P   R E N D E R   ––– ", heroIsVisible )
 
 		return (
 
@@ -198,8 +218,8 @@ class App extends React.Component {
 								state = { state } 
 								mainClass = { mainClass }
 								onClick = { onClick }
-								imageStatus = { imageStatus }
 								activateHero = { activateHero }
+								heroIsVisible = { heroIsVisible }
 								showcasesAvailable = { showcasesAvailable }
 							/>
 						) }
@@ -213,7 +233,6 @@ class App extends React.Component {
 								state = { state } 
 								mainClass = { mainClass }
 								onClick = { onClick }
-								imageStatus = { imageStatus }
 								activateHero = { activateHero }
 								goHome = { () => this.goHome() }
 								showcasesAvailable = { showcasesAvailable }

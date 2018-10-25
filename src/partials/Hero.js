@@ -1,39 +1,24 @@
 import React from 'react'
 
+import * as helpers from '../handler/helpers'
+
 
 
 class Hero extends React.Component {
 	
-	scrollToTop() {
-		window.scroll( { top: 0 } )
-	}
-	componentDidMount() {		
+	componentDidMount() {
 		this.scrollToTop();
-		console.log( "i am your hero!" )
 		return () => { this.props.ativateHero( true ) }
 	}
-	
-	getFiletype( filename ) {
-
-		if ( typeof filename === "string" ) {
-			
-			const extension = filename.split( '.' ).pop()
-		
-			if ( extension === "jpg" || extension === "gif" || extension === "png" || extension === "jpeg" ) {
-				return "image"
-			} else if ( extension === "mp4" ) {
-				return "video"
-			} else {
-				return "not valid"
-			}
-
-		}
-
+	componentWillUnmount() {
+	}
+	scrollToTop() {
+		window.scroll( { top: 0 } )
 	}
 
 	imageOrVideo( alt, src ) {
 		
-		const type = this.getFiletype( src )
+		const type = helpers.getFiletype( src )
 		
 		const videoDataPath = "http://www.mariotestino.com/wp-content/uploads/2017/07/"
 		const videoURL = "CHNY_AW17.mp4"
@@ -79,26 +64,20 @@ class Hero extends React.Component {
 
 	}
 	
-	whiteLogo( logo ) {
-		
-		if ( typeof logo === "string" ) {
-			const filename = logo.split( '.' ).shift()
-			const extension = logo.split( '.' ).pop()
-			const whiteLogo = filename + "-white." + extension
-			return whiteLogo
-		}
-		
-	}
-	
 	render() {
 
 		const state = this.props.state
 		const mainTitle = state.mainTitle
 		const hero = state.hero
-		const logo = this.whiteLogo( state.logo )
-		const logoPath = state.imagePath + "logo/" + logo
+		const logo = helpers.changeLogoColor( state.logo, "white" )
 		const heroIsActive = state.heroIsActive
-		console.log( "scrolling? ", state.isScrolling )
+		const heroIsVisible = this.props.heroIsVisible
+		
+		console.log( "HERO STATE: ", state )
+		
+		const heroClass = "uppercase down " +
+			( heroIsVisible ? "appear" : "vanish" )
+		
 		const bouncerClass = state.scrollingDown ? "vanish" : "appear-delayed"
 		
 		const onLoad = heroIsActive ? 
@@ -108,7 +87,7 @@ class Hero extends React.Component {
 		return (
 
 			<section 
-				className = "uppercase down" 
+				className = { heroClass }
 				id = "hero" 
 				onClick = { () => this.props.onClick( "heroClick" ) }						onLoad = { onLoad }
 				onError = { () => this.props.activateHero( false ) }
@@ -120,8 +99,8 @@ class Hero extends React.Component {
 				<div className = "infobox no-select" id = "logo">
 
 					<picture>
-						<source srcSet = { logoPath } type = "image/svg+xml" />
-						<img src = { logoPath } alt = { mainTitle } />
+						<source srcSet = { logo } type = "image/svg+xml" />
+						<img src = { logo } alt = { mainTitle } />
 					</picture>
 
 				</div>

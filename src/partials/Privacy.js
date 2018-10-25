@@ -286,7 +286,7 @@ class PrivacyContent extends React.Component {
 									<p>
 										Zum Zwecke der bedarfsgerechten Gestaltung und fortlaufenden Optimierung unserer Seiten nutzen wir Google Analytics, ein Webanalysedienst der Google Inc. (<a href="https://www.google.de/intl/de/about/" target="_blank" rel="noopener noreferrer">https://www.google.de/intl/de/about/</a>) (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA; im Folgenden „Google“). In diesem Zusammenhang werden pseudonymisierte Nutzungsprofile erstellt und Cookies (siehe unter Ziff. 4) verwendet. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website wie
 									</p>
-									<ol>
+									<ol className = "no-gap">
 										<li><span>&minus;</span>Browser-Typ/-Version,</li>
 										<li><span>&minus;</span>verwendetes Betriebssystem,</li>
 										<li><span>&minus;</span>Referrer-URL (die zuvor besuchte Seite),</li>

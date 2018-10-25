@@ -9,14 +9,12 @@ class HomeRoute extends React.Component {
 	
 	render() {
 
-		console.log( "HomeRoute" )
-
 		const showcasesAvailable = this.props.showcasesAvailable
-
 		const state = this.props.state
 		const onClick = ( i ) => this.props.onClick( i )
 		const activateHero = ( i ) => this.props.activateHero( i )
-		
+		const heroIsVisible = this.props.heroIsVisible
+
 		return(
 
 			<main className = { this.props.mainClass }>
@@ -25,6 +23,7 @@ class HomeRoute extends React.Component {
 					state = { state }
 					onClick = { onClick }
 					activateHero = { activateHero }
+					heroIsVisible = { heroIsVisible }
 				/>
 
 				<section className = "flexbox column header-space">

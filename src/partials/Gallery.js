@@ -1,54 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
-import ImageLoader from '../handler/ImageLoader'
+import Teaser from './Teaser'
+import * as helpers from '../handler/helpers'
 
 
-
-function Teaser( props )  {
-			
-	return (
-		
-		<div className = "item citizen">
-
-			<div className = "teaser one-word-per-line">
-
-				<NavLink exact to = { `/showcase/${ props.folder }` }>
-
-					<ImageLoader 
-						className = "teaser-image"
-						src = { props.value }
-						title = { props.title } 
-						alt = { props.title } 
-					/>
-
-					<span className = "teaser-title">{ props.title }</span>
-
-				</NavLink>
-	
-			</div>
-
-		</div>
-
-	)
-	
-}
 
 class Gallery extends React.Component {
 
-	getFullPath( showcase, path ) {
-	
-		const folder = showcase.folder
-		const file = showcase.teaser
-		const filePath = path + folder + "/" + file
-
-		return filePath
-		
-	}
-
 	render() {
 
-		const showcasesPath = this.props.state.imagePath + "showcases/"
+		const imagesPath = this.props.state.imagesPath
+		const showcasesPath = imagesPath + "/showcases"
 		
 		return (
 
@@ -56,13 +18,15 @@ class Gallery extends React.Component {
 				<div className = "flexbox row freedom-below uppercase">
 			
 					{ this.props.state.showcases.map( ( showcase, i ) => (
+			
 						<Teaser 
-							key = { i }
-							value = { this.getFullPath( showcase, showcasesPath ) }
-							folder = { showcase.folder }
-							title = { showcase.title }
+							{ ...showcase }
+							key = { showcase._id }
+							unloadedSrc = { helpers.getFullPath( imagesPath, "tools", "cover.gif" ) }
+							src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
 							onClick = { () => this.props.onClick( i ) }
 						/>
+						
 					) ) }
 					
 				</div>
