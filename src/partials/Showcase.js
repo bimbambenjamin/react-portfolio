@@ -10,9 +10,7 @@ class Showcase extends React.Component {
 		window.scroll( { top: 0 } )
 		return () => { this.props.ativateHero( false ) }
 	}
-	componentWillUnmount() {
-//		return () => { this.props.fadeOut( true ) }
-	}
+
 	render() {
 
 		const state = this.props.state
@@ -28,12 +26,12 @@ class Showcase extends React.Component {
 					<h1>{ showcase.title }</h1>
 					<p>{ showcase.subtitle }</p>
 				</div>
-
+				
 				<HandleImages
 					images = { showcase.images }
 					imagesPath = { imagesPath }
 					folder = { showcase.folder }
-					classNames = "flexbox column uppercase"
+					className = "flexbox column uppercase"
 					id = "showcase-work"
 					alt = { showcase.title }
 					handleLoadedImage = { ( bool ) => this.props.handleLoadedImage( bool ) }

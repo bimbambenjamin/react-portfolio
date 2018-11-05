@@ -13,20 +13,26 @@ class HomeRoute extends React.Component {
 		const state = this.props.state
 		const onClick = ( i ) => this.props.onClick( i )
 		const activateHero = ( i ) => this.props.activateHero( i )
+		const heroDidLoad = this.props.heroDidLoad
 		const heroIsVisible = this.props.heroIsVisible
-
-		return(
-
-			<main className = { this.props.mainClass }>
-
-				<Hero 
-					state = { state }
-					onClick = { onClick }
-					activateHero = { activateHero }
-					heroIsVisible = { heroIsVisible }
-				/>
-
-				<section className = "flexbox column header-space">
+		const oneUp = this.props.oneUp
+		
+		const heroTag = (
+			
+			<Hero 
+				state = { state }
+				onClick = { onClick }
+				activateHero = { activateHero }
+				heroIsVisible = { heroIsVisible }
+				heroDidLoad = { heroDidLoad }
+				oneUp = { oneUp }
+			/>
+			
+		)
+		
+		const sectionTag = (
+			
+			<section className = "flexbox column header-space">
 
 				{ showcasesAvailable ? (
 					<Gallery
@@ -36,14 +42,23 @@ class HomeRoute extends React.Component {
 				) : (
 					<div className = "message uppercase">
 						<h1>
-							error loading showcases
+							error loading showcases 
 						</h1>
 					</div>
 				) }
 
 				<Social />
 
-				</section>
+			</section>
+		
+		)
+
+		return(
+
+			<main className = { this.props.mainClass }>
+
+				{ heroTag }
+				{ heroDidLoad ? sectionTag : null }
 
 			</main>
 

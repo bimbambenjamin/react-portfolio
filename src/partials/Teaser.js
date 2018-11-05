@@ -5,7 +5,7 @@ import ImageLoader from '../handler/ImageLoader'
 
 
 
-const Teaser = ( { folder, unloadedSrc, src, title } ) => (
+const Teaser = ( { folder, unloadedSrc, src, title, oneUp, count, allElementsLoaded, batch } ) => (
 			
 	<div className = "item citizen">
 
@@ -19,6 +19,10 @@ const Teaser = ( { folder, unloadedSrc, src, title } ) => (
 					src = { src }
 					title = { title } 
 					alt = { title } 
+					oneUp = { oneUp }
+					count = { count }
+					allElementsLoaded = { allElementsLoaded }
+					batch = { batch }
 				/>
 
 				<span className = "teaser-title">{ title }</span>

@@ -67,7 +67,7 @@ class Imprint extends React.Component {
 	componentDidMount() {
 		window.scroll( { top: 0 } )
 //		window.scroll( { left: 0, top: 0, behavior: "smooth" } )
-		return () => { this.props.ativateHero( true ) }
+		return () => { this.props.activateHero( false ) }
 	}
 	
 	render() {

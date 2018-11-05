@@ -11,17 +11,9 @@ const CheckActive = ( match, location ) => {
 
 function FooterNav( props ) {
 	
-	const targetLocation = props.targetLocation
-	let imprintClasses = "uppercase active"
-	let privacyClasses = "uppercase active"
+	let imprintClasses = "uppercase"
+	let privacyClasses = "uppercase"
 	
-	if ( targetLocation === "imprint" ) {
-		imprintClasses = "uppercase inactive" 
-	}
-	if ( targetLocation === "privacy" ) {
-		privacyClasses = "uppercase inactive" 
-	}
-
 	return (
 
 		<footer className = "uppercase appear">
@@ -78,7 +70,6 @@ class Footer extends React.Component {
 		return (
 		
 			<FooterNav
-				targetLocation = { this.props.targetLocation }
 				onClick = { ( i ) => this.props.onClick( i ) }
 			/>
 		)

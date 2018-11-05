@@ -27,7 +27,7 @@ class Contact extends React.Component {
 		
 		return (
 
-			<div className = "active-links freedom-below">
+			<div className = "active-links">
 
 				<div className = "header-space freedom-below uppercase big-text" id = "contact">
 
