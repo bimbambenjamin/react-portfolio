@@ -1,6 +1,7 @@
 node_modules
 public/assets/img
 public/assets/fonts
+public/assets/showcases
 .DS_Store
 build
 .env.development

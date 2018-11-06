@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import ImageLoader from '../handler/ImageLoader'
+import ElementLoader from '../handler/ElementLoader'
 
 
 
@@ -13,7 +13,7 @@ const Teaser = ( { folder, unloadedSrc, src, title, oneUp, count, allElementsLoa
 
 			<NavLink exact to = { `/showcase/${ folder }` }>
 
-				<ImageLoader 
+				<ElementLoader 
 					className = "teaser-image"
 					unloadedSrc = { unloadedSrc }
 					src = { src }

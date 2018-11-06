@@ -1,6 +1,6 @@
 import React from 'react'
 
-import HandleImages from '../handler/HandleImages'
+import HandleElements from '../handler/HandleElements'
 
 
 
@@ -16,26 +16,27 @@ class Showcase extends React.Component {
 		const state = this.props.state
 		const showcaseId = this.props.showcaseId
 		const showcase = state.showcases[ showcaseId ]
-		const imagesPath = state.imagesPath
+		const showcasesPath = state.showcasesPath
 
 		return (
 			
 			<section className = "grid appear header-space freedom-below uppercase" id = "showcase" key = { showcaseId }>
 
-				<div className = "freedom-above big-text uppercase" id = "showcase-title">
+				<div className = "big-text uppercase" id = "showcase-title">
 					<h1>{ showcase.title }</h1>
 					<p>{ showcase.subtitle }</p>
 				</div>
 				
-				<HandleImages
-					images = { showcase.images }
-					imagesPath = { imagesPath }
+				<HandleElements
+					state = { state }
+					elements = { showcase.elements }
+					elementsPath = { showcasesPath }
 					folder = { showcase.folder }
 					className = "flexbox column uppercase"
 					id = "showcase-work"
 					alt = { showcase.title }
-					handleLoadedImage = { ( bool ) => this.props.handleLoadedImage( bool ) }
-					handleErroredImage = { ( bool ) => this.props.handleErroredImage( bool ) }
+					handleLoadedElement = { ( bool ) => this.props.handleLoadedElement( bool ) }
+					handleErroredElement = { ( bool ) => this.props.handleErroredElement( bool ) }
 				/>
 
 			</section>

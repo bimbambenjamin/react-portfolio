@@ -15,6 +15,7 @@ import * as helpers from './handler/helpers'
 
 const backend = process.env.REACT_APP_BACKEND_URL || 8080
 const imagesPath = "/assets/img"
+const showcasesPath = "/assets/showcases"
 
 
 
@@ -27,8 +28,11 @@ class App extends React.Component {
 		this.state = {
 			
 			showcases: [],
+			showcasesPath: showcasesPath,
 			backendConnected: false,
 			imagesPath: imagesPath,
+			imageLoaded: false,
+			imageErrored: false,
 			logo: helpers.getFullPath( imagesPath, "logo", "hoechstetter.svg" ),
 			hero: helpers.getFullPath( imagesPath, "hero", "Kaltblut-09-large.jpg" ),
 			heroIsActive: false,
@@ -43,8 +47,6 @@ class App extends React.Component {
 				"/imprint",
 				"/privacy"
 			],
-			imageLoaded: false,
-			imageErrored: false,
 			scrollPosition: window.scrollY,
 			scrollingDown: false
 		
@@ -59,9 +61,6 @@ class App extends React.Component {
 		
 		window.addEventListener( "scroll", this.handleScroll )
 		
-//		console.log( "logo: ", CheckSpeed( this.state.logo ) )
-//		console.log( "hero: ", CheckSpeed( this.state.hero ) )
-		
 		if ( this.state.backendConnected === false ) {
 						
 			console.log( backend )
@@ -73,6 +72,8 @@ class App extends React.Component {
 					showcases,
 					backendConnected: true
 				} )
+				
+				this.validateTarget( this.state.targetLocation )
 			})
 			
 		}
@@ -82,16 +83,34 @@ class App extends React.Component {
 		window.removeEventListener( "scroll", this.handleScroll )
 	}
 	
+	validateTarget( target ) {
+
+		const home = this.state.validRoutes[ 0 ]
+		const validRoutes = this.state.validRoutes.slice( 2 )
+		
+		const validFolders = this.state.showcases.map( ( showcase ) => (
+			showcase.folder
+		) )
+		
+		if ( validRoutes.includes( "/" + target ) || target === home || validFolders.includes( target )) {
+			console.log( "valid!", target )
+		} else {
+			this.goTo( home )
+		}
+
+	}
+	
 	handleScroll( e ) {
 		
 		let previousScrollPosition = this.state.scrollPosition
 		const scrollPosition = window.scrollY
 		const windowHeight = window.innerHeight
+		const heroViewHeight = windowHeight - 100
 
 		const scrollingDown = previousScrollPosition < scrollPosition ? 
 			true : false
 		
-		const heroIsVisible = scrollPosition < windowHeight ?
+		const heroIsVisible = scrollPosition < heroViewHeight ?
 			true : false
 		
 		this.setState( { 
@@ -141,7 +160,6 @@ class App extends React.Component {
 		
 	}
 	
-	// TODO: do i need this?
 	handleLocation( pathname ) {
 
 		let newPath
@@ -153,12 +171,13 @@ class App extends React.Component {
 		} else {
 			
 			const splitPath = pathname.split( "/" )
-
+			
 			if ( splitPath.length > 0 ) {
 				if ( splitPath[ 0 ] === "" ) {
+					
 					splitPath.shift()
 				}
-				if ( splitPath[ 0 ] === "showcase" ) {
+				if ( splitPath[ 0 ] === "showcase" && splitPath.length > 1 && splitPath[ 1 ] !== "" ) {
 					newPath = splitPath[ 1 ]
 				} else {
 					newPath = splitPath[ 0 ]
@@ -166,7 +185,7 @@ class App extends React.Component {
 			}
 
 		}
-
+		
 		return newPath
 		
 	}
@@ -174,25 +193,26 @@ class App extends React.Component {
 	// TODO: do i need this?
 	validateShowcase( target ) {
 
-		if ( target === null ) {
-			
-			return false
-			
-		} else {
+		if ( target !== null && this.state.backendConnected ) {
 			
 			const validShowcases = this.state.showcases.map( ( showcase ) => (
 				showcase.folder
 			) )
+
 			return validShowcases.includes( target ) ? true : false
+				
+		} else {
+			
+			return false
 			
 		}
 
 	}
 
-	// TODO: do i need this?
-	goHome() {
-		console.log( "go home" )
-		this.setState( { targetLocation: "/" } )		
+	goTo( target ) {
+		console.log( "go home", target )
+		window.location.replace( target )
+//		window.history.pushState( { target: target }, "target", target );
 	}
 
 	render() {
@@ -209,6 +229,9 @@ class App extends React.Component {
 		const heroDidLoad = this.state.heroDidLoad
 		const oneUp = this.oneUp
 
+		const targetLocation = this.state.targetLocation
+		
+		
 		const mainClass = "appear " +
 			( heroDidLoad ? "freedom-below" : "" )
 
@@ -227,15 +250,18 @@ class App extends React.Component {
 					onClick = { onClick }
 				/>
 		)
+//		
+//		console.log( "devicePixelRatio", window.devicePixelRatio )
+//		console.log( "targetLocation", targetLocation )
 		
-		console.log( "devicePixelRatio", window.devicePixelRatio )
+		const home = targetLocation === "/" ? true : false
 		
 
 		return (
 
 			<div>
 			
-				{ heroDidLoad ? headerTag : null }
+				{ heroDidLoad || !home ? headerTag : null }
 
 				<Switch>
 					
@@ -322,7 +348,7 @@ class App extends React.Component {
 
 				</Switch>
 
-				{ heroDidLoad ? footerTag : null }
+				{ heroDidLoad || !home ? footerTag : null }
 
 			</div>
 

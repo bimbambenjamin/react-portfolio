@@ -461,8 +461,8 @@ header nav button {
     position: absolute;
 	max-width: 600px;
 	min-width: 280px;
-	width: calc( 100% - calc( var( --page-frame ) * 2 ) );
-/*    width: 38%;*/
+/*	width: calc( 100% - calc( var( --page-frame ) * 2 ) );*/
+    width: 38%;
 	height: auto;
     overflow: hidden;
 	pointer-events: none;
@@ -684,10 +684,10 @@ header nav button {
        -moz-transition: all .5s ease-in-out;
             transition: all .5s ease-in-out;
 }
-.teaser picture {
+.teaser > div {
 	display: block;
 	position: relative;
-	min-width: var( --item-width );
+/*	min-width: var( --item-width );*/
 	min-height: 150px;
 }
 .teaser:hover {
@@ -710,7 +710,8 @@ header nav button {
        -moz-transition: opacity .25s ease-in-out;
             transition: opacity .25s ease-in-out;
 }
-.teaser-image {    
+.teaser-image {
+	margin: auto;
     opacity: 1;
 	display: block;
     max-width: var( --item-width );
@@ -748,36 +749,36 @@ header nav button {
     grid-row: 3 / span 1;
 	min-height: 100vh;
 }
-#showcase-work > picture {
-	min-height: 250px;
+#showcase-work > div {
+/*	min-height: 250px;*/
+	max-width: 100%;
 	position: relative;
     margin-bottom: var( --unit );
 }
-#showcase-work > picture img {
-	opacity: 0.1;
+#showcase-work > div img, 
+#showcase-work > div video {
+	opacity: 0;
 	display: block;
     max-height: var( --item-max-height );
 	max-width: 100%;
+	object-fit: contain;
 }
-/*
-#showcase-work figure video {
 
+#showcase-work > div video:hover {
 }
-*/
 
+.video-controls {
+	opacity: 0.4;
+	background: pink;
+}
 
 
 /*TODO: get image dimensions from upload */
 .preloader {
-	width: 100%;
-	min-width: 250px;
-	height: 150px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate( -50%, -50% );
+	width: var( --item-width );
+    height: 100px;
+	margin: var( --page-frame ) 0;
 	background: transparent;
-/*	animation: pulseBackground 1.5s 300ms infinite ease-in-out;*/
 }
 .preloader img {
 	margin: auto;
@@ -905,7 +906,9 @@ header nav button {
 .social li, #imprint li {
     display: block;
 }
-
+#contact {
+    margin-bottom: var( --unit );
+}
 #contact ul, #imprint ul {
     display: block;
     margin-top: var( --font-height );
@@ -916,7 +919,7 @@ header nav button {
 }
 
 #copyright {
-    margin: var( --page-frame );
+    margin: var( --unit ) var( --page-frame );
 }
 /* imprint content */
 #imprint {

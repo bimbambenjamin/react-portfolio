@@ -10,7 +10,7 @@ class ImprintContent extends React.Component {
 		
 		return (
 
-			<div className = "active-links freedom-above" id = "imprint">
+			<div className = "active-links" id = "imprint">
 
 				<h1>Impressum</h1>
 
@@ -43,7 +43,7 @@ function DisclaimerContent() {
 	return (
 
 		<div 
-			className = "active-links freedom-above freedom-below" 
+			className = "active-links freedom-above" 
 			id = "disclaimer">
 			
 			<div>

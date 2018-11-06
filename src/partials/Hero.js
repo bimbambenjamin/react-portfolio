@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ImageLoader from '../handler/ImageLoader'
+import ElementLoader from '../handler/ElementLoader'
 import * as helpers from '../handler/helpers'
 
 
@@ -59,7 +59,7 @@ class Hero extends React.Component {
 		const imageTag = (
 
 			<figure id = { id }>
-				<ImageLoader 
+				<ElementLoader 
 					src = { src }
 					alt = { alt }
 					count = { count }
@@ -76,12 +76,12 @@ class Hero extends React.Component {
 					aria-hidden = "true" 
 					className = "background" 
 					data-inline-video-path = { videoDataPath }
-					autoplay
+					autoPlay
 					loop
 					muted
-					playsinline 
+					playsInline 
 					src = { videoDataPath + videoURL }
-					tabindex = "-1"
+					tabIndex = "-1"
 				/>
 			</figure>
 
@@ -124,6 +124,8 @@ class Hero extends React.Component {
 		const heroIsActive = state.heroIsActive
 		const heroIsVisible = this.props.heroIsVisible
 		const heroDidLoad = this.props.heroDidLoad
+		
+		console.log( "heroDidLoad", heroDidLoad )
 
 //		const virgin = state.virgin
 		
@@ -156,6 +158,19 @@ class Hero extends React.Component {
 			null : 
 			() => this.props.activateHero( true )
 		
+		const logoTag = (
+			
+			<div className = "infobox no-select" id = "logo">
+
+				<picture>
+					<source srcSet = { logo } type = "image/svg+xml" />
+					<img src = { logo } alt = { mainTitle } />
+				</picture>
+
+			</div>
+
+		)
+		
 		const bouncerTag = (
 			
 			<div className = { bouncerClass }>
@@ -175,17 +190,8 @@ class Hero extends React.Component {
 			>
 
 				{ this.imageOrVideo( mainTitle, hero ) }
-
-				<div className = "infobox no-select" id = "logo">
-
-					<picture>
-						<source srcSet = { logo } type = "image/svg+xml" />
-						<img src = { logo } alt = { mainTitle } />
-					</picture>
-
-					{ heroDidLoad ? bouncerTag : null }
-
-				</div>
+				{ logoTag }
+				{ heroDidLoad ? bouncerTag : null }
 
 			</section>
 		)

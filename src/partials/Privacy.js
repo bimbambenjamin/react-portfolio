@@ -1,5 +1,4 @@
 import React from 'react'
-//import ReactDOM from 'react-dom'
 
 import Email from './Email'
 import Phone from './Phone'
@@ -10,19 +9,11 @@ class PrivacyContent extends React.Component {
 
 	componentDidMount() {
 		window.scroll( { top: 0 } )
-//		window.scroll( { left: 0, top: 0, behavior: "smooth" } )
 	}
-	
-//	$( function() {
-//		$( ".dropdown-button" ).click( function() {
-//			$( this ).parent( ".dropdown" ).toggleClass( "collapsed" );
-//			$( this ).parent( ".dropdown" ).toggleClass( "expanded" );
-//		} );
-//	} );
+
 	constructor( props ) {
 		super( props )
 		
-//		this.toggle = this.toggleDropdown.bind( this )
 		this.state = {
 			dropdowns: Array(18).fill("collapsed")
 		}
@@ -58,7 +49,7 @@ class PrivacyContent extends React.Component {
 
 		return (
 
-			<div className = "active-links header-space freedom-above freedom-below" id="privacy">
+			<div className = "active-links freedom-below" id="privacy">
 
 				<div className = "list">
 					<h1>Datenschutzerklärung</h1>

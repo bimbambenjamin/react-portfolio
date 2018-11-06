@@ -181,7 +181,7 @@ class Gallery extends React.Component {
 
 		const loadedTeasers = this.state.loadedTeasers
 		const imagesPath = this.props.state.imagesPath
-		const showcasesPath = imagesPath + "/showcases"
+		const showcasesPath = this.props.state.showcasesPath
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
 		const batch = this.state.batch
@@ -204,7 +204,7 @@ class Gallery extends React.Component {
 
 		return (
 
-			<div className = "grid header-space" id = "works">
+			<div className = "grid" id = "works">
 			
 				<div className = "flexbox row freedom-below uppercase">
 			

@@ -9,11 +9,10 @@ import Social from '../partials/Social'
 class ShowcaseRoute extends React.Component {
 	
 	render() {
+		
 		const state = this.props.state
-
 		const showcases = state.showcases
 		const showcasesAvailable = this.props.showcasesAvailable
-
 		const onClick = ( i ) => this.props.onClick( i )
 		const heroIsActive = state.heroIsActive
 
@@ -23,8 +22,6 @@ class ShowcaseRoute extends React.Component {
 		
 		const match = this.props.match
 		const folderId = match.params.folderId
-
-		
 
 		const validFolders = showcases.map( ( showcase ) => (
 			showcase.folder
@@ -57,22 +54,22 @@ class ShowcaseRoute extends React.Component {
 					headerId = { this.props.headerId }
 				/>
 				
-				<section className = "flexbox column header-space">
+				<section className = "flexbox column header-space freedom-below">
 
-				{ showcasesAvailable ? (
-					<Gallery
-						state = { state }
-						onClick = { onClick }
-					/>
-				) : (
-					<div className = "message uppercase">
-						<h1>
-							getting showcases
-						</h1>
-					</div>
-				) }
+					{ showcasesAvailable ? (
+						<Gallery
+							state = { state }
+							onClick = { onClick }
+						/>
+					) : (
+						<div className = "message uppercase">
+							<h1>
+								getting showcases
+							</h1>
+						</div>
+					) }
 
-				<Social />
+					<Social />
 
 				</section>
 

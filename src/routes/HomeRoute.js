@@ -32,7 +32,7 @@ class HomeRoute extends React.Component {
 		
 		const sectionTag = (
 			
-			<section className = "flexbox column header-space">
+			<section className = "flexbox column header-space freedom-below">
 
 				{ showcasesAvailable ? (
 					<Gallery

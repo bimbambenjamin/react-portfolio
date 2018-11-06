@@ -29,7 +29,7 @@ class Contact extends React.Component {
 
 			<div className = "active-links">
 
-				<div className = "header-space freedom-below uppercase big-text" id = "contact">
+				<div className = "header-space uppercase big-text" id = "contact">
 
 					<h1>contact</h1>
 

@@ -1044,3 +1044,15 @@
         "JOOP-LB-FW201617-06.jpg"
     ]
 }
+
+// 65
+{
+    folder: "video-test",
+    title: "video",
+    subtitle: "",
+    teaser: "video-teaser.jpg",
+	videos: [
+        "video-teaser.mp4",
+        "video-test.mp4"
+	]
+}

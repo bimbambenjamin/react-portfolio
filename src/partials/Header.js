@@ -58,6 +58,7 @@ function HeaderNav( props ) {
 				activeClassName = "vanish no-select current"
 				isActive = { helpers.checkActive }
 			>
+			
 				<button 
 					className = "uppercase"
 					type = "button" 
@@ -83,8 +84,8 @@ class Header extends React.Component {
 		const mainTitle = state.mainTitle
 		const logo = state.logo
 		const heroIsActive = this.props.heroIsActive
-		const id = this.props.headerId 
-
+		const id = this.props.headerId
+		
 		let headerClasses = 
 			"uppercase " +
 			( heroIsActive ? "stick-to-second-section " : "" )
