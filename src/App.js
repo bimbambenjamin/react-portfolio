@@ -59,7 +59,10 @@ class App extends React.Component {
 	
 	componentDidMount() {
 		
+		this.handleViewHeight()
+		
 		window.addEventListener( "scroll", this.handleScroll )
+		window.addEventListener( "resize", this.handleViewHeight )
 		
 		if ( this.state.backendConnected === false ) {
 						
@@ -81,6 +84,14 @@ class App extends React.Component {
 	}
 	componentWillUnmount() {
 		window.removeEventListener( "scroll", this.handleScroll )
+		window.removeEventListener( "resize", this.handleViewHeight )
+	}
+	
+	handleViewHeight() {
+		
+		const vh = window.innerHeight;
+		document.documentElement.style.setProperty( "--vh", `${ vh }px` );
+		
 	}
 	
 	validateTarget( target ) {

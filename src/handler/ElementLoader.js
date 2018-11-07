@@ -25,7 +25,7 @@ class ElementLoader extends React.Component {
 
 		this._isMounted = true
 		this.handleSrc()
-
+		
 	}
 	
 	componentWillUnmount() {
@@ -116,7 +116,7 @@ class ElementLoader extends React.Component {
 			}
 			
 		}
-
+		
 		video.src = this.props.src
 						        
     }
@@ -133,7 +133,7 @@ class ElementLoader extends React.Component {
 		const alt = this.props.alt
 		const title = this.props.title
 		const fileType = helpers.getFiletype( src )
-		
+
 		const progressTag = (
 			
             <progress value = { this.state.value } max = "100" />
@@ -154,6 +154,7 @@ class ElementLoader extends React.Component {
 			<figure className = "appear">
 			
 				<img
+					id = { this.props.id }
 					className = { className }
 					src = { elementSrc }
 					title = { title } 
@@ -168,9 +169,8 @@ class ElementLoader extends React.Component {
 			
 			<figure className = "appear">
 			
-				<div className = "video-controls"></div>
-			
 				<video
+					id = { this.props.id }
 					aria-hidden = "true" 
 					className = { className }
 					autoPlay

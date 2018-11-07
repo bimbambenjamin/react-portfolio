@@ -11,7 +11,10 @@ const Teaser = ( { folder, unloadedSrc, src, title, oneUp, count, allElementsLoa
 
 		<div className = "teaser one-word-per-line">
 
-			<NavLink exact to = { `/showcase/${ folder }` }>
+			<NavLink 
+				exact to = { `/showcase/${ folder }` } 
+				onClick = { ( i ) => this.props.onClick( i ) }
+			>
 
 				<ElementLoader 
 					className = "teaser-image"
@@ -23,6 +26,7 @@ const Teaser = ( { folder, unloadedSrc, src, title, oneUp, count, allElementsLoa
 					count = { count }
 					allElementsLoaded = { allElementsLoaded }
 					batch = { batch }
+					showControls = { false }
 				/>
 
 				<span className = "teaser-title">{ title }</span>

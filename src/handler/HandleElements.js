@@ -19,8 +19,20 @@ class HandleElements extends React.Component {
 		
 	}
 	
+	showVideoControls() {
+		
+		const id = this.props.id + "-" + ( this.state.count - 1 )
+		const element = document.getElementById( id )
+		element.controls = true
+		
+		element.addEventListener( "loadeddata", console.log( "got data", element ) )
+		
+	}
+	
 	nextElementHandler( i ) {
 
+		this.showVideoControls()
+		
 		if ( this.state.allElementsLoaded ) {
 
 			return
@@ -67,6 +79,7 @@ class HandleElements extends React.Component {
 			
 			<ElementLoader 
 				key = { i }
+				id = { id + "-" + i }
 				className = "appear"
 				unloadedSrc = { helpers.getFullPath( state.imagesPath, "tools", "tail-spin.svg" ) }
 				src = { helpers.getFullPath( elementsPath, folder, element ) }
