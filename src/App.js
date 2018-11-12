@@ -66,7 +66,7 @@ class App extends React.Component {
 		
 		if ( this.state.backendConnected === false ) {
 						
-			console.log( backend )
+//			console.log( backend )
 		
 			axios.get( backend )
 			.then( res => {

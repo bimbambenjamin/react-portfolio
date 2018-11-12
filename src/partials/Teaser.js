@@ -5,7 +5,7 @@ import ElementLoader from '../handler/ElementLoader'
 
 
 
-const Teaser = ( { folder, unloadedSrc, src, title, oneUp, count, allElementsLoaded, batch } ) => (
+const Teaser = ( { onClick, folder, unloadedSrc, src, title, oneUp, count, allElementsLoaded, batch } ) => (
 			
 	<div className = "item citizen">
 
@@ -13,7 +13,7 @@ const Teaser = ( { folder, unloadedSrc, src, title, oneUp, count, allElementsLoa
 
 			<NavLink 
 				exact to = { `/showcase/${ folder }` } 
-				onClick = { ( i ) => this.props.onClick( i ) }
+				onClick = { onClick }
 			>
 
 				<ElementLoader 
