@@ -67,6 +67,7 @@ body {
 }
 main, section {
 	min-height: calc( var( --vh ) - var( --footer-height ) );
+	min-height: calc( 100vh - var( --footer-height ) );
 }
 body, 
 button, 
@@ -382,7 +383,7 @@ header nav button {
 	cursor: default;
 }
 .services ul li {
-	padding: 0.35em;
+	padding: 0.5em;
 }
 
 
@@ -421,6 +422,7 @@ header nav button {
 .stick-to-second-section {
     position: absolute;
     top: var( --vh );
+	top: 100vh;
 }
 
 /* hero */
@@ -438,6 +440,7 @@ header nav button {
 #background {
     width: 100vw;
     height: var( --vh );
+    height: 100vh;
     z-index: 0;
 }
 /*TODO: insert dynamic url*/
@@ -528,6 +531,7 @@ header nav button {
     height: 60px;
     left: calc( 50% - 70px );
     top: calc( var( --vh ) - var( --page-frame-big ) );
+    top: calc( 100vh - var( --page-frame-big ) );
     position: absolute;
 
 	-webkit-animation: 2s bounce 2s infinite;
@@ -749,6 +753,7 @@ header nav button {
 #showcase-work {
     grid-row: 3 / span 1;
 	min-height: var( --vh );
+	min-height: 100vh;
 }
 #showcase-work > div {
 /*	min-height: 250px;*/

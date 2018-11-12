@@ -34,7 +34,7 @@ class App extends React.Component {
 			imageLoaded: false,
 			imageErrored: false,
 			logo: helpers.getFullPath( imagesPath, "logo", "hoechstetter.svg" ),
-			hero: helpers.getFullPath( imagesPath, "hero", "Kaltblut-09-large.jpg" ),
+			hero: helpers.getFullPath( imagesPath, "hero", "Film-Noir-05.jpg" ),
 			heroIsActive: false,
 			heroIsVisible: true,
 			heroDidLoad: false,

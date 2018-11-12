@@ -65,12 +65,15 @@ class Gallery extends React.Component {
 		
 		const itemWidth = item + gap		
 		const netWidth = ( width - pageFrame * 2 ) / itemWidth
-		const columns = Math.floor( netWidth )		
+		const columns = netWidth < 1 ? 1 : Math.floor( netWidth )
 		const netHeight = ( height - pageFrame * 2 ) / itemWidth
 		const rows = Math.floor( netHeight )
 		const visibleItems = columns * rows
 		const batchSize = visibleItems * 3
 
+		console.log( "VISIBLE", visibleItems )
+		console.log( "BATCH", batchSize )
+		
 		if ( this._isMounted ) {
 
 			this.setState( {
@@ -95,6 +98,12 @@ class Gallery extends React.Component {
 	handleScroll( e ) {
 
 		const scrollY = window.scrollY
+//		const viewHeight = window.innerHeight
+//		const bodyHeight = document.body.offsetHeight
+//		console.log("scrollY", scrollY)
+//		console.log(viewHeight)
+//		console.log(bodyHeight)		
+//		console.log("myHeight:", bodyHeight - viewHeight )
 
 		if ( this._isMounted && this.props.state.scrollingDown && scrollY > this.state.initialHeight * 2 ) {
 			this.loadNextBatch()

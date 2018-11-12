@@ -10,7 +10,24 @@
 		"JOOP-SS18-03.jpg",
 		"JOOP-SS18-04.jpg",
 		"JOOP-SS18-05.jpg",
-		"JOOP-SS18-06.jpg"
+		"JOOP-SS18-06.jpg",
+		"JOOP-SS18-bags-men-01.jpg",
+		"JOOP-SS18-bags-men-02.jpg",
+		"JOOP-SS18-bags-men-03.jpg",
+		"JOOP-SS18-bags-men-04.jpg",
+		"JOOP-SS18-bags-men-05.jpg",
+		"JOOP-SS18-glasses-01.jpg",
+		"JOOP-SS18-glasses-02.jpg",
+		"JOOP-SS18-glasses-03.jpg",
+		"JOOP-SS18-glasses-04.jpg",
+		"JOOP-SS18-jeans-01.jpg",
+		"JOOP-SS18-jeans-02.jpg",
+		"JOOP-SS18-legwear-men-01.jpg",
+		"JOOP-SS18-legwear-men-02.jpg",
+		"JOOP-SS18-shoes-men-01.jpg",
+		"JOOP-SS18-shoes-men-02.jpg",
+		"JOOP-SS18-shoes-men-03.jpg",
+		"JOOP-SS18-shoes-men-04.jpg"
 	]
 }
 
@@ -51,20 +68,6 @@
 
 // 4
 {
-    folder: "JOOP-ss18-shoes",
-    title: "joop! ss18 shoes",
-    subtitle: "",
-    teaser: "JOOP-SS18-shoes-men-02-teaser.jpg",
-    images: [ 
-        "JOOP-SS18-shoes-men-01.jpg",
-        "JOOP-SS18-shoes-men-02.jpg",
-        "JOOP-SS18-shoes-men-03.jpg",
-        "JOOP-SS18-shoes-men-04.jpg"
-    ]
-}
-
-// 5
-{
     folder: "German-Vogue",
     title: "german vogue",
     subtitle: "",
@@ -81,7 +84,7 @@
     ]
 }
 
-// 6
+// 5
 {
     folder: "re-draft",
     title: "re.draft",
@@ -98,22 +101,22 @@
     ]
 }
 
-// 10
+// 6
 {
-	folder: "JOOP-ss18-bags",
-	title: "joop! ss18 bags",
-	subtitle: "",
-	teaser: "JOOP-SS18-bags-men-04-teaser.jpg",
-	images: [
-		"JOOP-SS18-bags-men-01.jpg",
-		"JOOP-SS18-bags-men-02.jpg",
-		"JOOP-SS18-bags-men-03.jpg",
-		"JOOP-SS18-bags-men-04.jpg",
-		"JOOP-SS18-bags-men-05.jpg"
-	]
+    folder: "Kaisergalerie_FS18-2",
+    title: "Kaisergalerie FS18",
+    subtitle: "",
+    teaser: "KG-FS18-02-teaser.jpg",
+    images: [ 
+        "KG-FS18-01.jpg",
+        "KG-FS18-02.jpg",
+        "KG-FS18-03.jpg",
+        "KG-FS18-04.jpg"
+    ]
 }
 
-// 8
+
+// 7
 {
     folder: "NIKE-KD-FOR-KICKZ",
     title: "nike kd for kickz",
@@ -135,7 +138,7 @@
     ]
 }
 
-// 9
+// 8
 {
     folder: "SPECTR_The-Protokoll",
     title: "spectr",
@@ -150,21 +153,8 @@
     ]
 }
 
-// 7
-{
-    folder: "Kaisergalerie_FS18-2",
-    title: "Kaisergalerie FS18",
-    subtitle: "",
-    teaser: "KG-FS18-02-teaser.jpg",
-    images: [ 
-        "KG-FS18-01.jpg",
-        "KG-FS18-02.jpg",
-        "KG-FS18-03.jpg",
-        "KG-FS18-04.jpg"
-    ]
-}
 
-// 11
+// 9
 {
     folder: "Kaltblut",
     title: "Kaltblut",
@@ -183,21 +173,7 @@
     ]
 }
 
-// 12
-{
-    folder: "JOOP-ss18-eyewear",
-    title: "joop! ss18 eyewear",
-    subtitle: "",
-    teaser: "JOOP-SS18-glasses-03-teaser.jpg",
-    images: [ 
-        "JOOP-SS18-glasses-01.jpg", 
-        "JOOP-SS18-glasses-02.jpg", 
-        "JOOP-SS18-glasses-03.jpg", 
-        "JOOP-SS18-glasses-04.jpg"
-    ]
-}
-
-// 13
+// 10
 {
     folder: "RollsRoyce",
     title: "rolls royce",
@@ -218,23 +194,23 @@
     ]
 }
 
-// 14
+// 11
 {
 	folder: "JOOP-Lena-gercke17",
 	title: "joop! lena gercke",
 	subtitle: "the paper fw 17/18",
-	teaser: "JOOP-Lena-gerckeFW17-05-teaser.jpg",
+	teaser: "JOOP_Paper_03-teaser.jpg",
 	images: [
-		"JOOP-Lena-gerckeFW17-01.jpg",
-		"JOOP-Lena-gerckeFW17-02.jpg",
-		"JOOP-Lena-gerckeFW17-03.jpg",
-		"JOOP-Lena-gerckeFW17-04.jpg",
-		"JOOP-Lena-gerckeFW17-05.jpg",
-		"JOOP-Lena-gerckeFW17-06.jpg"
+		"JOOP_Paper_01.jpg",
+		"JOOP_Paper_02.jpg",
+		"JOOP_Paper_03.jpg",
+		"JOOP_Paper_04.jpg",
+		"JOOP_Paper_05.jpg",
+		"JOOP_Paper_06.jpg"
 	]
 }
 
-// 15
+// 12
 {
     folder: "Toni-Sailer-sports_HW18",
     title: "toni sailer sports",
@@ -252,19 +228,7 @@
     ]
 }
 
-// 16
-{
-    folder: "JOOP-ss18-jeans",
-    title: "joop! ss18 jeans",
-    subtitle: "",
-    teaser: "Toni-Sailer-sports-HW18-01-teaser.jpg",
-    images: [ 
-        "JOOP-SS18-jeans-01.jpg",
-        "JOOP-SS18-jeans-02.jpg"
-    ]
-}
-
-// 17
+// 13
 {
     folder: "city-basket-court-sao-paulo",
     title: "são paolo",
@@ -279,7 +243,7 @@
     ]
 }
 
-// 18
+// 14
 {
     folder: "Ana_Alcazar_HW_Lookbook15",
     title: "ana alcazar",
@@ -303,10 +267,10 @@
     ]
 }
 
-// 19
+// 15
 {
     folder: "Kaisergalerie-FS18",
-    title: "Kaisergallerie FS 18",
+    title: "Kaisergallerie FS18",
     subtitle: "",
     teaser: "KG-FS-02-teaser.jpg",
     images: [ 
@@ -317,7 +281,7 @@
     ]
 }
 
-// 20
+// 16
 {
     folder: "lofficiel",
     title: "l’officiel",
@@ -332,7 +296,7 @@
     ]
 }
 
-// 21
+// 17
 {
     folder: "K1X",
     title: "K1X",
@@ -354,19 +318,7 @@
     ]
 }
 
-// 22
-{
-    folder: "JOOP-ss18-legwear",
-    title: "joop! ss18 legwear",
-    subtitle: "",
-    teaser: "JOOP-SS18-legwear-men-02-teaser.jpg",
-    images: [ 
-        "JOOP-SS18-legwear-men-01.jpg",
-        "JOOP-SS18-legwear-men-02.jpg"
-    ]
-}
-
-// 23
+// 18
 {
     folder: "LYN_in-Thailand",
     title: "lyn in thailand",
@@ -381,7 +333,7 @@
     ]
 }
 
-// 24
+// 19
 {
     folder: "MASCULINE-HW17",
     title: "masculine hw17",
@@ -396,7 +348,7 @@
     ]
 }
 
-// 25
+// 20
 {
     folder: "platinum-magazin",
     title: "platinum magazine",
@@ -414,20 +366,38 @@
     ]
 }
 
-// 26
+// 21
 {
-    folder: "FW16-17-JOOP",
+    folder: "JOOP-FW-17",
     title: "joop! fw17",
     subtitle: "",
-    teaser: "JOOP-FW17-01-teaser.jpg",
+    teaser: "JOOP-FW17-02-teaser.jpg",
     images: [ 
         "JOOP-FW17-01.jpg",
         "JOOP-FW17-02.jpg",
-        "JOOP-FW17-03.jpg"
+        "JOOP-FW17-03.jpg",
+        "JOOP-FW17-04.jpg",
+        "JOOP-FW17-05.jpg",
+        "JOOP-FW17-06.jpg",
+        "JOOP-FW17-07.jpg",
+        "JOOP-FW17-08.jpg",
+        "JOOP-FW17-09.jpg",
+        "JOOP-FW17-10.jpg",
+        "JOOP-FW17-11.jpg",
+        "JOOP-FW17-12.jpg",
+        "JOOP-FW17-13.jpg",
+        "JOOP-FW17-14.jpg",
+        "JOOP-FW17-15.jpg",
+        "JOOP-FW17-16.jpg",
+        "JOOP-FW17-17.jpg",
+        "JOOP-FW17-18.jpg",
+        "JOOP-FW17-19.jpg",
+        "JOOP-FW17-20.jpg",
+        "JOOP-FW17-21.jpg"
     ]
 }
 
-// 27
+// 22
 {
     folder: "Film-Noir",
     title: "film noir",
@@ -444,7 +414,7 @@
     ]
 }
 
-// 28
+// 23
 {
     folder: "eyewear-magazine",
     title: "eyewear magazine",
@@ -462,7 +432,7 @@
     ]
 }
 
-// 29
+// 24
 {
     folder: "Cybergirl",
     title: "Cybergirl",
@@ -479,7 +449,7 @@
 	]
 }
 
-// 30
+// 25
 {
     folder: "JOOP-HW17-18",
     title: "JOOP! FW17/18",
@@ -511,7 +481,7 @@
 	]
 }
 
-// 31
+// 26
 {
     folder: "SPECTR",
     title: "SPECTR",
@@ -527,69 +497,7 @@
     ]
 }
 
-// 32
-{
-    folder: "FW16-17-Joop_jewellery",
-    title: "joop! fw16/17 jewellery",
-    subtitle: "",
-    teaser: "JOOP-FW17-03-teaser.jpg",
-    images: [ 
-        "JOOP-FW17-01.jpg",
-        "JOOP-FW17-02.jpg",
-        "JOOP-FW17-03.jpg"
-    ]
-}
-
-// 33
-{
-    folder: "FW16-17-Joop_bags",
-    title: "joop! fw16/17 bags",
-    subtitle: "",
-    teaser: "JOOP-FW17-02-teaser.jpg",
-    images: [ 
-        "JOOP-FW17-01.jpg",
-        "JOOP-FW17-02.jpg"
-    ]
-}
-
-// 36
-{
-    folder: "Ana-Alcazar_alltag",
-    title: "joop! fw16/17 bags",
-    subtitle: "",
-    teaser: "AA-05-teaser.jpg",
-    images: [ 
-        "AA-01.jpg",
-        "AA-02.jpg",
-        "AA-03.jpg",
-        "AA-04.jpg",
-        "AA-05.jpg",
-        "AA-06.jpg",
-        "AA-07.jpg",
-        "AA-08.jpg",
-        "AA-09.jpg",
-        "AA-10.jpg",
-        "AA-11.jpg"
-    ]
-}
-
-// 35
-{
-    folder: "FW16-17-Joop_jeans",
-    title: "joop! fw16/17 jeans",
-    subtitle: "",
-    teaser: "JOOP-FW17-02-teaser.jpg",
-    images: [ 
-        "JOOP-FW17-01.jpg",
-        "JOOP-FW17-02.jpg",
-        "JOOP-FW17-03.jpg",
-        "JOOP-FW17-04.jpg",
-        "JOOP-FW17-05.jpg",
-        "JOOP-FW17-06.jpg"
-    ]
-}
-
-// 34
+// 27
 {
     folder: "Whisper-of-a-ballerine",
     title: "whisper of a ballerine",
@@ -609,7 +517,63 @@
     ]
 }
 
-// 39
+// 28
+{
+    folder: "Ana-Alcazar_alltag",
+    title: "Ana Alcazar Alltag",
+    subtitle: "",
+    teaser: "AA-05-teaser.jpg",
+    images: [ 
+        "AA-01.jpg",
+        "AA-02.jpg",
+        "AA-03.jpg",
+        "AA-04.jpg",
+        "AA-05.jpg",
+        "AA-06.jpg",
+        "AA-07.jpg",
+        "AA-08.jpg",
+        "AA-09.jpg",
+        "AA-10.jpg",
+        "AA-11.jpg"
+    ]
+}
+
+// 29
+{
+    folder: "Reflection",
+    title: "reflection",
+    subtitle: "",
+    teaser: "Reflection-07-teaser.jpg",
+    images: [ 
+        "Reflection-01.jpg",
+        "Reflection-02.jpg",
+        "Reflection-03.jpg",
+        "Reflection-04.jpg",
+        "Reflection-05.jpg",
+        "Reflection-06.jpg",
+        "Reflection-07.jpg",
+        "Reflection-08.jpg"
+    ]
+}
+
+// 30
+{
+    folder: "The-future-is-now",
+    title: "the future is now",
+    subtitle: "",
+    teaser: "The-future-is-now03-teaser.jpg",
+    images: [ 
+        "The-future-is-now01.jpg",
+        "The-future-is-now02.jpg",
+        "The-future-is-now03.jpg",
+        "The-future-is-now04.jpg",
+        "The-future-is-now05.jpg",
+        "The-future-is-now06.jpg"
+    ]
+}
+
+
+// 31
 {
     folder: "one-night-bangkok",
     title: "one night bangkok",
@@ -631,53 +595,7 @@
     ]
 }
 
-// 38
-{
-    folder: "The-future-is-now",
-    title: "the future is now",
-    subtitle: "",
-    teaser: "The-future-is-now03-teaser.jpg",
-    images: [ 
-        "The-future-is-now01.jpg",
-        "The-future-is-now02.jpg",
-        "The-future-is-now03.jpg",
-        "The-future-is-now04.jpg",
-        "The-future-is-now05.jpg",
-        "The-future-is-now06.jpg"
-    ]
-}
-
-// 37
-{
-    folder: "Reflection",
-    title: "reflection",
-    subtitle: "",
-    teaser: "Reflection-07-teaser.jpg",
-    images: [ 
-        "Reflection-01.jpg",
-        "Reflection-02.jpg",
-        "Reflection-03.jpg",
-        "Reflection-04.jpg",
-        "Reflection-05.jpg",
-        "Reflection-06.jpg",
-        "Reflection-07.jpg",
-        "Reflection-08.jpg"
-    ]
-}
-
-// 40
-{
-    folder: "FW16-17-Joop_watches",
-    title: "joop! fw16/17 watches",
-    subtitle: "",
-    teaser: "JOOP-FW17-01-teaser.jpg",
-    images: [ 
-        "JOOP-FW17-01.jpg",
-        "JOOP-FW17-02.jpg"
-    ]
-}
-
-// 41
+// 32
 {
     folder: "Fetish",
     title: "Fetish",
@@ -693,7 +611,7 @@
     ]
 }
 
-// 42
+// 33
 {
     folder: "80s-revival",
     title: "80s revival",
@@ -709,7 +627,7 @@
     ]
 }
 
-// 43
+// 34
 {
     folder: "quest-Magazine",
     title: "quest Magazine",
@@ -724,12 +642,12 @@
     ]
 }
 
-// 44
+// 35
 {
     folder: "Kaisergalerie-HW17",
     title: "Kaisergalerie FW17",
     subtitle: "",
-    teaser: "quest-magazine-01-teaser.jpg",
+    teaser: "KG-06-teaser.jpg",
     images: [ 
         "KG-01.jpg",
         "KG-02.jpg",
@@ -740,11 +658,11 @@
         "KG-07.jpg",
         "KG-08.jpg",
         "KG-09.jpg",
-        "KG-10.jpg",
+        "KG-10.jpg"
 	]
 }
 
-// 45
+// 36
 {
     folder: "Gott-sei-dank",
     title: "Gott sei dank",
@@ -760,7 +678,7 @@
 	]
 }
 
-// 46
+// 37
 {
     folder: "ICE-ICE-BABY",
     title: "ICE ICE BABY",
@@ -779,18 +697,8 @@
 	]
 }
 
-// 47
-{
-    folder: "NIKE",
-    title: "nike",
-    subtitle: "",
-    teaser: "NIKE-teaser.jpg",
-    images: [
-        "NIKE.jpg"
-	]
-}
 
-// 48
+// 38
 {
     folder: "brasil-carnaval",
     title: "brasil carnaval",
@@ -805,7 +713,7 @@
     ]
 }
 
-// 49
+// 39
 {
     folder: "Platinum-Magazin2",
     title: "Platinum Magazine",
@@ -819,7 +727,7 @@
     ]
 }
 
-// 50
+// 40
 {
     folder: "mystic-girls",
     title: "mystic girls",
@@ -834,7 +742,7 @@
 }
 
 
-// 51
+// 41
 {
     folder: "Kaisergalerie_FS17",
     title: "Kaisergalerie FS17",
@@ -848,7 +756,7 @@
     ]
 }
 
-// 52
+// 42
 {
     folder: "Ana-Alcazar-HW14",
     title: "ana alcazar",
@@ -867,19 +775,7 @@
     ]
 }
 
-// 53
-{
-    folder: "FW16-17-Joop_eyewear",
-    title: "joop! FW16/17 eyewear",
-    subtitle: "",
-    teaser: "JOOP-FW17-02-teaser.jpg",
-    images: [ 
-        "JOOP-FW17-01.jpg",
-        "JOOP-FW17-02.jpg"
-    ]
-}
-
-// 54
+// 43
 {
     folder: "snowstorm",
     title: "snowstorm",
@@ -893,7 +789,7 @@
     ]
 }
 
-// 55
+// 44
 {
     folder: "JOOP",
     title: "joop!",
@@ -907,7 +803,7 @@
 	]
 }
 
-// 56
+// 45
 {
     folder: "bella-Italia",
     title: "bella italia",
@@ -922,7 +818,7 @@
 	]
 }
 
-// 57
+// 46
 {
     folder: "ny---ny",
     title: "ny ny",
@@ -937,7 +833,21 @@
 	]
 }
 
-// 59
+
+// 47
+{
+    folder: "EDEN",
+    title: "eden",
+    subtitle: "",
+    teaser: "EDEN-03-teaser.jpg",
+    images: [ 
+        "EDEN-01.jpg",
+        "EDEN-02.jpg",
+        "EDEN-03.jpg"
+    ]
+}
+
+// 48
 {
     folder: "Ana-Alcazar-VOTE-HW17",
     title: "ana alcazar vote",
@@ -957,33 +867,7 @@
     ]
 }
 
-// 58
-{
-    folder: "EDEN",
-    title: "eden",
-    subtitle: "",
-    teaser: "EDEN-03-teaser.jpg",
-    images: [ 
-        "EDEN-01.jpg",
-        "EDEN-02.jpg",
-        "EDEN-03.jpg"
-    ]
-}
-
-// 60
-{
-    folder: "FW16-17-Joop_legwaer",
-    title: "joop! fw16/17 legwear",
-    subtitle: "",
-    teaser: "JOOP-FW17-01-teaser.jpg",
-    images: [ 
-        "JOOP-FW17-01.jpg",
-        "JOOP-FW17-02.jpg",
-        "JOOP-FW17-03.jpg"
-    ]
-}
-
-// 61
+// 49
 {
     folder: "LYN_in-Paris",
     title: "LYN in Paris",
@@ -1000,7 +884,7 @@
     ]
 }
 
-// 62
+// 50
 {
     folder: "Fightclub",
     title: "Fightclub",
@@ -1013,7 +897,7 @@
     ]
 }
 
-// 63
+// 51
 {
     folder: "schoen-Magazin",
     title: "schoen",
@@ -1029,7 +913,7 @@
     ]
 }
 
-// 64
+// 52
 {
     folder: "JOOP-LB-17",
     title: "joop! lb17",
@@ -1045,7 +929,7 @@
     ]
 }
 
-// 65
+// 53
 {
     folder: "video-test",
     title: "video",
