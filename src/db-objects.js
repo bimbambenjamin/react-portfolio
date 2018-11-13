@@ -4,7 +4,7 @@
 	title: "joop! ss18",
 	subtitle: "",
 	teaser: "JOOP-SS18-05-teaser.jpg",
-	images: [
+	elements: [
 		"JOOP-SS18-01.jpg",
 		"JOOP-SS18-02.jpg",
 		"JOOP-SS18-03.jpg",
@@ -37,7 +37,7 @@
     title: "joop! lena gercke",
     subtitle: "the paper fw 18/19",
     teaser: "JOOP-lena-gercke_FW18-06-teaser.jpg",
-    images: [ 
+    elements: [ 
         "JOOP-lena-gercke_FW18-01.jpg",
         "JOOP-lena-gercke_FW18-02.jpg",
         "JOOP-lena-gercke_FW18-03.jpg",
@@ -53,7 +53,7 @@
     title: "04651/",
     subtitle: "hw 18",
     teaser: "04651-HW18-08-teaser.jpg",
-    images: [ 
+    elements: [ 
         "04651-HW18-01.jpg", 
         "04651-HW18-02.jpg", 
         "04651-HW18-03.jpg", 
@@ -72,7 +72,7 @@
     title: "german vogue",
     subtitle: "",
     teaser: "Lodenfrey-in-VOGUE7-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Lodenfrey-in-VOGUE1.jpg",
         "Lodenfrey-in-VOGUE2.jpg",
         "Lodenfrey-in-VOGUE4.jpg",
@@ -90,7 +90,7 @@
     title: "re.draft",
     subtitle: "",
     teaser: "re-draft-03-teaser.jpg",
-    images: [ 
+    elements: [ 
         "re-draft-01.jpg",
         "re-draft-02.jpg",
         "re-draft-03.jpg",
@@ -107,7 +107,7 @@
     title: "Kaisergalerie FS18",
     subtitle: "",
     teaser: "KG-FS18-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "KG-FS18-01.jpg",
         "KG-FS18-02.jpg",
         "KG-FS18-03.jpg",
@@ -122,7 +122,7 @@
     title: "nike kd for kickz",
     subtitle: "",
     teaser: "KD-05-teaser.jpg",
-    images: [ 
+    elements: [ 
         "KD-02.jpg",
         "KD-03.jpg",
         "KD-04.jpg",
@@ -144,7 +144,7 @@
     title: "spectr",
     subtitle: "the protokoll",
     teaser: "The-Protokoll-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "The-Protokoll-01.jpg",
         "The-Protokoll-02.jpg",
         "The-Protokoll-03.jpg",
@@ -160,7 +160,7 @@
     title: "Kaltblut",
     subtitle: "",
     teaser: "Kaltblut-06-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Kaltblut-01.jpg",
         "Kaltblut-02.jpg",
         "Kaltblut-03.jpg",
@@ -179,7 +179,7 @@
     title: "rolls royce",
     subtitle: "",
     teaser: "RollsRoyce-11-teaser.jpg",
-    images: [ 
+    elements: [ 
         "RollsRoyce-01.jpg",
         "RollsRoyce-02.jpg",
         "RollsRoyce-03.jpg",
@@ -200,7 +200,7 @@
 	title: "joop! lena gercke",
 	subtitle: "the paper fw 17/18",
 	teaser: "JOOP_Paper_03-teaser.jpg",
-	images: [
+	elements: [
 		"JOOP_Paper_01.jpg",
 		"JOOP_Paper_02.jpg",
 		"JOOP_Paper_03.jpg",
@@ -216,7 +216,7 @@
     title: "toni sailer sports",
     subtitle: "hw 18",
     teaser: "Toni-Sailer-sports-HW18-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Toni-Sailer-sports-HW18-01.jpg",
         "Toni-Sailer-sports-HW18-02.jpg",
         "Toni-Sailer-sports-HW18-03.jpg",
@@ -234,7 +234,7 @@
     title: "são paolo",
     subtitle: "",
     teaser: "city-basket-court-sao-paulo-04-teaser.jpg",
-    images: [ 
+    elements: [ 
         "city basket court sao paulo-01.jpg",
         "city basket court sao paulo-02.jpg",
         "city basket court sao paulo-03.jpg",
@@ -249,7 +249,7 @@
     title: "ana alcazar",
     subtitle: "hw lookbook 15",
     teaser: "AnaAlcazar-Lookbook-07.jpg",
-    images: [ 
+    elements: [ 
         "AnaAlcazar-Lookbook-01.jpg", 
         "AnaAlcazar-Lookbook-02.jpg", 
         "AnaAlcazar-Lookbook-03.jpg", 
@@ -273,7 +273,7 @@
     title: "Kaisergallerie FS18",
     subtitle: "",
     teaser: "KG-FS-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "KG-FS-01.jpg",
         "KG-FS-02.jpg",
         "KG-FS-03.jpg",
@@ -287,7 +287,7 @@
     title: "l’officiel",
     subtitle: "",
     teaser: "lofficiel-04-teaser.jpg",
-    images: [ 
+    elements: [ 
         "lofficiel-01.jpg",
         "lofficiel-02.jpg",
         "lofficiel-03.jpg",
@@ -302,7 +302,7 @@
     title: "K1X",
     subtitle: "",
     teaser: "K1X_Lookbook-08-teaser.jpg",
-    images: [ 
+    elements: [ 
         "K1X_Lookbook-01.jpg",
         "K1X_Lookbook-02.jpg",
         "K1X_Lookbook-03.jpg",
@@ -324,7 +324,7 @@
     title: "lyn in thailand",
     subtitle: "",
     teaser: "LYN_in-Thailand-04.jpg",
-    images: [ 
+    elements: [ 
         "LYN_in-Thailand-01.jpg",
         "LYN_in-Thailand-02.jpg",
         "LYN_in-Thailand-03.jpg",
@@ -339,7 +339,7 @@
     title: "masculine hw17",
     subtitle: "",
     teaser: "MASCULINE-HW17-05-teaser.jpg",
-    images: [ 
+    elements: [ 
         "MASCULINE-HW17-01.jpg",
         "MASCULINE-HW17-02.jpg",
         "MASCULINE-HW17-03.jpg",
@@ -354,7 +354,7 @@
     title: "platinum magazine",
     subtitle: "",
     teaser: "platinum-1-teaser.jpg",
-    images: [ 
+    elements: [ 
         "platinum-1.jpg",
         "platinum-2.jpg",
         "platinum-3.jpg",
@@ -372,7 +372,7 @@
     title: "joop! fw17",
     subtitle: "",
     teaser: "JOOP-FW17-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "JOOP-FW17-01.jpg",
         "JOOP-FW17-02.jpg",
         "JOOP-FW17-03.jpg",
@@ -403,7 +403,7 @@
     title: "film noir",
     subtitle: "",
     teaser: "Film-Noir-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Film-Noir.jpg",
         "Film-Noir-01.jpg",
         "Film-Noir-02.jpg",
@@ -420,7 +420,7 @@
     title: "eyewear magazine",
     subtitle: "",
     teaser: "eyewear-brazil_08-teaser.jpg",
-    images: [ 
+    elements: [ 
         "eyewear-brazil_01.jpg",
         "eyewear-brazil_02.jpg",
         "eyewear-brazil_03.jpg",
@@ -438,7 +438,7 @@
     title: "Cybergirl",
     subtitle: "",
     teaser: "Cybergirl-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Cybergirl-01.jpg",
         "Cybergirl-02.jpg",
         "Cybergirl-03.jpg",
@@ -455,7 +455,7 @@
     title: "JOOP! FW17/18",
     subtitle: "",
     teaser: "JOOP-HW17-18-08-teaser.jpg",
-    images: [ 
+    elements: [ 
         "JOOP-HW17-18-01.jpg",	
         "JOOP-HW17-18-02.jpg",	
         "JOOP-HW17-18-03.jpg",	
@@ -487,7 +487,7 @@
     title: "SPECTR",
     subtitle: "",
     teaser: "SPECTR-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "SPECTR-01.jpg",
         "SPECTR-02.jpg",
         "SPECTR-03.jpg",
@@ -503,7 +503,7 @@
     title: "whisper of a ballerine",
     subtitle: "",
     teaser: "whispers-of-a-ballerine_4-teaser.jpg",
-    images: [ 
+    elements: [ 
         "whispers-of-a-ballerine_1.jpg",
         "whispers-of-a-ballerine_2.jpg",
         "whispers-of-a-ballerine_3.jpg",
@@ -523,7 +523,7 @@
     title: "Ana Alcazar Alltag",
     subtitle: "",
     teaser: "AA-05-teaser.jpg",
-    images: [ 
+    elements: [ 
         "AA-01.jpg",
         "AA-02.jpg",
         "AA-03.jpg",
@@ -544,7 +544,7 @@
     title: "reflection",
     subtitle: "",
     teaser: "Reflection-07-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Reflection-01.jpg",
         "Reflection-02.jpg",
         "Reflection-03.jpg",
@@ -562,7 +562,7 @@
     title: "the future is now",
     subtitle: "",
     teaser: "The-future-is-now03-teaser.jpg",
-    images: [ 
+    elements: [ 
         "The-future-is-now01.jpg",
         "The-future-is-now02.jpg",
         "The-future-is-now03.jpg",
@@ -579,7 +579,7 @@
     title: "one night bangkok",
     subtitle: "",
     teaser: "A-A-Bangkok10-teaser.jpg",
-    images: [ 
+    elements: [ 
         "A-A-Bangkok01.jpg",
         "A-A-Bangkok02.jpg",
         "A-A-Bangkok03.jpg",
@@ -601,7 +601,7 @@
     title: "Fetish",
     subtitle: "",
     teaser: "Fetisch-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Fetisch-01.jpg",
         "Fetisch-02.jpg",
         "Fetisch-03.jpg",
@@ -617,7 +617,7 @@
     title: "80s revival",
     subtitle: "",
     teaser: "80s-revival-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "80s-revival-01.jpg", 
         "80s-revival-02.jpg", 
         "80s-revival-03.jpg", 
@@ -633,7 +633,7 @@
     title: "quest Magazine",
     subtitle: "",
     teaser: "quest-magazine-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "quest-magazine-01.jpg",
         "quest-magazine-02.jpg",
         "quest-magazine-03.jpg",
@@ -648,7 +648,7 @@
     title: "Kaisergalerie FW17",
     subtitle: "",
     teaser: "KG-06-teaser.jpg",
-    images: [ 
+    elements: [ 
         "KG-01.jpg",
         "KG-02.jpg",
         "KG-03.jpg",
@@ -668,7 +668,7 @@
     title: "Gott sei dank",
     subtitle: "",
     teaser: "Gott-sei-dank-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Gott-sei-dank-01.jpg",
         "Gott-sei-dank-02.jpg",
         "Gott-sei-dank-03.jpg",
@@ -684,7 +684,7 @@
     title: "ICE ICE BABY",
     subtitle: "",
     teaser: "ICE-ICE-BABY-07-teaser.jpg",
-    images: [
+    elements: [
         "ICE-ICE-BABY-01.jpg",
         "ICE-ICE-BABY-02.jpg",
         "ICE-ICE-BABY-03.jpg",
@@ -704,7 +704,7 @@
     title: "brasil carnaval",
     subtitle: "",
     teaser: "brasil_carnaval05-teaser.jpg",
-    images: [ 
+    elements: [ 
         "brasil_carnaval01.jpg",
         "brasil_carnaval02.jpg",
         "brasil_carnaval03.jpg",
@@ -719,7 +719,7 @@
     title: "Platinum Magazine",
     subtitle: "",
     teaser: "platinum-magazine-1-teaser.jpg",
-    images: [ 
+    elements: [ 
         "platinum-magazine-1.jpg",
         "platinum-magazine-2.jpg",
         "platinum-magazine-3.jpg",
@@ -733,7 +733,7 @@
     title: "mystic girls",
     subtitle: "",
     teaser: "mystic-girls-03-teaser.jpg",
-    images: [ 
+    elements: [ 
         "mystic-girls-01.jpg",
         "mystic-girls-02.jpg",
         "mystic-girls-03.jpg",
@@ -748,7 +748,7 @@
     title: "Kaisergalerie FS17",
     subtitle: "",
     teaser: "KG-FS17-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "KG-FS17-01.jpg",
         "KG-FS17-02.jpg",
         "KG-FS17-03.jpg",
@@ -762,7 +762,7 @@
     title: "ana alcazar",
     subtitle: "hw 14",
     teaser: "Ana_EIS_10-teaser.jpg",
-    images: [ 
+    elements: [ 
         "Ana_EIS_01.jpg",
         "Ana_EIS_02.jpg",
         "Ana_EIS_03.jpg",
@@ -781,7 +781,7 @@
     title: "snowstorm",
     subtitle: "",
     teaser: "snowstorm-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "snowstorm-01.jpg",
         "snowstorm-02.jpg",
         "snowstorm-03.jpg",
@@ -795,7 +795,7 @@
     title: "joop!",
     subtitle: "",
     teaser: "JOOP-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "JOOP-01.jpg",
         "JOOP-02.jpg",
         "JOOP-03.jpg",
@@ -809,7 +809,7 @@
     title: "bella italia",
     subtitle: "",
     teaser: "bella-Italia-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "bella-Italia-01.jpg",
         "bella-Italia-02.jpg",
         "bella-Italia-03.jpg",
@@ -824,7 +824,7 @@
     title: "ny ny",
     subtitle: "",
     teaser: "ny-ny-05-teaser.jpg",
-    images: [ 
+    elements: [ 
         "ny-ny-01.jpg",
         "ny-ny-02.jpg",
         "ny-ny-03.jpg",
@@ -840,7 +840,7 @@
     title: "eden",
     subtitle: "",
     teaser: "EDEN-03-teaser.jpg",
-    images: [ 
+    elements: [ 
         "EDEN-01.jpg",
         "EDEN-02.jpg",
         "EDEN-03.jpg"
@@ -853,7 +853,7 @@
     title: "ana alcazar vote",
     subtitle: "hw 17",
     teaser: "A-A-HW17-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "A-A-HW17-01.jpg",
         "A-A-HW17-02.jpg",
         "A-A-HW17-03.jpg",
@@ -873,7 +873,7 @@
     title: "LYN in Paris",
     subtitle: "",
     teaser: "LYN_in-Paris-02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "LYN_in-Paris-01.jpg",
         "LYN_in-Paris-02.jpg",
         "LYN_in-Paris-03.jpg",
@@ -890,7 +890,7 @@
     title: "Fightclub",
     subtitle: "",
     teaser: "Fightclub-01-teaser.jpg",
-    images: [ 
+    elements: [ 
         "EDFightclub-01.jpg",
         "EDFightclub-02.jpg",
         "EDFightclub-03.jpg"
@@ -903,7 +903,7 @@
     title: "schoen",
     subtitle: "",
     teaser: "schoen_02-teaser.jpg",
-    images: [ 
+    elements: [ 
         "schoen_01.jpg",
         "schoen_02.jpg",
         "schoen_03.jpg",
@@ -919,7 +919,7 @@
     title: "joop! lb17",
     subtitle: "",
     teaser: "JOOP-LB-FW201617-05-teaser.jpg",
-    images: [ 
+    elements: [ 
         "JOOP-LB-FW201617-01.jpg",
         "JOOP-LB-FW201617-02.jpg",
         "JOOP-LB-FW201617-03.jpg",

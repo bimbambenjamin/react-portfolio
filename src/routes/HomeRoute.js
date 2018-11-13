@@ -40,7 +40,7 @@ class HomeRoute extends React.Component {
 						onClick = { onClick }
 					/>
 				) : (
-					<div className = "message uppercase">
+					<div className = "message uppercase appear-delayed">
 						<h1>
 							error loading showcases 
 						</h1>

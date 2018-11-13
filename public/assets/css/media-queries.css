@@ -141,6 +141,7 @@ and ( max-width: 834px ) {
 }
 
 @media screen and (max-width: 1023px) {
+/*
 	:root {
 		--page-frame: var( --unit );
 	}
@@ -150,6 +151,7 @@ and ( max-width: 834px ) {
     .break-wide {
         display: none;
     }
+*/
 }
 
 @media screen 
@@ -174,6 +176,17 @@ and (max-width: 1919px) {
 }
 
 @media screen and (max-width: 1112px) {
+	:root {
+		--page-frame: var( --unit );
+	}
+	.header-space {
+		padding-top: calc( var( --header-height ) * 2 );
+	}
+    .break-wide {
+        display: none;
+    }
+}
+@media screen and (min-width: 1113px) {
 }
 
 @media screen and (min-width: 1280px) {

@@ -89,7 +89,7 @@ class App extends React.Component {
 	
 	handleViewHeight() {
 		
-		const vh = window.innerHeight;
+		let vh = window.innerHeight;
 		document.documentElement.style.setProperty( "--vh", `${ vh }px` );
 		
 	}
@@ -131,8 +131,16 @@ class App extends React.Component {
 		} )
 	}
 
-	heroScroll() {
-		window.scroll( { left: 0, top: window.innerHeight, behavior: "smooth" } )
+
+
+heroScroll() {
+//		const body = document.getElementsByTagName( "body" )
+//		if ( body ) {
+//			body.animate( { scrollTop: window.innerHeight }, "slow" );
+//		} else {
+			window.scroll( { left: 0, top: window.innerHeight, behavior: "smooth" } )
+//		}
+
 	}
 	scrollToTop() {
 		window.scroll( { left: 0, top: 0, behavior: "smooth" } )		

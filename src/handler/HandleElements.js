@@ -74,6 +74,9 @@ class HandleElements extends React.Component {
 		const alt = this.props.alt
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
+		
+		console.log( "props e", this.props.elements )
+		console.log( "loadedElements", this.state.loadedElements )
 
 		const getElements = loadedElements.map( ( element, i ) => ( 
 			

@@ -17,6 +17,8 @@ class Showcase extends React.Component {
 		const showcaseId = this.props.showcaseId
 		const showcase = state.showcases[ showcaseId ]
 		const showcasesPath = state.showcasesPath
+		
+		console.log( "showcase.elements", showcase.elements )
 
 		return (
 			

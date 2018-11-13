@@ -15,6 +15,8 @@ class ShowcaseRoute extends React.Component {
 		const showcasesAvailable = this.props.showcasesAvailable
 		const onClick = ( i ) => this.props.onClick( i )
 		const heroIsActive = state.heroIsActive
+		
+		console.log( "showcases", showcases )
 
 		const onLoad = heroIsActive ? 
 			() => this.props.activateHero( false ) : 
@@ -62,7 +64,7 @@ class ShowcaseRoute extends React.Component {
 							onClick = { onClick }
 						/>
 					) : (
-						<div className = "message uppercase">
+						<div className = "message uppercase appear-delayed">
 							<h1>
 								getting showcases
 							</h1>
