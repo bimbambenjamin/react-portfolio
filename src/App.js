@@ -17,6 +17,14 @@ const backend = process.env.REACT_APP_BACKEND_URL || 8080
 const imagesPath = "/assets/img"
 const showcasesPath = "/assets/showcases"
 
+// for scroll fn
+const TIMINGFUNC_MAP = {
+	"linear": t => t,
+	"ease-in": t => t * t,
+	"ease-out": t => t * ( 2 - t ),
+	"ease-in-out": t => ( t < .5 ? 2 * t * t : -1 + ( 4 - 2 * t ) * t )
+}
+
 
 
 class App extends React.Component {
@@ -47,6 +55,7 @@ class App extends React.Component {
 				"/imprint",
 				"/privacy"
 			],
+			windowHeight: window.innerheight,
 			scrollPosition: window.scrollY,
 			scrollingDown: false
 		
@@ -54,15 +63,17 @@ class App extends React.Component {
 		
 		this.handleScroll = this.handleScroll.bind( this )
 		this.oneUp = this.heroStatus.bind( this )
+		this.getViewHeight = this.handleViewHeight.bind( this )
 	
 	}
 	
 	componentDidMount() {
 		
-		this.handleViewHeight()
+		console.log( this.getBrowser() )
+		this.getViewHeight()
 		
 		window.addEventListener( "scroll", this.handleScroll )
-		window.addEventListener( "resize", this.handleViewHeight )
+		window.addEventListener( "resize", this.getViewHeight )
 		
 		if ( this.state.backendConnected === false ) {
 						
@@ -84,13 +95,21 @@ class App extends React.Component {
 	}
 	componentWillUnmount() {
 		window.removeEventListener( "scroll", this.handleScroll )
-		window.removeEventListener( "resize", this.handleViewHeight )
+		window.removeEventListener( "resize", this.getViewHeight )
 	}
 	
 	handleViewHeight() {
 		
-		let vh = window.innerHeight;
+		const vh = window.innerHeight;
 		document.documentElement.style.setProperty( "--vh", `${ vh }px` );
+
+		const storedHeight = this.state.windowHeight ? this.state.windowHeight : vh
+		
+		if ( vh !== storedHeight ) {
+			this.setState( {
+				windowHeight: vh
+			})
+		}
 		
 	}
 	
@@ -138,12 +157,65 @@ heroScroll() {
 //		if ( body ) {
 //			body.animate( { scrollTop: window.innerHeight }, "slow" );
 //		} else {
-			window.scroll( { left: 0, top: window.innerHeight, behavior: "smooth" } )
+//			window.scroll( { left: 0, top: window.innerHeight, behavior: "smooth" } )
 //		}
+	
+//		this.scrollTopSmooth( window.innerHeight, 700, "ease-in" ); 
+	
+		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
+		this.scrollYSmooth( { from: window.scrollY, to: storedHeight, duration: 700, behavior: "ease-in-out" } ); 
+	}
+	
+	
+	getBrowser() {
+		return navigator ? navigator.userAgent : "other";
+	}
+
+
+
+	scrollYSmooth( { from, to, duration, behavior } ) {
+		
+		/*
+		 * Scroll from initY to 0
+		 * @param { number } initY - initial scroll Y
+		 * @param { number } duration - transition duration
+		 * @param { string } timingName - timing function name. Can be one of linear, ease-in, ease-out, ease-in-out
+		 */
+
+		
+		
+		const timingFunc = TIMINGFUNC_MAP[ behavior ]
+		let start = null
+
+		const step = ( timestamp ) => {
+			
+			start = start || timestamp
+			const progress = timestamp - start
+			// Growing from 0 to 1
+			const time = Math.min( 1, ( ( timestamp - start ) / duration ) )
+			const distance = Math.abs( from - to )
+			console.log( "distance", distance )
+			const target = timingFunc( time ) * distance
+			const movement = from > to ? from - target : from + target
+
+			console.log( "from", from )
+			console.log( "to", to )
+			console.log( "movement", movement )
+			window.scrollTo( 0, movement )
+
+			if ( progress < duration ) {
+				window.requestAnimationFrame( step )
+			}
+		}
+
+		window.requestAnimationFrame( step )
 
 	}
+
 	scrollToTop() {
-		window.scroll( { left: 0, top: 0, behavior: "smooth" } )		
+		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
+		this.scrollYSmooth( { from: storedHeight, to: 0, duration: 700, behavior: "ease-in-out" } ); 
+//		window.scroll( { left: 0, top: 0, behavior: "smooth" } )		
 	}
 	
 	heroStatus( i ) {

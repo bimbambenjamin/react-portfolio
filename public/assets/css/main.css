@@ -37,9 +37,11 @@
 /*	--footer-height: calc( var( --unit ) * 5 );*/		
 	
 }
+/*
 ::-webkit-scrollbar { 
-/*	display: none; */
+	display: none; 
 }
+*/
 * {
     margin: 0;
     padding: 0;
@@ -86,7 +88,7 @@ button,
 
 ::selection {
 /*	color: var(--highlight-color);*/
-/*	background-color: transparent;*/
+	background-color: var( --tertiary-color );
 }
 ::-moz-selection {
 /*
@@ -94,12 +96,19 @@ button,
 	background-color: transparent;
 */
 }
+#root {
+	overflow-x: hidden;
+}
+#root > div {
+	width: 100vw;
+}
 
 header::selection,
 header * ::selection,
 footer * ::selection,
+.social::selection,
 #showcase * ::selection,
-.social ::selection {
+#hero::selection {
 /*	color: var(--highlight-color);*/
 	background-color: transparent;
 }
@@ -260,7 +269,6 @@ button:hover,
             transition: all 150ms linear;
 
 }
-
 .hidden-button {
     visibility: hidden;
 }
@@ -765,6 +773,7 @@ header nav button {
     grid-row: 3 / span 1;
 	min-height: var( --vh );
 	min-height: 100vh;
+	align-content: center;
 }
 #showcase-work > div {
 /*	min-height: 250px;*/
