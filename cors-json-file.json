@@ -1,0 +1,17 @@
+[
+  {
+    "origin": [
+      "https://dev.benjamin-jager.de",
+      "http://dev.benjamin-jager.de"
+    ],
+    "responseHeader": [
+      "Content-Type", 
+      "application/json"
+    ],
+    "method": [
+      "GET", 
+      "HEAD"
+    ],
+    "maxAgeSeconds": 3600
+  }
+]

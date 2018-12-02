@@ -248,7 +248,7 @@
     folder: "Ana_Alcazar_HW_Lookbook15",
     title: "ana alcazar",
     subtitle: "hw lookbook 15",
-    teaser: "AnaAlcazar-Lookbook-07.jpg",
+    teaser: "AnaAlcazar-Lookbook-07-teaser.jpg",
     elements: [ 
         "AnaAlcazar-Lookbook-01.jpg", 
         "AnaAlcazar-Lookbook-02.jpg", 
@@ -648,6 +648,7 @@
     title: "Kaisergalerie FW17",
     subtitle: "",
     teaser: "KG-06-teaser.jpg",
+	isRebel: true,
     elements: [ 
         "KG-01.jpg",
         "KG-02.jpg",
@@ -934,9 +935,10 @@
     folder: "video-test",
     title: "video",
     subtitle: "",
-    teaser: "video-teaser.jpg",
-	videos: [
-        "video-teaser.mp4",
-        "video-test.mp4"
-	]
+    teaser: "video-teaser.mp4",
+	isRebel: true,
+	elements: [
+        "video_12112018_2.mp4",
+        "https://vimeo.com/121669394"
+    ]
 }

@@ -71,9 +71,6 @@ class Gallery extends React.Component {
 		const visibleItems = columns * rows
 		const batchSize = visibleItems * 3
 
-		console.log( "VISIBLE", visibleItems )
-		console.log( "BATCH", batchSize )
-		
 		if ( this._isMounted ) {
 
 			this.setState( {
@@ -100,10 +97,6 @@ class Gallery extends React.Component {
 		const scrollY = window.scrollY
 //		const viewHeight = window.innerHeight
 //		const bodyHeight = document.body.offsetHeight
-//		console.log("scrollY", scrollY)
-//		console.log(viewHeight)
-//		console.log(bodyHeight)		
-//		console.log("myHeight:", bodyHeight - viewHeight )
 
 		if ( this._isMounted && this.props.state.scrollingDown && scrollY > this.state.initialHeight * 2 ) {
 			this.loadNextBatch()
@@ -153,7 +146,7 @@ class Gallery extends React.Component {
 		const showcases = this.props.state.showcases
 		const allShowcases = showcases.length
 		const loadedTeasers = this.state.loadedTeasers
-		
+        
 		this.handleBatch( i, allShowcases )
 		
 		if ( this.state.allElementsLoaded || this.state.batchLoaded ) {
@@ -189,18 +182,21 @@ class Gallery extends React.Component {
 //		TODO: choose image size according to screen dimensions and available speed
 
 		const loadedTeasers = this.state.loadedTeasers
-		const imagesPath = this.props.state.imagesPath
+//		const imagesPath = this.props.state.imagesPath
 		const showcasesPath = this.props.state.showcasesPath
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
 		const batch = this.state.batch
+        const preloader = this.state.preloader
+		
 		
 		const teaser = loadedTeasers.map( ( showcase, i ) => (
 
 			<Teaser 
 				{ ...showcase }
 				key = { showcase._id }
-				unloadedSrc = { helpers.getFullPath( imagesPath, "tools", "tail-spin.svg" ) }
+				className = { showcase.isRebel ? "item rebel" : "item citizen" }
+				unloadedSrc = { preloader }
 				src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
 				onClick = { ( i ) => this.props.onClick( i ) }
 				count = { this.state.count }

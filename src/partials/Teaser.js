@@ -5,9 +5,9 @@ import ElementLoader from '../handler/ElementLoader'
 
 
 
-const Teaser = ( { onClick, folder, unloadedSrc, src, title, oneUp, count, allElementsLoaded, batch } ) => (
-			
-	<div className = "item citizen">
+const Teaser = ( { onClick, folder, className, unloadedSrc, src, title, oneUp, count, allElementsLoaded, batch } ) => (
+	
+	<div className = { className }>
 
 		<div className = "teaser one-word-per-line">
 

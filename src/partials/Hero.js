@@ -1,31 +1,56 @@
 import React from 'react'
 
-import ElementLoader from '../handler/ElementLoader'
 import * as helpers from '../handler/helpers'
 
 
 
-//const getProgress = ( start, end, duration ) => {
-//
-//	console.log( "ProgressBar ", duration )
-//	const range = end - ondragstart
-//	let current = ondragstart
-//	const step = end > start ? 1 : -1
-//	const stepTime = Math.abs( Math.floor( duration / range ) )
-//	
-//	const timer = setInterval( function() {
-//
-//		console.log( "set interval" )
-//		current += step
-//		if ( current === end ) {
-//			console.log( "clear interval" )
-//			clearInterval( timer )
-//		}
-//		
-//		return current
-//
-//	}, stepTime )
-//}
+const getVideoTag = ( src, id, count, oneUp ) => {
+	const splitVideoPath = src.split( "/" )
+	const videoURL = splitVideoPath.pop()
+	const videoDataPath = splitVideoPath.join( "/" )
+	const videoTag = (
+        
+		<figure id = { id }>
+        
+			<video 
+				aria-hidden = "true" 
+				data-inline-video-path = { videoDataPath }
+				autoPlay
+				loop
+				muted
+				playsInline 
+				tabIndex = "-1"
+			>
+                <source src = { videoDataPath + "/" + videoURL } />
+            </video>
+
+		</figure>
+        
+	)
+	return videoTag
+}
+
+const getImageTag = ( alt, src, id ) => {
+	const imageTag = (
+		<figure id = { id }>
+			<img
+				src = { src }
+				alt = { alt }
+			/>
+		</figure>
+	)
+	return imageTag
+}
+
+const getDivTag = ( src, id ) => {
+	const backgroundImage = `url( ${ src } )`
+	const divTag = (
+		<div id = { id }>
+			<div style = { backgroundImage }></div>
+		</div>
+	)
+	return divTag
+}
 
 class Hero extends React.Component {
 	
@@ -34,8 +59,8 @@ class Hero extends React.Component {
 		if ( window.scrollY > 0 ) {
 			this.scrollToTop();
 		}
+		( () => this.props.oneUp() )()
 
-		return () => { this.props.ativateHero( true ) }
 
 	}
 	
@@ -45,111 +70,33 @@ class Hero extends React.Component {
 
 	imageOrVideo( alt, src ) {
 		
-		const count = 0
-		const oneUp = this.props.oneUp		
 		const type = helpers.getFiletype( src )
 		const id = "background"
-
-		const videoDataPath = "http://www.mariotestino.com/wp-content/uploads/2017/07/"
-		const videoURL = "CHNY_AW17.mp4"
-		
-		const backgroundImage = `url( ${ src } )`	
-
-		
-		const imageTag = (
-
-			<figure id = { id }>
-				<ElementLoader 
-					src = { src }
-					alt = { alt }
-					count = { count }
-					oneUp = { oneUp }
-				/>
-			</figure>
-
-		)
-		
-		const videoTag = (
-			
-			<figure id = { id }>
-				<video 
-					aria-hidden = "true" 
-					className = "background" 
-					data-inline-video-path = { videoDataPath }
-					autoPlay
-					loop
-					muted
-					playsInline 
-					src = { videoDataPath + videoURL }
-					tabIndex = "-1"
-				/>
-			</figure>
-
-		)
-		
-		const divTag = (
-			
-			<div id = { id }>
-				<div style = { backgroundImage }></div>
-			</div>
-			
-		)
 		
 		switch( type ) {
 
-			case "image": return imageTag
-			case "video": return videoTag
-			default: return divTag
-		
+			case "video": return getVideoTag( src, id )
+			case "image": return getImageTag( alt, src, id )
+			default: return getDivTag( src, id )
 		}
 
 	}
-		
+        
 	render() {
-
-//		const timing = window.performance.timing
-//
-//		const estimatedTime = ( timing.loadEventEnd - timing.navigationStart )
-//		const timeInMs = parseInt( ( estimatedTime / 1000 ) % 60 ) * 100
-//
-//		console.log( "loadEventEnd: ", timing.loadEventEnd )
-//		console.log( "timeInMs: ", timeInMs )
-//
-//		getProgress( 0, 100, timeInMs )
 		
 		const state = this.props.state
 		const mainTitle = state.mainTitle
 		const hero = state.hero
-		const logo = helpers.changeLogoColor( state.logo, "white" )
+//		const logo = helpers.changeLogoColor( state.logo, "white" )
+		const logo = state.logo
 		const heroIsActive = state.heroIsActive
 		const heroIsVisible = this.props.heroIsVisible
 		const heroDidLoad = this.props.heroDidLoad
 		
-		console.log( "heroDidLoad", heroDidLoad )
-
-//		const virgin = state.virgin
-		
-		
-		
-//		if ( virgin ) {
-//			progressBar = (
-//				<div id = "virgin-progress">
-//					{ getProgress( 0, 100, timeInMs ) }
-//				</div>
-//			)
-//		}
-		
-//		const progress = ProgressBar( 0, 100, timeInSeconds )
-//		console.log( "progress: ", progress )
-
-		// Fading Out Loadbar on Finished
-//		setTimeout(function(){
-//			$('.preloader-wrap').fadeOut(300);
-//		}, time);
-
-
-		
-		const heroClass = "uppercase down " +
+		const divStyle = state.divStyle        
+        const logoClasses = "infobox no-select " + divStyle
+        
+		const heroClass = "uppercase " +
 			( heroIsVisible ? "appear" : "vanish" )
 		
 		const bouncerClass = state.scrollingDown ? "vanish" : "appear-delayed"
@@ -160,7 +107,7 @@ class Hero extends React.Component {
 		
 		const logoTag = (
 			
-			<div className = "infobox no-select" id = "logo">
+			<div className = { logoClasses } id = "logo">
 
 				<picture>
 					<source srcSet = { logo } type = "image/svg+xml" />
@@ -174,7 +121,7 @@ class Hero extends React.Component {
 		const bouncerTag = (
 			
 			<div className = { bouncerClass }>
-				<div className = "fat" id = "bouncer-text"><span>scroll</span></div>
+				<div className = "fat" id = "bouncer-text"><span>&#x25BC;</span></div>
 			</div>
 
 		)

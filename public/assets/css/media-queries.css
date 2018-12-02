@@ -27,6 +27,12 @@
 
 /* iphone se */
 @media screen 
+and ( max-width: 460px ) {
+	:root {
+		--item-big-width: var( --item-width );
+	}
+}
+@media screen 
 and ( max-width: 834px ) {
     :root {
         --item-width: calc( 320px - calc( var( --page-frame ) * 2 ) );
@@ -119,6 +125,7 @@ and ( max-width: 812px ) {
 @media screen 
 and ( max-width: 812px ) {
     :root {
+        --logo-width: 62%;
 		--bouncer-size: 40px;
     }
 }
@@ -170,9 +177,11 @@ and (max-width: 1919px) {
 }
 
 @media screen and (min-width: 1080px) {
+/*
 	.services {
 		display: block;
 	}
+*/
 }
 
 @media screen and (max-width: 1112px) {
@@ -200,6 +209,12 @@ and (max-width: 1919px) {
 		--item-width: 400px;
     }
 }
+@media screen and (min-width: 1600px) {
+	.services {
+		display: block;
+	}
+}
+
 
 @media screen 
 and ( min-width: 1920px )

@@ -16,8 +16,6 @@ class ShowcaseRoute extends React.Component {
 		const onClick = ( i ) => this.props.onClick( i )
 		const heroIsActive = state.heroIsActive
 		
-		console.log( "showcases", showcases )
-
 		const onLoad = heroIsActive ? 
 			() => this.props.activateHero( false ) : 
 			null

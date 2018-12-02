@@ -6,8 +6,8 @@ import * as helpers from '../handler/helpers'
 
 
 function HeaderLogo( props ) {
-	
-	return (
+
+    return (
 		
 		<NavLink 
 			exact
@@ -19,8 +19,8 @@ function HeaderLogo( props ) {
 				onClick = { () => props.onClick( "/" ) }
 			>
 				<picture>
-					<source srcSet = { props.logo } type = "image/svg+xml" />
-					<img src = { props.logo } alt = { props.mainTitle } />
+					<source srcSet = { props.logoSvg } type = "image/svg+xml" />
+					<img src = { props.logoPng } alt = { props.mainTitle } />
 				</picture>
 
 			</div>
@@ -76,18 +76,33 @@ function HeaderNav( props ) {
 }
 
 class Header extends React.Component {
+    
+    randomNumber( from, to ) {
+        const value = Math.floor( ( Math.random() * to ) + from )
+        return value
+    }
 
 	render() {
+
+//        const logoNames = [
+//            "sth"
+//        ]
+//        const logoFile = logoNames[ this.randomNumber( 0, logoNames.length ) ]
+        const logoFile = "sth"
 
 		const state = this.props.state
 		const targetLocation = state.targetLocation
 		const mainTitle = state.mainTitle
-		const logo = state.logo
+//		const logo = state.logo
+        const logoSvg = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".svg" )
+        const logoPng = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".png" )
+
+		const logo = helpers.changeLogoColor( state.logo, "black" )
 		const heroIsActive = this.props.heroIsActive
 		const id = this.props.headerId
 		
 		let headerClasses = 
-			"uppercase " +
+			"uppercase appear-later " +
 			( heroIsActive ? "stick-to-second-section " : "" )
 			  
 		if ( id === "3" ) {
@@ -128,6 +143,8 @@ class Header extends React.Component {
 				<HeaderLogo
 					mainTitle = { mainTitle }
 					logo = { logo }
+					logoSvg = { logoSvg }
+					logoPng = { logoPng }
 					onClick = { ( i ) => this.props.onClick( i ) }
 				/>
 				<HeaderNav

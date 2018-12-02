@@ -13,6 +13,8 @@ import PrivacyRoute from './routes/PrivacyRoute'
 //import CheckSpeed from './handler/CheckSpeed'
 import * as helpers from './handler/helpers'
 
+
+
 const backend = process.env.REACT_APP_BACKEND_URL || 8080
 const imagesPath = "/assets/img"
 const showcasesPath = "/assets/showcases"
@@ -24,7 +26,6 @@ const TIMINGFUNC_MAP = {
 	"ease-out": t => t * ( 2 - t ),
 	"ease-in-out": t => ( t < .5 ? 2 * t * t : -1 + ( 4 - 2 * t ) * t )
 }
-
 
 
 class App extends React.Component {
@@ -41,8 +42,9 @@ class App extends React.Component {
 			imagesPath: imagesPath,
 			imageLoaded: false,
 			imageErrored: false,
-			logo: helpers.getFullPath( imagesPath, "logo", "hoechstetter.svg" ),
-			hero: helpers.getFullPath( imagesPath, "hero", "Film-Noir-05.jpg" ),
+            preloader: helpers.getFullPath( imagesPath, "tools", "tail-spin.svg" ),
+			logo: helpers.getFullPath( imagesPath, "logo", "hoechstetter-2.png" ),
+			hero: helpers.getFullPath( imagesPath, "hero", "video_12112018_1-noBlack.mp4" ),
 			heroIsActive: false,
 			heroIsVisible: true,
 			heroDidLoad: false,
@@ -57,27 +59,76 @@ class App extends React.Component {
 			],
 			windowHeight: window.innerheight,
 			scrollPosition: window.scrollY,
-			scrollingDown: false
+			scrollingDown: false,
+			logoIndex: 0,
+			divStyle: "logo-angled"
+//			divStyle: { 
+//                transform: `rotate( -${ this.getAlpha() }deg )`
+//            }
 		
 		}
 		
 		this.handleScroll = this.handleScroll.bind( this )
 		this.oneUp = this.heroStatus.bind( this )
 		this.getViewHeight = this.handleViewHeight.bind( this )
+//		this.logoChange = this.logoChange.bind( this )
 	
 	}
 	
-	componentDidMount() {
+    getAlpha() {
+        
+        const a = window.innerHeight
+        const b = window.innerWidth
+        const c = Math.sqrt( ( a * a ) + ( b * b ) )        
+        const sinAlpha = a / c
+        const alpha = Math.asin( sinAlpha ) 
+        return Math.floor( alpha * -180 / Math.PI )
+    }
+    setAngleCss( angle ) {
+		document.documentElement.style.setProperty( "--logo-angle", `${ angle }deg` );
+    }
+	logoChange() {
+//		let i = this.state.logoIndex + 1
+//		if ( i >= 5 ) {
+//			i = 0
+//		}
+//		const newLogo = helpers.getFullPath( imagesPath, "logo", "hoechstetter-" + i + ".png" )
 		
-		console.log( this.getBrowser() )
-		this.getViewHeight()
+//		const deg = Math.floor( ( Math.random() * -70) + 1 );
+        const angle = this.getAlpha()
+//		const divStyle = {
+//			transform: `rotate( -${ angle }deg )`
+//		}
+        this.setAngleCss( angle )
+//		document.documentElement.style.setProperty( "--logo-angle", `${ angle }deg` );
+		
+//		this.setState( {
+//			logoIndex: i,
+//			logo: newLogo,
+//			divStyle: divStyle
+//		} )
+	}
+	
+	componentDidMount() {
+        
+        //      26th nov 2018
+        ( function() {
+            var trial = document.createElement( 'script' );
+            trial.type = 'text/javascript';
+            trial.async = true;
+            trial.src = 'https://easy.myfonts.net/v2/js?sid=210856(font-family=Avenir+Next+Pro+Demi)&sid=210860(font-family=Avenir+Next+Pro+Bold)&sid=217165(font-family=Avenir+Next+Pro+Regular)&sid=255224(font-family=Avenir+Next+Pro+Thin)&key=ursUm90UoD';
+            var head = document.getElementsByTagName( "head" )[ 0 ];
+            head.appendChild( trial );
+        })();
+
+        this.getViewHeight()
 		
 		window.addEventListener( "scroll", this.handleScroll )
 		window.addEventListener( "resize", this.getViewHeight )
 		
 		if ( this.state.backendConnected === false ) {
 						
-//			console.log( backend )
+			console.log( "backend", backend )
 		
 			axios.get( backend )
 			.then( res => {
@@ -104,6 +155,8 @@ class App extends React.Component {
 		document.documentElement.style.setProperty( "--vh", `${ vh }px` );
 
 		const storedHeight = this.state.windowHeight ? this.state.windowHeight : vh
+        
+        this.logoChange()
 		
 		if ( vh !== storedHeight ) {
 			this.setState( {
@@ -123,7 +176,7 @@ class App extends React.Component {
 		) )
 		
 		if ( validRoutes.includes( "/" + target ) || target === home || validFolders.includes( target )) {
-			console.log( "valid!", target )
+//			console.log( "valid!", target )
 		} else {
 			this.goTo( home )
 		}
@@ -152,7 +205,7 @@ class App extends React.Component {
 
 
 
-heroScroll() {
+    heroScroll() {
 //		const body = document.getElementsByTagName( "body" )
 //		if ( body ) {
 //			body.animate( { scrollTop: window.innerHeight }, "slow" );
@@ -194,13 +247,9 @@ heroScroll() {
 			// Growing from 0 to 1
 			const time = Math.min( 1, ( ( timestamp - start ) / duration ) )
 			const distance = Math.abs( from - to )
-			console.log( "distance", distance )
 			const target = timingFunc( time ) * distance
 			const movement = from > to ? from - target : from + target
 
-			console.log( "from", from )
-			console.log( "to", to )
-			console.log( "movement", movement )
 			window.scrollTo( 0, movement )
 
 			if ( progress < duration ) {
@@ -218,14 +267,14 @@ heroScroll() {
 //		window.scroll( { left: 0, top: 0, behavior: "smooth" } )		
 	}
 	
-	heroStatus( i ) {
+	heroStatus() {
 		// TODO: place lo-res image first, then change it to hi-res
-		if ( i > 0 ) {
+//		if ( i > 0 ) {
 			this.setState( {
 				heroDidLoad: true,
 //				hero: helpers.getFullPath( imagesPath, "hero", "Kaltblut-09.jpg" )
 			} )	
-		}	
+//		}	
 	}
 	handleHero( heroIsActive ) {
 		this.setState( {
@@ -235,12 +284,12 @@ heroScroll() {
 	
 	handleClick( i ) {
 
-		console.log( "--- CLICK --- ", i )
 		if ( i === "/" || i === "heroClick" ) {
 			if ( i === "/" ) {
 				this.scrollToTop()
 			}
 			if ( i === "heroClick" ) {
+//				this.logoChange()
 				this.heroScroll()
 			}
 		} else {
@@ -301,7 +350,6 @@ heroScroll() {
 	}
 
 	goTo( target ) {
-		console.log( "go home", target )
 		window.location.replace( target )
 //		window.history.pushState( { target: target }, "target", target );
 	}
@@ -341,9 +389,6 @@ heroScroll() {
 					onClick = { onClick }
 				/>
 		)
-//		
-//		console.log( "devicePixelRatio", window.devicePixelRatio )
-//		console.log( "targetLocation", targetLocation )
 		
 		const home = targetLocation === "/" ? true : false
 		

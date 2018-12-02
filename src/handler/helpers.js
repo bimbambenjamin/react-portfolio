@@ -5,9 +5,15 @@ export const checkActive = ( match, location ) => {
 }
 
 export function getFullPath( path, folder, file ) {
+    
+    console.log( "FILE", file )
 
-	const fullPath = path + "/" + folder + "/" + file
-	return fullPath
+	if ( file.includes( "http" ) ) {
+		return file
+	} else {
+		const fullPath = path + "/" + folder + "/" + file
+		return fullPath
+	}
 
 }
 
@@ -17,8 +23,12 @@ export function getFiletype( filename ) {
 
 		const extension = filename.split( '.' ).pop()
 
+        // mimeType?
 		if ( extension === "jpg" || extension === "gif" || extension === "png" || extension === "jpeg" ) {
 			return "image"
+		} else if ( filename.includes( "vimeo" ) ) {
+            const vimeoPlayerUrl = "https://player.vimeo.com/video/" + filename.split( "/" ).pop()
+            return vimeoPlayerUrl
 		} else if ( extension === "mp4" ) {
 			return "video"
 		} else {

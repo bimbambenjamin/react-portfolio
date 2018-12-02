@@ -6,6 +6,7 @@
 	--min-width: 320px;
 
 	--item-width: 328px;
+	--item-big-width: calc( var( --item-width ) * 1.5 );
     --item-max-height: 80vh;
     --indent-gap: calc( var( --font-size ) * 2 );
 	--freedom: var( --page-frame-big );
@@ -31,6 +32,7 @@
     --font-height: 1.4em;
 	--small-font: 0.7em;
 
+    --logo-width: 38%;
 	--logo-height: 40px;
 	--header-height: calc( calc( var( --page-frame ) * 2 ) + var( --logo-height ) );
 	--footer-height: calc( var( --font-size ) + var( --font-height ) + var( --page-frame  ) );
@@ -71,11 +73,20 @@ main, section {
 	min-height: calc( var( --vh ) - var( --footer-height ) );
 	min-height: calc( 100vh - var( --footer-height ) );
 }
+
+/*
+font-family: 'Avenir Next Pro Demi'
+font-family: 'Avenir Next Pro Bold'
+font-family: 'Avenir Next Pro Regular'
+font-family: 'Avenir Next Pro Thin'
+*/
+
 body, 
 button, 
 .normal {
     font-size: var( --font-size );
-    font-family: "sonny-gothic-ultra-light", 
+    font-family: "Avenir Next Pro Thin",
+                 "sonny-gothic-ultra-light", 
                  "Helvetica Neue", 
                  "Helvetica", 
                  "Arial", 
@@ -108,7 +119,8 @@ header * ::selection,
 footer * ::selection,
 .social::selection,
 #showcase * ::selection,
-#hero::selection {
+#hero::selection,
+#bouncer-text > span::selection {
 /*	color: var(--highlight-color);*/
 	background-color: transparent;
 }
@@ -116,13 +128,15 @@ footer * ::selection,
 h1, h2, h3, h4, h5, h6, strong, .fat {
     margin: 0;
     display: block;
-    font-family: "sonny-gothic-regular", 
+    font-family: "Avenir Next Pro Bold",
+                 "sonny-gothic-regular", 
                  "Helvetica Neue", 
                  "Helvetica", 
                  "Arial", 
                  sans-serif;
     font-weight: normal;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.03em;
+/*    letter-spacing: -0.01em;*/
 }
 h1, h2, h3, h4, h5, h6 {
 	font-size: 1em;
@@ -189,7 +203,7 @@ progress::-webkit-progress-value {
 .big-text {
     font-size: 2em;
     line-height: 1.1em;
-    letter-spacing: -0.05em;
+    letter-spacing: 0.01em;
 }
 .footnote {
     padding-left: .1em;
@@ -255,7 +269,8 @@ button:hover,
 	color: white;
 /*	transform: translate( 0, 0 );*/
 
-    font-family: "sonny-gothic-regular", 
+    font-family: "Avenir Next Pro Bold",
+                 "sonny-gothic-regular", 
                  "Helvetica Neue", 
                  "Helvetica", 
                  "Arial", 
@@ -354,7 +369,9 @@ header nav button {
 }
 .centered {
     left: 50%;
-    transform: translate( -50% );
+    -webkit-transform: translate( -50% );
+        -ms-transform: translate( -50% );
+            transform: translate( -50% );
 }
 .header-logo {
     margin: var( --page-frame );
@@ -393,7 +410,9 @@ header nav button {
 .services {
 	top: 12px;
 	left: 50%;
-	transform: translate( -50%, 0 );	
+	-webkit-transform: translate( -50%, 0 );
+        -ms-transform: translate( -50%, 0 );
+            transform: translate( -50%, 0 );	
     margin: var( --page-frame ) 0;
     line-height: var( --font-size );
 	display: none;
@@ -473,7 +492,9 @@ header nav button {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate( -50%, -50% );
+    -webkit-transform: translate( -50%, -50% );
+        -ms-transform: translate( -50%, -50% );
+            transform: translate( -50%, -50% );
 	width: 100%;
 	height: 100%;
     object-fit: cover;
@@ -484,14 +505,25 @@ header nav button {
 	max-width: 600px;
 	min-width: 280px;
 /*	width: calc( 100% - calc( var( --page-frame ) * 2 ) );*/
-    width: 38%;
+    width: var( --logoWidth );
 	height: auto;
     overflow: hidden;
-	pointer-events: none;
+/*	pointer-events: none;*/
+}
+#logo picture > img {
+	width: 100%;
 }
 #logo picture {
+	height: 100%;
 	display: block;
 }
+.logo-angled {
+/*  get var( --logo-angle ) from react*/
+    -webkit-transform: rotate( var( --logo-angle ) );
+        -ms-transform: rotate( var( --logo-angle ) );
+            transform: rotate( var( --logo-angle ) );
+}
+
 .rise {
 /*    height: 3.7em !important;*/
     animation: 350ms change-height 1s forwards ease-out;
@@ -515,18 +547,28 @@ header nav button {
 	-webkit-animation: 700ms fade-in forwards ease-in-out;
 			animation: 700ms fade-in forwards ease-in-out;
 }
+.appear-slow {
+    opacity: 0;
+	-webkit-animation: 7s fade-in forwards ease-in;
+			animation: 7s fade-in forwards ease-in;
+}
+.appear-later {
+    opacity: 0;
+	-webkit-animation: 700ms fade-in 1s forwards ease-in-out;
+			animation: 700ms fade-in 1s forwards ease-in-out;
+}
 .appear-delayed {
     opacity: 0;
-	-webkit-animation: 300ms fade-in 3s forwards ease-in-out;
-			animation: 300ms fade-in 3s forwards ease-in-out;
+	-webkit-animation: 700ms fade-in 3s forwards ease-in-out;
+			animation: 700ms fade-in 3s forwards ease-in-out;
 }
 .hide {
 	opacity: 0;
 }
 .vanish {
     opacity: 1;
-	-webkit-animation: 300ms fade-out forwards ease-in-out;
-			animation: 300ms fade-out forwards ease-in-out;
+	-webkit-animation: 700ms fade-out forwards ease-in-out;
+			animation: 700ms fade-out forwards ease-in-out;
 }
 .active {
 	opacity: 1;
@@ -544,6 +586,8 @@ header nav button {
             transition: opacity .25s ease-in-out;
 }
 #bouncer-text {
+	
+	pointer-events: none;
 	color: var( --background-color );
 
 	width: 140px;
@@ -577,7 +621,9 @@ header nav button {
     position: absolute;
     display: block;
 
-    transform: rotate( -45deg );
+    -webkit-transform: rotate( -45deg );
+        -ms-transform: rotate( -45deg );
+            transform: rotate( -45deg );
     border: 2px solid var( --background-color );
     border-width: 0px 0 2px 2px;
     content: "";
@@ -585,7 +631,9 @@ header nav button {
 .dropdown-arrow {
 	top: 0;
 	position: absolute;
-	transform: translate( calc( var( --font-size ) * -2.75 ), calc( var( --font-size ) * 0.5 ) );
+	-webkit-transform: translate( calc( var( --font-size ) * -2.75 ), calc( var( --font-size ) * 0.5 ) );
+        -ms-transform: translate( calc( var( --font-size ) * -2.75 ), calc( var( --font-size ) * 0.5 ) );
+            transform: translate( calc( var( --font-size ) * -2.75 ), calc( var( --font-size ) * 0.5 ) );
 	opacity: 0;
 	-webkit-transition: all 150ms linear;
        -moz-transition: all 150ms linear;
@@ -594,10 +642,14 @@ header nav button {
             transition: all 150ms linear;
 }
 .collapsed > .dropdown-arrow::before {
-    transform: rotate( 225deg );
+    -webkit-transform: rotate( 225deg );
+        -ms-transform: rotate( 225deg );
+            transform: rotate( 225deg );
 }
 .expanded > .dropdown-arrow::before {
-    transform: rotate( 315deg );
+    -webkit-transform: rotate( 315deg );
+        -ms-transform: rotate( 315deg );
+            transform: rotate( 315deg );
 }
 .dropdown-arrow::before {
     width: calc( var( --font-size ) / 5 );
@@ -644,21 +696,6 @@ header nav button {
     justify-content: flex-end !important;
 }
 
-.item {
-    display: flex;
-    flex-direction: column;
-}
-.citizen {
-    order: 0;
-    flex: 0 1 0;
-}
-.rebel {
-    min-width: calc( var( --item-width ) * 2 );
-    flex: 1 1 0;
-}
-.rebel .teaser-image {
-    width: calc( var( --item-width ) * 2 );
-}
 
 
 
@@ -738,7 +775,7 @@ header nav button {
 	margin: auto;
     opacity: 1;
 	display: block;
-    max-width: var( --item-width );
+/*    max-width: var( --item-width );*/
     max-height: var( --item-max-height );
     -webkit-transition: all .25s ease-in-out;
        -moz-transition: all .25s ease-in-out;
@@ -748,7 +785,9 @@ header nav button {
 	width: 95%;
     top: 50%;
     left: 50%;
-    transform: translate( -50%, -50% );
+    -webkit-transform: translate( -50%, -50% );
+        -ms-transform: translate( -50%, -50% );
+            transform: translate( -50%, -50% );
     position: absolute;
     opacity: 0;
     color: var( --background-color );
@@ -757,9 +796,28 @@ header nav button {
             transition: opacity .25s ease-in-out;
     line-height: 1em;
 }
-.one-word-per-line {
+.item {
+    display: flex;
+    flex-direction: column;
+}
+.citizen {
+    order: 0;
+    flex: 0 1 0;
+}
+.citizen .teaser-image {
+    max-width: var( --item-width );
+}
+.citizen .one-word-per-line {
 	word-spacing: var( --item-width );	
 }
+.rebel .one-word-per-line {
+	word-spacing: var( --item-big-width );	
+}
+.rebel .teaser-image {
+    width: var( --item-big-width );
+}
+
+
 
 /* showcase */
 #showcase-title {
@@ -810,32 +868,16 @@ header nav button {
 	margin: auto;
 }
 
-/*
-.preloader::before {
-    content: "";
-	border-radius: 50%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate( -50%, -50% );
-	background: var( --tertiary-color );
-	animation: pulse 1.5s 300ms infinite ease-in-out;
-}
-*/
 #back-to-top {
 
     margin-left: -16px;
     width: 32px;
     height: 32px;
 
-/*    left: 50%;*/
     right: calc( var( --page-frame ) * 1.5 );
     bottom: calc( var( --page-frame ) * 1.5 );
 
     border: solid 1px;
-/*    background-color: var( --primary-color );*/
-/*    color: var( --primary-color );*/
-    
     text-align: center;
     display: block;
     position: fixed;
@@ -854,7 +896,9 @@ header nav button {
     position: absolute;
     display: block;
 
-    transform: rotate( 135deg );
+    -webkit-transform: rotate( 135deg );
+        -ms-transform: rotate( 135deg );
+            transform: rotate( 135deg );
     border: 2px solid var( --primary-color );
     border-width: 0px 0 1px 1px;
     content: "";
@@ -1311,14 +1355,20 @@ input:focus {
 }
 @keyframes moveUp {
     100% { 
-        transform: translateY( calc( var( --header-height ) * -1 ) );
+        -webkit-transform: translateY( calc( var( --header-height ) * -1 ) );
+            -ms-transform: translateY( calc( var( --header-height ) * -1 ) );
+                transform: translateY( calc( var( --header-height ) * -1 ) );
     }
 }
 @keyframes moveDown {
     0% { 
-        transform: translateY( calc( var( --header-height ) * -1 ) );
+        -webkit-transform: translateY( calc( var( --header-height ) * -1 ) );
+            -ms-transform: translateY( calc( var( --header-height ) * -1 ) );
+                transform: translateY( calc( var( --header-height ) * -1 ) );
     }
     100% { 
-        transform: translateY( 0 );
+        -webkit-transform: translateY( 0 );
+            -ms-transform: translateY( 0 );
+                transform: translateY( 0 );
     }
 }
