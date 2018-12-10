@@ -14,10 +14,23 @@ import PrivacyRoute from './routes/PrivacyRoute'
 import * as helpers from './handler/helpers'
 
 
+//
+//const backend = process.env.REACT_APP_BACKEND_URL
+//const backendPath = "https://storage.googleapis.com/buck-the-bucket/assets"
+const backendPath = process.env.REACT_APP_BACKEND_URL
 
-const backend = process.env.REACT_APP_BACKEND_URL || 8080
-const imagesPath = "/assets/img"
-const showcasesPath = "/assets/showcases"
+//const PUBLIC_JSON = "https://00e9e64bac9dcbeb01d692fdd9889917fefbe0670dece00791-apidata.googleusercontent.com/download/storage/v1/b/buck-the-bucket/o/assets%2Fpublic.json?qk=AD5uMEv9w0pEm6GJf_JmmA0HTVxPUmH9-Qu7RsG31i9Vv09kvlK0b7kKnG0meROynqTz7aclU8opiVfqahHjg0oEZjFLwW5hccn_UQ8HnXwoy7Nd3N3Y9juz4IPlgBur3CA2kcsz0SVh_pHulvH8MtW3I0gAIiKzGH5A44b6CXZawMO8XOltpMWF7dVoBwPR39agWQWheygL6dzQqAaYH91OW_mBiPyAY4gG8-W41DZIwIupugv4joOFaSLd-HgEZBVNqDbCluP7FQ9E6ZEKnvq6gwbCNg_xU_75_ILWG1N9owLQzD0rMsNPXSFPHXpO8glWEZZJaxJsTIQSlJtPM0wOb7zlZvuRmnaMTwEfKXe_OwTjUEg7am3C8Gfl0JACLcKMcSfS960LrsQh7nQlCsfaDOLLElKi4YUOCpho-g47mICE3xVqv3pLFmT53S4Sxni5rEsO9fBQMrtSQDWFMJA_M24XF6d3N0hFK9xrmtgDiVngsyx6MZxLiXuMITHs5RFz_T4MpL4iufFscGk3ttzsCm8ixFefSIpE26bKzqISz37YeL1nv4eO2p0MsgcKxD9K-YcFcIobU5mYBLX_keUJcMera_jWFLgL584Sn-MVqhfhTN564QeczcgQ1M0TeaZidApTWeII26H2legv3RI7h9Tm-Hkj5hSjbn7Bdg0lTz2z-DWTA2rcWJ7aBIkzhDVcXc2XmgpVxi2r6X5i1SZ3-8W7uSkyBzvbpHItF5thir-cGJEkW3ejLaLqRFf70mhUYmRUh791Hw2Fhd9jpetW_2CQw-i27Q"
+const PUBLIC_JSON = backendPath + "/public.json"
+
+const backend = PUBLIC_JSON || 8080
+const showcasesPath = backendPath + "/showcases"
+
+//const backendPath = "/assets"
+//const backend = "http://localhost:8080/public/showcases" || 8080
+//const showcasesPath = backendPath + "/showcases"
+
+const imagesPath =  "/assets/img"
+
 
 // for scroll fn
 const TIMINGFUNC_MAP = {
@@ -36,15 +49,23 @@ class App extends React.Component {
 		
 		this.state = {
 			
+            // backend files
 			showcases: [],
+            heroElements: [],
+//			hero: helpers.getFullPath( imagesPath, "hero", "video_12112018_1-noBlack.mp4" ),
+            
+    		backendConnected: false,
+			backendPath: backendPath,
 			showcasesPath: showcasesPath,
-			backendConnected: false,
-			imagesPath: imagesPath,
-			imageLoaded: false,
-			imageErrored: false,
+            
+            imagesPath: imagesPath,
+
+            imageLoaded: false,
+			imageErrored: false,            
+            
+            // server files
             preloader: helpers.getFullPath( imagesPath, "tools", "tail-spin.svg" ),
 			logo: helpers.getFullPath( imagesPath, "logo", "hoechstetter-2.png" ),
-			hero: helpers.getFullPath( imagesPath, "hero", "video_12112018_1-noBlack.mp4" ),
 			heroIsActive: false,
 			heroIsVisible: true,
 			heroDidLoad: false,
@@ -70,6 +91,7 @@ class App extends React.Component {
 		
 		this.handleScroll = this.handleScroll.bind( this )
 		this.oneUp = this.heroStatus.bind( this )
+        this.onClick = this.handleClick.bind( this )
 		this.getViewHeight = this.handleViewHeight.bind( this )
 //		this.logoChange = this.logoChange.bind( this )
 	
@@ -111,15 +133,15 @@ class App extends React.Component {
 	
 	componentDidMount() {
         
-        //      26th nov 2018
-        ( function() {
-            var trial = document.createElement( 'script' );
-            trial.type = 'text/javascript';
-            trial.async = true;
-            trial.src = 'https://easy.myfonts.net/v2/js?sid=210856(font-family=Avenir+Next+Pro+Demi)&sid=210860(font-family=Avenir+Next+Pro+Bold)&sid=217165(font-family=Avenir+Next+Pro+Regular)&sid=255224(font-family=Avenir+Next+Pro+Thin)&key=ursUm90UoD';
-            var head = document.getElementsByTagName( "head" )[ 0 ];
-            head.appendChild( trial );
-        })();
+        // valid: 26th nov 2018 + 30 days
+//        ( function() {
+//            var trial = document.createElement( 'script' );
+//            trial.type = 'text/javascript';
+//            trial.async = true;
+//            trial.src = 'https://easy.myfonts.net/v2/js?sid=210856(font-family=Avenir+Next+Pro+Demi)&sid=210860(font-family=Avenir+Next+Pro+Bold)&sid=217165(font-family=Avenir+Next+Pro+Regular)&sid=255224(font-family=Avenir+Next+Pro+Thin)&key=ursUm90UoD';
+//            var head = document.getElementsByTagName( "head" )[ 0 ];
+//            head.appendChild( trial );
+//        })();
 
         this.getViewHeight()
 		
@@ -127,19 +149,20 @@ class App extends React.Component {
 		window.addEventListener( "resize", this.getViewHeight )
 		
 		if ( this.state.backendConnected === false ) {
-						
+            
+			axios
+                .get( backend )
+                .then( res => {
+                    const assets = res.data
+                    this.setState( {
+                        showcases: assets.showcases,
+                        heroElements: assets.heroElements,
+                        backendConnected: true
+                    } )
+                    this.validateTarget( this.state.targetLocation )
+                } )
+                        
 			console.log( "backend", backend )
-		
-			axios.get( backend )
-			.then( res => {
-				const showcases = res.data
-				this.setState( { 
-					showcases,
-					backendConnected: true
-				} )
-				
-				this.validateTarget( this.state.targetLocation )
-			})
 			
 		}
 		
@@ -218,8 +241,7 @@ class App extends React.Component {
 		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
 		this.scrollYSmooth( { from: window.scrollY, to: storedHeight, duration: 700, behavior: "ease-in-out" } ); 
 	}
-	
-	
+	    
 	getBrowser() {
 		return navigator ? navigator.userAgent : "other";
 	}
@@ -284,6 +306,7 @@ class App extends React.Component {
 	
 	handleClick( i ) {
 
+        console.log( "CLICK", i )
 		if ( i === "/" || i === "heroClick" ) {
 			if ( i === "/" ) {
 				this.scrollToTop()
@@ -355,18 +378,22 @@ class App extends React.Component {
 	}
 
 	render() {
+        
+		console.log( "showcases", this.state.showcases )
+		console.log( "heroElements", this.state.heroElements )
+        console.log( "logo", this.state.logo )
 		
 		const showcasesAvailable = this.state.showcases.length > 0 ? true : false
 
 		const state = this.state
 			  
 		const validRoutes = this.state.validRoutes
-		const onClick = ( i ) => this.handleClick( i )
 		const heroIsActive = this.state.heroIsActive
 		const activateHero = ( i ) => this.handleHero( i )
 		const heroIsVisible = this.state.heroIsVisible
 		const heroDidLoad = this.state.heroDidLoad
 		const oneUp = this.oneUp
+		const onClick = this.onClick
 
 		const targetLocation = this.state.targetLocation
 		
@@ -392,7 +419,6 @@ class App extends React.Component {
 		
 		const home = targetLocation === "/" ? true : false
 		
-
 		return (
 
 			<div>

@@ -1,8 +1,7 @@
 [
   {
     "origin": [
-      "https://dev.benjamin-jager.de",
-      "http://dev.benjamin-jager.de"
+      "*"
     ],
     "responseHeader": [
       "Content-Type", 

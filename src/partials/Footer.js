@@ -29,6 +29,7 @@ function FooterNav( props ) {
 					>
 						<button 
 							className = { imprintClasses }  
+                            id = "imprint-button"
 							type = "button"
 							onClick = { () => props.onClick( "/imprint" ) }
 						>
@@ -46,6 +47,7 @@ function FooterNav( props ) {
 					>
 						<button 
 							className = { privacyClasses } 
+                            id = "privacy-button"
 							type = "button"
 							onClick = { () => props.onClick( "/privacy" ) }
 						>

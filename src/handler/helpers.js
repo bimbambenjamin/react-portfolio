@@ -6,14 +6,16 @@ export const checkActive = ( match, location ) => {
 
 export function getFullPath( path, folder, file ) {
     
-    console.log( "FILE", file )
+    if ( file ) {
 
-	if ( file.includes( "http" ) ) {
-		return file
-	} else {
-		const fullPath = path + "/" + folder + "/" + file
-		return fullPath
-	}
+        if ( file.includes( "http" ) ) {
+            return file
+        } else {
+            const fullPath = path + "/" + folder + "/" + file
+            return fullPath
+        }
+        
+    }
 
 }
 
@@ -62,3 +64,12 @@ export function changeLogoColor( logoPath, colorString ) {
 	}
 
 }	
+
+export function cleanTitle( text ) {
+
+    // TODO: clean title
+    const result = text
+    
+    return result
+    
+}

@@ -86,9 +86,22 @@ class Hero extends React.Component {
 		
 		const state = this.props.state
 		const mainTitle = state.mainTitle
-		const hero = state.hero
+        
+        let hero = ""
+        
+        // TODO: check for video ---> load still first, then swap it to video
+        
+        if ( state.heroElements.length ) {
+//            console.log("heroElements", state.heroElements)
+//            const randomHeroElement = Math.floor( ( Math.random() * state.heroElements.length ) + 0 )
+            const e = state.heroElements[ 1 ]
+			hero = helpers.getFullPath( state.backendPath, "hero", e )
+            
+        }
+        
 //		const logo = helpers.changeLogoColor( state.logo, "white" )
 		const logo = state.logo
+        const heroIsAvailable = hero.length ? true : false
 		const heroIsActive = state.heroIsActive
 		const heroIsVisible = this.props.heroIsVisible
 		const heroDidLoad = this.props.heroDidLoad
@@ -136,7 +149,7 @@ class Hero extends React.Component {
 				onError = { () => this.props.activateHero( false ) }
 			>
 
-				{ this.imageOrVideo( mainTitle, hero ) }
+				{ heroIsAvailable ? this.imageOrVideo( mainTitle, hero ) : null }
 				{ logoTag }
 				{ heroDidLoad ? bouncerTag : null }
 

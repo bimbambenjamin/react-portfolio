@@ -23,22 +23,25 @@ class ElementLoader extends React.Component {
 	
 	componentDidMount() {
                 
-        console.log("id", this.props.id)
 		const fileType = helpers.getFiletype( this.props.src )
-        if ( fileType.includes( "vimeo" ) || fileType === "video" ) {
-            window.addEventListener( "load", ( e ) => {
-//                alert( "Got loadedmetadata!" )
-            }, true )
-        }
-        
-        if ( fileType.includes( "vimeo" ) ) {
+        console.log("fileType", fileType)
+        if ( fileType ) {
+            if ( fileType.includes( "vimeo" ) || fileType === "video" ) {
+                window.addEventListener( "load", ( e ) => {
+    //                alert( "Got loadedmetadata!" )
+                }, true )
+            }
+
+            if ( fileType.includes( "vimeo" ) ) {
+
+    //            document.getElementById( this.props.id ).onload = () => {
+    //                console.log("poops")
+    //            }
+
+            }
             
-//            document.getElementById( this.props.id ).onload = () => {
-//                console.log("poops")
-//            }
-            
         }
-        
+
         this._isMounted = true
 		this.handleSrc()
 		
@@ -57,14 +60,16 @@ class ElementLoader extends React.Component {
 	handleSrc() {
 		
         const fileType = helpers.getFiletype( this.props.src )
-		if ( fileType === "video" ) {
-			this.createVideo()
-		} else if ( fileType === "image" ) {
-			this.createImage()
-		} else if ( fileType.includes( "vimeo" ) ) {
-			this.createIframe()
-		}
-		
+        if ( fileType ) {
+            if ( fileType === "video" ) {
+                this.createVideo()
+            } else if ( fileType === "image" ) {
+                this.createImage()
+            } else if ( fileType.includes( "vimeo" ) ) {
+                this.createIframe()
+            }
+        }
+
 	}
 
     createImage() {
@@ -193,21 +198,24 @@ class ElementLoader extends React.Component {
 
 	render() {
 		
+        const id = this.props.id
+//        console.log( "ID", id )
+        
 		const className = this.props.className
 		const unloadedSrc = this.props.unloadedSrc
-		const src = this.props.src
+		const src = this.props.src || ""
         const progress = this.state.progress ? "progress" : null
         const preloader = this.state.preloader ? "preloader" : null
         let loaded = this.state.loaded
 //        const elementSrc = loaded ? src : unloadedSrc
 		const alt = this.props.alt
-		const title = this.props.title
+		const title = helpers.cleanTitle( this.props.title )
 		const fileType = helpers.getFiletype( src )
 		
 		const vimeo = src.includes( "vimeo" ) ? true : false
 		const vimeoPlayerUrl = vimeo ? "https://player.vimeo.com/video/" + src.split( "/" ).pop() : null
 		
-        console.log( "unloadedSrc", unloadedSrc )
+//        console.log( "unloadedSrc", unloadedSrc )
 
         const progressTag = (
 			
@@ -229,7 +237,7 @@ class ElementLoader extends React.Component {
 			<figure className = "appear">
 			
 				<img
-					id = { this.props.id }
+					id = { id }
 					className = { className }
 					src = { src }
 					title = { title } 
@@ -246,8 +254,8 @@ class ElementLoader extends React.Component {
 			
             <div>
 				<iframe
-					id = { this.props.id }
-					title = { this.props.id }
+					id = { id }
+					title = { id }
 					src = { vimeoPlayerUrl }
 					width = "640" 
 					height = "480" 
@@ -266,7 +274,7 @@ class ElementLoader extends React.Component {
 			<figure className = "appear">
 			
 				<video
-					id = { this.props.id }
+					id = { id }
 					aria-hidden = "true" 
 					className = { className }
 					autoPlay

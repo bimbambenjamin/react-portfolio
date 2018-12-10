@@ -25,9 +25,12 @@ class HandleElements extends React.Component {
         console.log( "id", id )
         
 		const element = document.getElementById( id )
-		element.controls = true
-		
-		element.addEventListener( "loadeddata", console.log( "got data", element ) )
+        if ( element ) {
+
+            element.controls = true		
+            element.addEventListener( "loadeddata", console.log( "got data", element ) )
+            
+        }
 		
 	}
 	
@@ -66,40 +69,59 @@ class HandleElements extends React.Component {
 		
 	}
 	
-	render() {
-	
+    getElements( elements ) {
+        
 		const state = this.props.state
-		const loadedElements = this.state.loadedElements
 		const elementsPath = this.props.elementsPath
-		const folder = "/" + this.props.folder
-		const className = this.props.className
-		const id = this.props.id
+		const folder = this.props.folder
 		const alt = this.props.alt
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
-		
-		const getElements = loadedElements.map( ( element, i ) => ( 
-			
-			<ElementLoader 
-				key = { i }
-				id = { id + "-" + i }
-				className = "appear"
-				unloadedSrc = { helpers.getFullPath( state.imagesPath, "tools", "tail-spin.svg" ) }
-				src = { helpers.getFullPath( elementsPath, folder, element ) }
-				alt = { alt }
-				count = { this.state.count }
-				oneUp = { oneUp }
-			/>
+        
+//        console.log( "---> ELEMENTS", elements[0] )
+        
+        if ( elements[0] ) {
 
-		) )
+//            console.log( "---> map" )
+            const e = elements.map( ( element, i ) => ( 
 
+                <ElementLoader 
+                    key = { i }
+                    id = { element.id }
+                    className = "appear"
+                    unloadedSrc = { helpers.getFullPath( state.imagesPath, "tools", "tail-spin.svg" ) }
+                    src = { helpers.getFullPath( elementsPath, folder, element.name ) }
+                    alt = { alt }
+                    count = { this.state.count }
+                    oneUp = { oneUp }
+                />
+
+            ) )
+
+            return e
+        
+        } else {
+            
+            return null
+            
+        }
+        
+    }
+	render() {
+	
+		const loadedElements = this.state.loadedElements
+		const className = this.props.className
+		const id = this.props.id
+        
+        console.log( "loadedElements", loadedElements )
+        
 		return (
 
 			<div 
 				className = { className }
 				id = { id }
 			>
-				{ getElements }
+				{ this.getElements( loadedElements ) }
 
 			</div>
 		)

@@ -74,19 +74,12 @@ main, section {
 	min-height: calc( 100vh - var( --footer-height ) );
 }
 
-/*
-font-family: 'Avenir Next Pro Demi'
-font-family: 'Avenir Next Pro Bold'
-font-family: 'Avenir Next Pro Regular'
-font-family: 'Avenir Next Pro Thin'
-*/
-
 body, 
 button, 
 .normal {
     font-size: var( --font-size );
-    font-family: "Avenir Next Pro Thin",
-                 "sonny-gothic-ultra-light", 
+    font-family: "Avenir Next LT W04 Thin",
+                 "Futura",
                  "Helvetica Neue", 
                  "Helvetica", 
                  "Arial", 
@@ -128,11 +121,11 @@ footer * ::selection,
 h1, h2, h3, h4, h5, h6, strong, .fat {
     margin: 0;
     display: block;
-    font-family: "Avenir Next Pro Bold",
-                 "sonny-gothic-regular", 
-                 "Helvetica Neue", 
-                 "Helvetica", 
-                 "Arial", 
+    font-family: "Avenir Next W04 Bold",
+                 "Futura Bold",
+                 "Helvetica Neue Bold", 
+                 "Helvetica Bold", 
+                 "Arial Bold", 
                  sans-serif;
     font-weight: normal;
     letter-spacing: 0.03em;
@@ -249,6 +242,12 @@ button,
          -o-transition: all 150ms linear;
             transition: all 150ms linear;
 }
+#imprint-button {
+    width: 10em;
+}
+#privacy-button {
+    width: 15em;
+}
 button, 
 .services {
     font-size: var( --small-font );
@@ -269,11 +268,11 @@ button:hover,
 	color: white;
 /*	transform: translate( 0, 0 );*/
 
-    font-family: "Avenir Next Pro Bold",
-                 "sonny-gothic-regular", 
-                 "Helvetica Neue", 
-                 "Helvetica", 
-                 "Arial", 
+    font-family: "Avenir Next W04 Bold",
+                 "Futura Bold",
+                 "Helvetica Neue Bold", 
+                 "Helvetica Bold", 
+                 "Arial Bold", 
                  sans-serif;
     font-weight: normal;
 
@@ -354,6 +353,7 @@ header nav li {
     display: inline;
 }
 header nav button {
+    width: 8.8em;
 	margin: 0 calc( var( --page-frame ) - var( --button-space ) );
 /*    margin: var( --page-frame ) calc( var( --page-frame ) - var( --button-space ) );*/
 }
@@ -375,8 +375,8 @@ header nav button {
 }
 .header-logo {
     margin: var( --page-frame );
-	width: calc( var( --logo-height ) * 5.0684 );
-	min-width: calc( var( --logo-height ) * 5.0684 );
+/*	width: calc( var( --logo-height ) * 5.0684 );*/
+/*	min-width: calc( var( --logo-height ) * 5.0684 );*/
 /*	min-width: 142px;*/
     height: var( --logo-height );
 	min-height: var( --logo-height );
@@ -408,12 +408,10 @@ header nav button {
 }
 */
 .services {
-	top: 12px;
 	left: 50%;
 	-webkit-transform: translate( -50%, 0 );
         -ms-transform: translate( -50%, 0 );
             transform: translate( -50%, 0 );	
-    margin: var( --page-frame ) 0;
     line-height: var( --font-size );
 	display: none;
 	position: absolute;
@@ -466,7 +464,7 @@ header nav button {
 /* hero */
 #hero {
     background: var( --background-color );
-	z-index: 0;
+	z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -794,7 +792,7 @@ header nav button {
     -webkit-transition: opacity .25s ease-in-out;
        -moz-transition: opacity .25s ease-in-out;
             transition: opacity .25s ease-in-out;
-    line-height: 1em;
+    line-height: 1.2em;
 }
 .item {
     display: flex;
@@ -822,7 +820,8 @@ header nav button {
 /* showcase */
 #showcase-title {
     grid-column: 1 / span 12;
-    grid-row: 2 / span 1;    
+    grid-row: 2 / span 1;
+    padding-top: 0.5em;
 }
 #showcase-title h1 {
     margin: 0;
@@ -931,7 +930,7 @@ header nav button {
 .list ul li {
     margin: 0 !important;
 }
-.list a:hover {
+.list a:hover, .footnotes a:hover {
 	padding: var( --button-space ) var( --button-space ) calc( var( --button-space ) * 0.85 );
 	background: black;
 	color: white;
@@ -967,8 +966,34 @@ header nav button {
 }
 */
 
+#socializer {
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    z-index: 10;
+    width: 1.5em;
+    height: 1.5em;
+    right: calc( var( --page-frame-big ) * 2 );
+    top: 49%;
+    -webkit-transform: translate( 50%, -50% );
+        -ms-transform: translate( 50%, -50% );
+            transform: translate( 50%, -50% );
+    -webkit-transition: all .3s ease-out;
+       -moz-transition: all .3s ease-out;
+        -ms-transition: all .3s ease-out;
+         -o-transition: all .3s ease-out;
+            transition: all .3s ease-out;
+}
+#socializer:hover {
+    opacity: 1;
+}
+
+
 .social, .message {
     padding: var( --page-frame );
+}
+.social h4 {
+    font-size: 1.2em;
 }
 .message > h1 {
 	color: var( --highlight-color );

@@ -11,6 +11,7 @@ function Social() {
 			<h4>
 				<a 
 					href = "https://www.instagram.com/sachahoechstetter/" 
+                    title = "follow sacha on instagram"
 					target = "_blank"
 					rel = "noopener noreferrer"
 					>

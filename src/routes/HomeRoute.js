@@ -11,7 +11,7 @@ class HomeRoute extends React.Component {
 
 		const showcasesAvailable = this.props.showcasesAvailable
 		const state = this.props.state
-		const onClick = ( i ) => this.props.onClick( i )
+		const onClick = this.props.onClick
 		const activateHero = ( i ) => this.props.activateHero( i )
 		const heroDidLoad = this.props.heroDidLoad
 		const heroIsVisible = this.props.heroIsVisible

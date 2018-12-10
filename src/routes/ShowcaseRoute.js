@@ -13,7 +13,7 @@ class ShowcaseRoute extends React.Component {
 		const state = this.props.state
 		const showcases = state.showcases
 		const showcasesAvailable = this.props.showcasesAvailable
-		const onClick = ( i ) => this.props.onClick( i )
+		const onClick = this.props.onClick
 		const heroIsActive = state.heroIsActive
 		
 		const onLoad = heroIsActive ? 

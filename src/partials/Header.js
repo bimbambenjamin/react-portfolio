@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import Socializer from '../partials/Socializer'
 import * as helpers from '../handler/helpers'
 
 
@@ -101,7 +102,11 @@ class Header extends React.Component {
 		const heroIsActive = this.props.heroIsActive
 		const id = this.props.headerId
 		
-		let headerClasses = 
+        const instagramBwSvg = helpers.getFullPath( state.imagesPath, "tools", "instagram-bw.svg" )
+        const instagramBwPng = helpers.getFullPath( state.imagesPath, "tools", "instagram-bw.png" )
+        const instagramColorPng = helpers.getFullPath( state.imagesPath, "tools", "instagram-color.png" )
+
+        let headerClasses = 
 			"uppercase appear-later " +
 			( heroIsActive ? "stick-to-second-section " : "" )
 			  
@@ -151,6 +156,11 @@ class Header extends React.Component {
 					targetLocation = { targetLocation }
 					onClick = { ( i ) => this.props.onClick( i ) }
 				/>
+                <Socializer
+                    srcSvg = { instagramBwSvg }
+                    srcPng = { instagramBwPng }
+                    srcColorPng = { instagramColorPng }
+                />
 
 			</header>
 

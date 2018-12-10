@@ -188,24 +188,34 @@ class Gallery extends React.Component {
 		const oneUp = allElementsLoaded ? null : this.oneUp
 		const batch = this.state.batch
         const preloader = this.state.preloader
+//        const onClick = this.props.onClick
 		
-		
-		const teaser = loadedTeasers.map( ( showcase, i ) => (
+		const teaser = loadedTeasers.map( ( showcase, i ) => { 
+            
+            if ( showcase.teaser.length > 0 ) {
+//                console.log( "src", showcase.teaser )
+                return (
+                    <Teaser 
+                        { ...showcase }
+                        key = { showcase.id }
+                        id = { showcase.id }
+                        className = { showcase.isRebel ? "item rebel" : "item citizen" }
+                        unloadedSrc = { preloader }
+                        src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
+                        count = { this.state.count }
+                        oneUp = { oneUp }
+                        allElementsLoaded = { allElementsLoaded }
+                        batch = { batch }
+                    />
+                )
+                
+            } else {
+            
+                return null
 
-			<Teaser 
-				{ ...showcase }
-				key = { showcase._id }
-				className = { showcase.isRebel ? "item rebel" : "item citizen" }
-				unloadedSrc = { preloader }
-				src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
-				onClick = { ( i ) => this.props.onClick( i ) }
-				count = { this.state.count }
-				oneUp = { oneUp }
-				allElementsLoaded = { allElementsLoaded }
-				batch = { batch }
-			/>
-
-		) )
+            }
+        
+        } )
 
 		return (
 
