@@ -182,12 +182,12 @@ class Gallery extends React.Component {
 //		TODO: choose image size according to screen dimensions and available speed
 
 		const loadedTeasers = this.state.loadedTeasers
-//		const imagesPath = this.props.state.imagesPath
+		const imagesPath = this.props.state.imagesPath
 		const showcasesPath = this.props.state.showcasesPath
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
 		const batch = this.state.batch
-        const preloader = this.state.preloader
+//        const preloader = this.state.preloader
 //        const onClick = this.props.onClick
 		
 		const teaser = loadedTeasers.map( ( showcase, i ) => { 
@@ -200,7 +200,7 @@ class Gallery extends React.Component {
                         key = { showcase.id }
                         id = { showcase.id }
                         className = { showcase.isRebel ? "item rebel" : "item citizen" }
-                        unloadedSrc = { preloader }
+                        unloadedSrc = { helpers.getFullPath( imagesPath, "tools", "tail-spin.svg" ) }
                         src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
                         count = { this.state.count }
                         oneUp = { oneUp }

@@ -16,9 +16,11 @@ class ElementLoader extends React.Component {
 			error: false,
             preloader: true,
             progress: false,
-            value: 0
+            value: 0,
+            windowWidth: window.innerWidth
 		}
-		
+		this.getViewWidth = this.handleViewWidth.bind( this )
+        
 	}
 	
 	componentDidMount() {
@@ -42,6 +44,8 @@ class ElementLoader extends React.Component {
             
         }
 
+		window.addEventListener( "resize", this.getViewWidth )
+        
         this._isMounted = true
 		this.handleSrc()
 		
@@ -54,10 +58,25 @@ class ElementLoader extends React.Component {
 //            window.removeEventListener( "loadedmetadata" )
 //        }
         this._isMounted = false
+		window.removeEventListener( "resize", this.getViewWidth )
 
 	}
 
-	handleSrc() {
+    handleViewWidth() {
+
+        const vw = window.innerWidth;
+		const storedWidth = this.state.windowWidth ? this.state.windowWidth : vw
+        
+		if ( vw !== storedWidth ) {
+            console.log( "size changed", vw )
+			this.setState( {
+				windowWidth: vw
+			})
+		}
+        
+    }
+
+    handleSrc() {
 		
         const fileType = helpers.getFiletype( this.props.src )
         if ( fileType ) {
@@ -205,7 +224,7 @@ class ElementLoader extends React.Component {
 		const unloadedSrc = this.props.unloadedSrc
 		const src = this.props.src || ""
         const progress = this.state.progress ? "progress" : null
-        const preloader = this.state.preloader ? "preloader" : null
+        let preloader = this.state.preloader ? "preloader" : null
         let loaded = this.state.loaded
 //        const elementSrc = loaded ? src : unloadedSrc
 		const alt = this.props.alt
@@ -214,8 +233,14 @@ class ElementLoader extends React.Component {
 		
 		const vimeo = src.includes( "vimeo" ) ? true : false
 		const vimeoPlayerUrl = vimeo ? "https://player.vimeo.com/video/" + src.split( "/" ).pop() : null
-		
-//        console.log( "unloadedSrc", unloadedSrc )
+
+        const unit = 20
+		const pageFrame = this.state.windowWidth > 1024 ? unit * 5 : unit        
+		const iFrameWidth = this.state.windowWidth - ( pageFrame * 2 )
+        const iFrameHeight = iFrameWidth / 16 * 9
+        console.log( "state width", this.state.windowWidth )
+        console.log( "iFrameWidth", iFrameWidth )
+        console.log( "iFrameHeight", iFrameHeight )
 
         const progressTag = (
 			
@@ -257,8 +282,8 @@ class ElementLoader extends React.Component {
 					id = { id }
 					title = { id }
 					src = { vimeoPlayerUrl }
-					width = "640" 
-					height = "480" 
+					width = { iFrameWidth }
+					height = { iFrameHeight }
 					frameBorder = "0"
 					webkitallowfullscreen = "true"
 					mozallowfullscreen = "true"
@@ -293,8 +318,10 @@ class ElementLoader extends React.Component {
         if ( fileType === "image" ) {
             content = imgTag 
         } else if ( fileType.includes( "vimeo" ) ) {
+            console.log( "load vimeo iframe:", fileType )
             content = iframeTag
-//            loaded = true
+            preloader = false
+            loaded = true
         } else {
             content = videoTag
         }

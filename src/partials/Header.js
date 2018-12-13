@@ -18,6 +18,8 @@ function HeaderLogo( props ) {
 				className = "header-logo" 
 				id = "header-logo" 
 				onClick = { () => props.onClick( "/" ) }
+                onMouseEnter = { props.onMouseEnter }
+                onMouseLeave = { props.onMouseLeave }
 			>
 				<picture>
 					<source srcSet = { props.logoSvg } type = "image/svg+xml" />
@@ -33,6 +35,18 @@ function HeaderLogo( props ) {
 
 function HeaderNav( props ) {
 	
+    const servicesTag = (
+        
+        <div className = "services no-select">
+            <ul>
+                <li>photography</li>
+                <li>motion</li>
+                <li>art direction</li>
+            </ul>
+        </div>
+        
+    )
+    
 	return (
 
 		<nav className="flexbox row">
@@ -45,13 +59,7 @@ function HeaderNav( props ) {
 				<span>back</span>
 			</button>
 
-			<div className = "services no-select">
-				<ul>
-					<li>photography</li>
-					<li>motion</li>
-					<li>art direction</li>
-				</ul>
-			</div>
+            { props.logoIsShort ? servicesTag : null }
 			
 			<NavLink 
 				exact
@@ -78,9 +86,32 @@ function HeaderNav( props ) {
 
 class Header extends React.Component {
     
+    constructor( props ) {
+        super( props )
+        this.state = {            
+            logoIsShort: true
+        }
+        this.showFullLogo = this.showFullLogo.bind( this )
+        this.showShortLogo = this.showShortLogo.bind( this )
+    }
+    
     randomNumber( from, to ) {
         const value = Math.floor( ( Math.random() * to ) + from )
         return value
+    }
+    
+    showFullLogo() {
+        const windowWidth = window.innerWidth
+        if ( windowWidth > 500 ) {
+            this.setState( { 
+                logoIsShort: false 
+            } )
+        }
+    }
+    showShortLogo() {
+        this.setState( { 
+            logoIsShort: true 
+        } )
     }
 
 	render() {
@@ -89,12 +120,14 @@ class Header extends React.Component {
 //            "sth"
 //        ]
 //        const logoFile = logoNames[ this.randomNumber( 0, logoNames.length ) ]
-        const logoFile = "sth"
-
 		const state = this.props.state
 		const targetLocation = state.targetLocation
 		const mainTitle = state.mainTitle
 //		const logo = state.logo
+        const longOrShort = this.state.logoIsShort ? "" : "-full"
+        const logoFile = "sth" + longOrShort
+        console.log( "---> logoFile:", logoFile )
+        
         const logoSvg = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".svg" )
         const logoPng = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".png" )
 
@@ -151,10 +184,13 @@ class Header extends React.Component {
 					logoSvg = { logoSvg }
 					logoPng = { logoPng }
 					onClick = { ( i ) => this.props.onClick( i ) }
+                    onMouseEnter = { this.showFullLogo }
+                    onMouseLeave = { this.showShortLogo }
 				/>
 				<HeaderNav
 					targetLocation = { targetLocation }
 					onClick = { ( i ) => this.props.onClick( i ) }
+                    logoIsShort = { this.state.logoIsShort }
 				/>
                 <Socializer
                     srcSvg = { instagramBwSvg }

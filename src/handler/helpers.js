@@ -21,7 +21,11 @@ export function getFullPath( path, folder, file ) {
 
 export function getFiletype( filename ) {
 
+    console.log( "FN getFileType", typeof filename )
+
 	if ( typeof filename === "string" ) {
+        
+        console.log( "STRING !!!", filename )
 
 		const extension = filename.split( '.' ).pop()
 

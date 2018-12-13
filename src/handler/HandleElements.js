@@ -78,7 +78,7 @@ class HandleElements extends React.Component {
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
         
-//        console.log( "---> ELEMENTS", elements[0] )
+        console.log( "---> ELEMENTS", elements[0], elements )
         
         if ( elements[0] ) {
 

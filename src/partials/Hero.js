@@ -5,6 +5,7 @@ import * as helpers from '../handler/helpers'
 
 
 const getVideoTag = ( src, id, count, oneUp ) => {
+    
 	const splitVideoPath = src.split( "/" )
 	const videoURL = splitVideoPath.pop()
 	const videoDataPath = splitVideoPath.join( "/" )
@@ -101,7 +102,9 @@ class Hero extends React.Component {
         
 //		const logo = helpers.changeLogoColor( state.logo, "white" )
 		const logo = state.logo
-        const heroIsAvailable = hero.length ? true : false
+        console.log( "hero", hero )
+//        console.log( "hero.length", hero.length )
+        const heroIsAvailable = hero ? true : false
 		const heroIsActive = state.heroIsActive
 		const heroIsVisible = this.props.heroIsVisible
 		const heroDidLoad = this.props.heroDidLoad
