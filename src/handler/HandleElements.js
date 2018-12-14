@@ -22,8 +22,6 @@ class HandleElements extends React.Component {
 	showVideoControls() {
 		
 		const id = this.props.id + "-" + ( this.state.count - 1 )
-        console.log( "id", id )
-        
 		const element = document.getElementById( id )
         if ( element ) {
 
@@ -36,7 +34,6 @@ class HandleElements extends React.Component {
 	
 	nextElementHandler( i ) {
 
-        console.log( "i", i )
 		this.showVideoControls()
 		
 		if ( this.state.allElementsLoaded ) {
@@ -78,11 +75,8 @@ class HandleElements extends React.Component {
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
         
-        console.log( "---> ELEMENTS", elements[0], elements )
-        
         if ( elements[0] ) {
 
-//            console.log( "---> map" )
             const e = elements.map( ( element, i ) => ( 
 
                 <ElementLoader 
@@ -112,8 +106,6 @@ class HandleElements extends React.Component {
 		const loadedElements = this.state.loadedElements
 		const className = this.props.className
 		const id = this.props.id
-        
-        console.log( "loadedElements", loadedElements )
         
 		return (
 

@@ -95,15 +95,13 @@ class Hero extends React.Component {
         if ( state.heroElements.length ) {
 //            console.log("heroElements", state.heroElements)
 //            const randomHeroElement = Math.floor( ( Math.random() * state.heroElements.length ) + 0 )
-            const e = state.heroElements[ 1 ]
+            const e = state.heroElements[ 0 ]
 			hero = helpers.getFullPath( state.backendPath, "hero", e )
             
         }
         
 //		const logo = helpers.changeLogoColor( state.logo, "white" )
 		const logo = state.logo
-        console.log( "hero", hero )
-//        console.log( "hero.length", hero.length )
         const heroIsAvailable = hero ? true : false
 		const heroIsActive = state.heroIsActive
 		const heroIsVisible = this.props.heroIsVisible

@@ -126,7 +126,6 @@ class Header extends React.Component {
 //		const logo = state.logo
         const longOrShort = this.state.logoIsShort ? "" : "-full"
         const logoFile = "sth" + longOrShort
-        console.log( "---> logoFile:", logoFile )
         
         const logoSvg = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".svg" )
         const logoPng = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".png" )

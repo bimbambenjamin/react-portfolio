@@ -19,7 +19,7 @@ import * as helpers from './handler/helpers'
 //const backendPath = "https://storage.googleapis.com/buck-the-bucket/assets"
 const backendPath = process.env.REACT_APP_BACKEND_URL
 
-//const PUBLIC_JSON = "https://00e9e64bacb6e057981335ddef0bc6a86fca9f37c0a2799b13-apidata.googleusercontent.com/download/storage/v1/b/buck-the-bucket/o/assets%2Fpublic.json?qk=AD5uMEvfRlr0aTn4gQrWSJ3WYCsQcePQJO-gPJ-fX49EeGQbQ2XxP43G8WQuXGnVtFJ1zmSB4w2MpACeAUgh2Dw3ie1K3FBVRG4SvCgfrDzJHQhGt3emn7RQaASjnR7UZQjUmTOPHqr4lvogYFaTG-8NYUFM60zGQUxqTEeOMlTbiVJmmF0ZbRuYmwS2b3o1wUxswVk8ZBP9ulxuwm85BpTQpD7FTebzNCc8s9ApJNTNySaF_-vWC9DHk8-tsiCroTsa7MCHXTCOZdVu7JjUbH2Y6Ye-Vf81vCQg7WTnmMRo1oJ7sYDQzXIYrlHA6fty65VFLYyyxUekgy_qbLBFxbl6t1EVNHPrG1-0qGShyMqnTpLtk9moTQOkY3Iyzhw1CWeb2t5zo8h3LMXeDSC4pExJrZ5Sa77uW8P0De5QrPMk06zRzBZiLBg-24XzvM4S_-7NOow6ld_fwF72jQc3laTUCtTcF28jR1uzWZH8YKWSea6vOcHaz6coXqY9xQ4_q3OdbnBN1x9omq1cRwHrN8j_9romNuOlQSrPqIytREDM6Fon8DXzbHlgJyYVP8Knm7OB75fvJkEyWshpDSbfmPVziyPWA4O1_wXiX9oKrgF6u6beDQM7wQrFydkqp3ihsjEwBkTOospNLAiVUSS1wbtCnosCsTpU-GcTxrW5MtBlWDp0PJIEEZAqD-bZFrGJd8DcBLpn4jyebq4C7u4y-WMcygl8anpli56UM1lnl7H5ON0qLyDaePwRG7K1KNT7rJCOYP0W0cJTkCyHfn0PtAZA_FDyeITuwQ"
+//const PUBLIC_JSON = ""
 const PUBLIC_JSON = backendPath + "/public.json"
 
 const backend = PUBLIC_JSON || 8080
@@ -162,7 +162,7 @@ class App extends React.Component {
                     this.validateTarget( this.state.targetLocation )
                 } )
                         
-			console.log( "backend", backend )
+//			console.log( "backend", backend )
 			
 		}
 		
@@ -306,7 +306,7 @@ class App extends React.Component {
 	
 	handleClick( i ) {
 
-        console.log( "CLICK", i )
+//        console.log( "CLICK", i )
 		if ( i === "/" || i === "heroClick" ) {
 			if ( i === "/" ) {
 				this.scrollToTop()
@@ -379,9 +379,9 @@ class App extends React.Component {
 
 	render() {
         
-		console.log( "showcases", this.state.showcases )
-		console.log( "heroElements", this.state.heroElements )
-        console.log( "logo", this.state.logo )
+//		console.log( "showcases", this.state.showcases )
+//		console.log( "heroElements", this.state.heroElements )
+//        console.log( "logo", this.state.logo )
 		
 		const showcasesAvailable = this.state.showcases.length > 0 ? true : false
 

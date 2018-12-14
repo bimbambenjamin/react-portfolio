@@ -21,13 +21,9 @@ export function getFullPath( path, folder, file ) {
 
 export function getFiletype( filename ) {
 
-    console.log( "FN getFileType", typeof filename )
-
 	if ( typeof filename === "string" ) {
-        
-        console.log( "STRING !!!", filename )
 
-		const extension = filename.split( '.' ).pop()
+        const extension = filename.split( '.' ).pop()
 
         // mimeType?
 		if ( extension === "jpg" || extension === "gif" || extension === "png" || extension === "jpeg" ) {

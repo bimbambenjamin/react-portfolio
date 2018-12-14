@@ -26,7 +26,6 @@ class ElementLoader extends React.Component {
 	componentDidMount() {
                 
 		const fileType = helpers.getFiletype( this.props.src )
-        console.log("fileType", fileType)
         if ( fileType ) {
             if ( fileType.includes( "vimeo" ) || fileType === "video" ) {
                 window.addEventListener( "load", ( e ) => {
@@ -68,7 +67,6 @@ class ElementLoader extends React.Component {
 		const storedWidth = this.state.windowWidth ? this.state.windowWidth : vw
         
 		if ( vw !== storedWidth ) {
-            console.log( "size changed", vw )
 			this.setState( {
 				windowWidth: vw
 			})
@@ -132,11 +130,11 @@ class ElementLoader extends React.Component {
     createVideo() {
 		
         const video = document.createElement( "video" )
-		
-		video.onloadeddata = () => {
+        
+		video.onloadstart = () => {
             
-            console.log( "video loaded", this.props.src, this._isMounted )
-
+//            console.log( "onloadstart", this.props.src )
+            
             if ( this._isMounted ) {
 				
 				this.setState( {
@@ -153,7 +151,7 @@ class ElementLoader extends React.Component {
 			}
 			
 		}
-		
+        
 		if ( this._isMounted ) {
 		
 			video.onerror = () => {
@@ -165,6 +163,22 @@ class ElementLoader extends React.Component {
 			
 		}
 		
+        
+//        video.onload = () => {
+//            console.log( "onload", this.props.src )
+//        }
+//        video.onplay = () => {
+//            console.log( "onplay", this.props.src )
+//        }
+//        video.onloadedmetadata = () => {
+//            console.log( "onloadedmetadata", this.props.src )
+//        }
+//        video.onloadeddata = () => {
+//            console.log( "onloadeddata", this.props.src )
+//        }
+//        video.oncanplay = () => {
+//            console.log( "oncanplay", this.props.src )
+//        }
 		video.src = this.props.src
 						        
     }
@@ -177,12 +191,8 @@ class ElementLoader extends React.Component {
 		const vimeo = src.includes( "vimeo" ) ? true : false
 		const vimeoPlayerUrl = vimeo ? "https://player.vimeo.com/video/" + src.split( "/" ).pop() : null
         
-        console.log( "iframe created", src, vimeo, vimeoPlayerUrl )
-		
 		iframe.onload = () => {
             
-            console.log( "iframe loaded", src, this._isMounted )
-
             if ( this._isMounted ) {
 				
 				this.setState( {
@@ -217,9 +227,7 @@ class ElementLoader extends React.Component {
 
 	render() {
 		
-        const id = this.props.id
-//        console.log( "ID", id )
-        
+        const id = this.props.id        
 		const className = this.props.className
 		const unloadedSrc = this.props.unloadedSrc
 		const src = this.props.src || ""
@@ -238,9 +246,6 @@ class ElementLoader extends React.Component {
 		const pageFrame = this.state.windowWidth > 1024 ? unit * 5 : unit        
 		const iFrameWidth = this.state.windowWidth - ( pageFrame * 2 )
         const iFrameHeight = iFrameWidth / 16 * 9
-        console.log( "state width", this.state.windowWidth )
-        console.log( "iFrameWidth", iFrameWidth )
-        console.log( "iFrameHeight", iFrameHeight )
 
         const progressTag = (
 			
@@ -314,15 +319,16 @@ class ElementLoader extends React.Component {
 			
         )
 		
-		let content
+        let content
         if ( fileType === "image" ) {
             content = imgTag 
         } else if ( fileType.includes( "vimeo" ) ) {
-            console.log( "load vimeo iframe:", fileType )
             content = iframeTag
             preloader = false
             loaded = true
         } else {
+//            loaded = true
+//            preloader = false
             content = videoTag
         }
 		
