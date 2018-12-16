@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 //import './index.css'
 //import './fonts/sonny-gothic/fontface.css'
-//import './css/main.css'
-//import './css/media-queries.css'
+import './css/main.scss'
+import './css/media-queries.scss'
 
 import App from './App'
 

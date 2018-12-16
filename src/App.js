@@ -94,7 +94,7 @@ class App extends React.Component {
         this.onClick = this.handleClick.bind( this )
 		this.getViewHeight = this.handleViewHeight.bind( this )
 //		this.logoChange = this.logoChange.bind( this )
-	
+//        this.contextMenu = this.handleContextMenu.bind( this )
 	}
 	
     getAlpha() {
@@ -147,7 +147,8 @@ class App extends React.Component {
 		
 		window.addEventListener( "scroll", this.handleScroll )
 		window.addEventListener( "resize", this.getViewHeight )
-		
+//        window.addEventListener( "contextmenu", this.contextMenu )
+        
 		if ( this.state.backendConnected === false ) {
             
 			axios
@@ -170,6 +171,7 @@ class App extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener( "scroll", this.handleScroll )
 		window.removeEventListener( "resize", this.getViewHeight )
+//        window.removeEventListener( "contextmenu", this.contextMenu )
 	}
 	
 	handleViewHeight() {
@@ -188,7 +190,11 @@ class App extends React.Component {
 		}
 		
 	}
-	
+    
+//    handleContextMenu() {
+//        console.log( "CONTEXT!" )
+//    }
+    
 	validateTarget( target ) {
 
 		const home = this.state.validRoutes[ 0 ]

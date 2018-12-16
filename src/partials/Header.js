@@ -35,9 +35,15 @@ function HeaderLogo( props ) {
 
 function HeaderNav( props ) {
 	
+    const windowWidth = window.innerWidth
+    const showServices = props.logoIsShort || windowWidth > 1500 ? true : false    
+    const servicesClasses = 
+        "services no-select " +
+        ( showServices ? "appear" : "hide" )
+
     const servicesTag = (
         
-        <div className = "services no-select">
+        <div className = { servicesClasses }>
             <ul>
                 <li>photography</li>
                 <li>motion</li>
@@ -59,7 +65,7 @@ function HeaderNav( props ) {
 				<span>back</span>
 			</button>
 
-            { props.logoIsShort ? servicesTag : null }
+            { servicesTag }
 			
 			<NavLink 
 				exact
@@ -104,7 +110,7 @@ class Header extends React.Component {
         const windowWidth = window.innerWidth
         if ( windowWidth > 500 ) {
             this.setState( { 
-                logoIsShort: false 
+                logoIsShort: false
             } )
         }
     }
