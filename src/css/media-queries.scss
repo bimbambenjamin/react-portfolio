@@ -121,7 +121,7 @@ and ( max-width: 736px ) {
 }
 
 @media screen 
-and ( min-width: 375px ) 
+and ( min-width: 415px ) 
 and ( max-width: 812px ) {
     .big-text {
         font-size: 1.5em;
@@ -133,7 +133,7 @@ and ( max-width: 812px ) {
 @media screen 
 and ( max-width: 812px ) {
     :root {
-        --logo-width: 62%;
+        --logo-width: 62vw;
 		--bouncer-size: 40px;
     }
 }

@@ -88,7 +88,7 @@ class Hero extends React.Component {
 		const state = this.props.state
 		const mainTitle = state.mainTitle
         
-        let hero = ""
+    let hero = ""
         
         // TODO: check for video ---> load still first, then swap it to video
         
@@ -101,14 +101,15 @@ class Hero extends React.Component {
         }
         
 //		const logo = helpers.changeLogoColor( state.logo, "white" )
-		const logo = state.logo
-        const heroIsAvailable = hero ? true : false
+		const logoSvg = state.logo.hero.svg
+		const logoPng = state.logo.hero.png
+    const heroIsAvailable = hero ? true : false
 		const heroIsActive = state.heroIsActive
 		const heroIsVisible = this.props.heroIsVisible
 		const heroDidLoad = this.props.heroDidLoad
 		
 		const divStyle = state.divStyle        
-        const logoClasses = "infobox no-select " + divStyle
+    const logoClasses = "infobox no-select " + divStyle
         
 		const heroClass = "uppercase " +
 			( heroIsVisible ? "appear" : "vanish" )
@@ -124,8 +125,8 @@ class Hero extends React.Component {
 			<div className = { logoClasses } id = "logo">
 
 				<picture>
-					<source srcSet = { logo } type = "image/svg+xml" />
-					<img src = { logo } alt = { mainTitle } />
+					<source srcSet = { logoSvg } type = "image/svg+xml" />
+					<img src = { logoPng } alt = { mainTitle } />
 				</picture>
 
 			</div>

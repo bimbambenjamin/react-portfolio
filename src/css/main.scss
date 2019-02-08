@@ -26,7 +26,7 @@
   --font-size: 1rem;
   --font-height: 1.4em;
   --small-font: 0.7em;
-  --logo-width: 38%;
+  --logo-width: 62vw;
   --logo-height: 40px;
   --header-height: calc( calc( var( --page-frame ) * 2 ) + var( --logo-height ) );
   --footer-height: calc( var( --font-size ) + var( --font-height ) + var( --page-frame  ) );
@@ -426,13 +426,20 @@ header {
                 transform: translate( -50%, -50% );
     }
 }
+.backdrop {
+
+    -webkit-backdrop-filter: blur( 20px ) saturate( 180% );
+            backdrop-filter: blur( 20px ) saturate( 180% );
+    
+}
 #logo {
     
+    line-height: 0;
     z-index: 1;
     position: absolute;
-    max-width: 600px;
-    min-width: 280px;
-    width: var( --logoWidth );
+    max-width: 500px;
+    min-width: 200px;
+    width: var( --logo-width );
     height: auto;
     overflow: hidden;
     
@@ -515,7 +522,7 @@ header {
 #bouncer-text {
 	
 	pointer-events: none;
-	color: var( --background-color );
+	color: var( --primary-color );
 
 	width: 140px;
     height: 60px;
@@ -800,13 +807,20 @@ header {
 
 /*TODO: get image dimensions from upload */
 .preloader {
-    width: var( --item-width );
+    // width: var( --item-width );
+    width: 100px;
     height: 100px;
-    margin: var( --page-frame ) 0;
     background: transparent;
     img {
         margin: auto;
     }
+    transform: translate( -50%, -50% );
+    left: 50%;
+    top: 45%;
+    position: absolute;
+}
+.preloader-background {
+    background: #eee;
 }
 
 #back-to-top {
@@ -937,6 +951,7 @@ header {
     display: block;
 }
 #contact {
+    white-space: nowrap;
     margin-bottom: var( --unit );
 }
 #contact ul, #imprint ul {

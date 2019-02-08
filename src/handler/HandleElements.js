@@ -74,7 +74,7 @@ class HandleElements extends React.Component {
 		const alt = this.props.alt
 		const allElementsLoaded = this.state.allElementsLoaded
 		const oneUp = allElementsLoaded ? null : this.oneUp
-        
+
         if ( elements[0] ) {
 
             const e = elements.map( ( element, i ) => ( 
@@ -87,7 +87,10 @@ class HandleElements extends React.Component {
                     src = { helpers.getFullPath( elementsPath, folder, element.name ) }
                     alt = { alt }
                     count = { this.state.count }
-                    oneUp = { oneUp }
+					oneUp = { oneUp }
+					imageWidth = { element.imageMediaMetadata.width }
+					imageHeight = { element.imageMediaMetadata.height }
+					windowHeight = { state.windowHeight }
                 />
 
             ) )
@@ -106,7 +109,9 @@ class HandleElements extends React.Component {
 		const loadedElements = this.state.loadedElements
 		const className = this.props.className
 		const id = this.props.id
-        
+
+		console.log('loadedElements', loadedElements)
+		
 		return (
 
 			<div 

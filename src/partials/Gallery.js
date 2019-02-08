@@ -193,15 +193,15 @@ class Gallery extends React.Component {
 		const teaser = loadedTeasers.map( ( showcase, i ) => { 
             
             if ( showcase.teaser.length > 0 ) {
-//                console.log( "src", showcase.teaser )
+               console.log( "src", showcase.teaser )
                 return (
                     <Teaser 
                         { ...showcase }
                         key = { showcase.id }
                         id = { showcase.id }
-                        className = { showcase.isRebel ? "item rebel" : "item citizen" }
+												className = { showcase.isRebel ? "item rebel" : "item citizen" }
                         unloadedSrc = { helpers.getFullPath( imagesPath, "tools", "tail-spin.svg" ) }
-                        src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
+                        src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser.name ) }
                         count = { this.state.count }
                         oneUp = { oneUp }
                         allElementsLoaded = { allElementsLoaded }

@@ -129,17 +129,18 @@ class Header extends React.Component {
 		const state = this.props.state
 		const targetLocation = state.targetLocation
 		const mainTitle = state.mainTitle
-//		const logo = state.logo
-        const longOrShort = this.state.logoIsShort ? "" : "-full"
-        const logoFile = "sth" + longOrShort
-        
-        const logoSvg = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".svg" )
-        const logoPng = helpers.getFullPath( state.imagesPath, "logo", logoFile + ".png" )
 
+		const logoSmallSvg = state.logo.small.svg
+		const logoSmallPng = state.logo.small.png
+		const logoLongSvg = state.logo.long.svg
+		const logoLongPng = state.logo.long.png
+		const logoSvg = this.state.logoIsShort ? logoSmallSvg : logoLongSvg
+		const logoPng = this.state.logoIsShort ? logoSmallPng : logoLongPng
+		
 		const logo = helpers.changeLogoColor( state.logo, "black" )
 		const heroIsActive = this.props.heroIsActive
 		const id = this.props.headerId
-		
+
         const instagramBwSvg = helpers.getFullPath( state.imagesPath, "tools", "instagram-bw.svg" )
         const instagramBwPng = helpers.getFullPath( state.imagesPath, "tools", "instagram-bw.png" )
         const instagramColorPng = helpers.getFullPath( state.imagesPath, "tools", "instagram-color.png" )
