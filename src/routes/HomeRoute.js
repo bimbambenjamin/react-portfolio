@@ -12,13 +12,13 @@ class HomeRoute extends React.Component {
 		const showcasesAvailable = this.props.showcasesAvailable
 		const state = this.props.state
 		const onClick = this.props.onClick
+
 		const activateHero = ( i ) => this.props.activateHero( i )
 		const heroDidLoad = this.props.heroDidLoad
 		const heroIsVisible = this.props.heroIsVisible
 		const oneUp = this.props.oneUp
 		
-		const heroTag = (
-			
+		const heroTag = (			
 			<Hero 
 				state = { state }
 				onClick = { onClick }
@@ -27,22 +27,18 @@ class HomeRoute extends React.Component {
 				heroDidLoad = { heroDidLoad }
 				oneUp = { oneUp }
 			/>
-			
 		)
 		
 		const sectionTag = (
-			
+
 			<section className = "flexbox column header-space freedom-below">
 
 				{ showcasesAvailable ? (
-					<Gallery
-						state = { state }
-						onClick = { onClick }
-					/>
+					<Gallery state = { state }/>
 				) : (
 					<div className = "message uppercase appear-delayed">
 						<h1>
-							error loading showcases 
+							fetching showcases
 						</h1>
 					</div>
 				) }

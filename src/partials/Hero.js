@@ -71,7 +71,7 @@ class Hero extends React.Component {
 
 	imageOrVideo( alt, src ) {
 		
-		const type = helpers.getFiletype( src )
+		const type = helpers.getFileType( src )
 		const id = "background"
 		
 		switch( type ) {

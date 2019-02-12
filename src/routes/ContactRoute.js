@@ -5,21 +5,17 @@ import Contact from '../partials/Contact'
 
 class ContactRoute extends React.Component {
 
-	render() {
-		
-		console.log( "contactRoute" )
+	componentDidMount() {
+		this.deactivateHero()
+	}
+	
+	deactivateHero = () => this.props.activateHero( false )
 
-		const heroIsActive = this.props.state.heroIsActive
-		const onLoad = heroIsActive ? 
-			() => this.props.activateHero( false ) : 
-			null
+	render() {
 
 		return(
 
-			<main 
-				className = { this.props.mainClass }
-				onLoad = { onLoad }
-			>
+			<main className = { this.props.mainClass }>
 				<Contact />
 			</main>
 

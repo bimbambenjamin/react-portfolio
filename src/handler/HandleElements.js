@@ -77,23 +77,29 @@ class HandleElements extends React.Component {
 
         if ( elements[0] ) {
 
-            const e = elements.map( ( element, i ) => ( 
+            const e = elements.map( ( element, i ) => { 
 
-                <ElementLoader 
-                    key = { i }
-                    id = { element.id }
-                    className = "appear"
-                    unloadedSrc = { helpers.getFullPath( state.imagesPath, "tools", "tail-spin.svg" ) }
-                    src = { helpers.getFullPath( elementsPath, folder, element.name ) }
-                    alt = { alt }
-                    count = { this.state.count }
-					oneUp = { oneUp }
-					imageWidth = { element.imageMediaMetadata.width }
-					imageHeight = { element.imageMediaMetadata.height }
-					windowHeight = { state.windowHeight }
-                />
+				const dimensions = {}
+				if ( element.imageMediaMetadata || element.videoMediaMetadata ) {
+					dimensions.width = element.imageMediaMetadata.width || element.videoMediaMetadata.width
+					dimensions.height = element.imageMediaMetadata.height || element.videoMediaMetadata.height
+				}
 
-            ) )
+				return ( 
+					<ElementLoader 
+						key = { i }
+						id = { element.id }
+						className = "appear"
+						unloadedSrc = { helpers.getFullPath( state.imagesPath, "tools", "tail-spin.svg" ) }
+						src = { helpers.getFullPath( elementsPath, folder, element.name ) }
+						alt = { alt }
+						count = { this.state.count }
+						oneUp = { oneUp }
+						dimensions = { dimensions }
+						windowHeight = { state.windowHeight }
+					/>
+				) 
+			}	)
 
             return e
         
@@ -105,12 +111,12 @@ class HandleElements extends React.Component {
         
     }
 	render() {
+
+		console.log("HE render")
 	
 		const loadedElements = this.state.loadedElements
 		const className = this.props.className
 		const id = this.props.id
-
-		console.log('loadedElements', loadedElements)
 		
 		return (
 

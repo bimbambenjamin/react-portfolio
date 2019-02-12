@@ -1,6 +1,6 @@
 import React from 'react'
 
-import HandleElements from '../handler/HandleElements'
+// import HandleElements from '../handler/HandleElements'
 
 
 
@@ -16,8 +16,22 @@ class Showcase extends React.Component {
 		const state = this.props.state
 		const showcaseId = this.props.showcaseId
 		const showcase = state.showcases[ showcaseId ]
-		const showcasesPath = state.showcasesPath
-        
+		// const showcasesPath = state.showcasesPath
+
+		// const h = false
+		// const handler = (
+		// 	<HandleElements
+		// 		state = { state }
+		// 		elements = { showcase.elements }
+		// 		elementsPath = { showcasesPath }
+		// 		folder = { showcase.folder }
+		// 		className = "flexbox column uppercase"
+		// 		id = "showcase-work"
+		// 		alt = { showcase.title }
+		// 		handleLoadedElement = { ( bool ) => this.props.handleLoadedElement( bool ) }
+		// 		handleErroredElement = { ( bool ) => this.props.handleErroredElement( bool ) }
+		// 	/>
+		// )
 		return (
 			
 			<section className = "grid appear header-space freedom-below uppercase" id = "showcase" key = { showcaseId }>
@@ -27,18 +41,6 @@ class Showcase extends React.Component {
 					<p>{ showcase.subtitle }</p>
 				</div>
 				
-				<HandleElements
-					state = { state }
-					elements = { showcase.elements }
-					elementsPath = { showcasesPath }
-					folder = { showcase.folder }
-					className = "flexbox column uppercase"
-					id = "showcase-work"
-					alt = { showcase.title }
-					handleLoadedElement = { ( bool ) => this.props.handleLoadedElement( bool ) }
-					handleErroredElement = { ( bool ) => this.props.handleErroredElement( bool ) }
-				/>
-
 			</section>
 
 		)

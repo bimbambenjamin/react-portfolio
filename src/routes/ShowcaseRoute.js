@@ -57,10 +57,7 @@ class ShowcaseRoute extends React.Component {
 				<section className = "flexbox column header-space freedom-below">
 
 					{ showcasesAvailable ? (
-						<Gallery
-							state = { state }
-							onClick = { onClick }
-						/>
+						<Gallery state = { state }/>
 					) : (
 						<div className = "message uppercase appear-delayed">
 							<h1>

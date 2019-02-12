@@ -759,7 +759,7 @@ header {
         word-spacing: var( --item-big-width );
     }
     .teaser-image {
-        width: var( --item-big-width );
+        max-width: var( --item-big-width );
     }
 }
 

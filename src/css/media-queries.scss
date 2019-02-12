@@ -68,6 +68,9 @@ and ( max-width: 374px ) {
 
 @media screen 
 and ( max-height: 414px ) {
+    :root {
+        --logo-width: 38vw;
+    }
 	#bouncer-text {
 		display: none;
 	}

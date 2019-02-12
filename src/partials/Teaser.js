@@ -5,38 +5,48 @@ import ElementLoader from '../handler/ElementLoader'
 
 
 
-const Teaser = ( { onClick, folder, className, unloadedSrc, src, title, oneUp, count, allElementsLoaded, batch } ) => (
-	
-	<div className = { className }>
+const Teaser = ( { props } ) => { 
 
-		<div className = "teaser one-word-per-line">
+	console.log( "TEASER PROPS", props )
+	const width = props.showcase.teaser.width
+	const className={ width === 600 ? "item rebel" : "item citizen"}
 
-			<NavLink 
-				exact to = { `/showcase/${ folder }` } 
-				onClick = { onClick }
-			>
 
-				<ElementLoader 
-					className = "teaser-image"
-					unloadedSrc = { unloadedSrc }
-					src = { src }
-					title = { title } 
-					alt = { title } 
-					oneUp = { oneUp }
-					count = { count }
-					allElementsLoaded = { allElementsLoaded }
-					batch = { batch }
-					showControls = { false }
-				/>
+	// oneUp={oneUp}
+	// allElementsLoaded={allElementsLoaded}
+	// batch={batch}
 
-				<span className = "teaser-title">{ title }</span>
 
-			</NavLink>
+	return (
+		
+		<div className = { className }>
+			<div className = "teaser one-word-per-line">
+				<NavLink 
+					exact
+					to = { `/showcase/${ folder }` } 
+				>
 
+					<ElementLoader 
+						className = "teaser-image"
+						title = { title } 
+						alt = { title } 
+						unloadedSrc = { props.state.preloader }
+						src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
+						count = { this.state.count }
+						oneUp = { oneUp }
+						allElementsLoaded = { allElementsLoaded }
+						batch = { batch }
+						showControls = { false }
+					/>
+
+					<span className = "teaser-title">{ title }</span>
+
+				</NavLink>
+			</div>
 		</div>
 
-	</div>
+	)
 
-)
+}
 
 export default Teaser

@@ -42,6 +42,8 @@ class ElementLoader extends React.Component {
 
 	handleViewWidth() {
 
+		console.log( "hVW setState" )
+
 		const vw = window.innerWidth;
 		const storedWidth = this.state.windowWidth ? this.state.windowWidth : vw
 
@@ -71,6 +73,7 @@ class ElementLoader extends React.Component {
 	createImage() {
 
 		const img = new Image()
+		console.log( "cI setState" )
 
 		img.onload = () => {
 
@@ -108,6 +111,7 @@ class ElementLoader extends React.Component {
 
 	createVideo() {
 
+		console.log( "cV setState" )
 		const video = document.createElement("video")
 
 		video.onloadstart = () => {
@@ -146,6 +150,7 @@ class ElementLoader extends React.Component {
 
 	createIframe() {
 
+		console.log( "cIF setState" )
 		const iframe = document.createElement("iframe")
 
 		const src = this.props.src
@@ -197,49 +202,21 @@ class ElementLoader extends React.Component {
 
 	}
 
-	render() {
+	getDimensions() {
+		// image or video?
+		// this.handleImageDimensions()
+	}
 
-		const id = this.props.id
-		const className = this.props.className
-		const unloadedSrc = this.props.unloadedSrc
-		const src = this.props.src || ""
-		const progress = this.state.progress ? "progress" : null
-		let preloader = this.state.preloader ? "preloader" : null
-		let loaded = this.state.loaded
-		//        const elementSrc = loaded ? src : unloadedSrc
-		const alt = this.props.alt
-		const title = helpers.cleanTitle(this.props.title)
-		const fileType = helpers.getFiletype(src)
-
-		// TODO: not in auto-sync with css
-		const unit = 20
-		const pageFrame = this.state.windowWidth > 1112 ? unit * 5 : unit
-		const contentWidth = this.state.windowWidth - (pageFrame * 2)
-
-		const vimeo = this.state.vimeo
-		// if (src.includes("vimeo")) {
-		// 	vimeo = true
-		// 	const vimeoJson = getVimeoJson(src)
-		// 	// const vimeoRatio = videoJSON
-		// 	// const vimeoPlayerUrl = "https://player.vimeo.com/video/" + src.split( "/" ).pop()
-		// }
-		// const vimeo = src.includes( "vimeo" ) ? true : false
-		// const vimeoJSON = vimeo ? this.getVimeoRatio( src ) : null
-		// const vimeoRatio = videoJSON
-		const vimeoPlayerUrl = vimeo ? "https://player.vimeo.com/video/" + src.split( "/" ).pop() : null
-		// const iFrameHeight = contentWidth * vimeoRatio
-		const iFrameHeight = contentWidth / 16 * 9
-
-		const windowHeight = this.props.windowHeight // y px
-		const imageMaxHeight = windowHeight * 0.8
-
-		const originalImageWidth = this.props.imageWidth
-		const originalImageHeight = this.props.imageHeight
+	handleImageDimensions() {
+		let originalImageWidth = null
+		let originalImageHeight = null
+		if ( this.props.dimensions ) {
+			originalImageWidth = this.props.dimensions.width
+			originalImageHeight = this.props.dimensions.height
+			}
 		const imageRatio = originalImageWidth / originalImageHeight
-
 		let imageWidth = originalImageWidth
 		let imageHeight = originalImageHeight
-
 		if (imageWidth > contentWidth) {
 			imageWidth = contentWidth
 			imageHeight = imageWidth / imageRatio
@@ -248,47 +225,83 @@ class ElementLoader extends React.Component {
 			imageHeight = imageMaxHeight
 			imageWidth = imageHeight * imageRatio
 		}
+	}
+
+	handleVimeoDimensions() {
+		// const vimeo = this.state.vimeo
+		// if (src.includes("vimeo")) {
+			// vimeo = true
+			// const vimeoJson = getVimeoJson(src)
+			// const vimeoRatio = videoJSON
+			// const vimeoPlayerUrl = "https://player.vimeo.com/video/" + src.split( "/" ).pop()
+		// }
+		const vimeo = src.includes( "vimeo" ) ? true : false
+		// const vimeoJSON = vimeo ? this.getVimeoRatio( src ) : null
+		// const vimeoRatio = videoJSON
+		const vimeoPlayerUrl = vimeo ? "https://player.vimeo.com/video/" + src.split( "/" ).pop() : null
+		// const iFrameHeight = contentWidth * vimeoRatio
+		const iFrameHeight = contentWidth / 16 * 9
+		const windowHeight = this.props.windowHeight // y px
+		const imageMaxHeight = windowHeight * 0.8
+	}
+
+	render() {
+
+		console.log("EL render")
+
+		const id = this.props.id
+		const className = this.props.className
+		const unloadedSrc = this.props.unloadedSrc
+		const src = this.props.src || ""
+		const progress = this.state.progress ? "progress" : null
+		let preloader = this.state.preloader ? "preloader" : null
+		let loaded = this.state.loaded
+		// const elementSrc = loaded ? src : unloadedSrc
+
+		const alt = this.props.alt
+		const title = helpers.cleanTitle(this.props.title)
+		const fileType = helpers.getFiletype(src)
+
+		// TODO: not in auto-sync with css
+		const unit = 20
+		const pageFrame = this.state.windowWidth > 1112 ? unit * 5 : unit
+		const contentWidth = this.state.windowWidth - (pageFrame * 2)
+		
+		// image || video
+		// const dimensions = getDimensions()
+		// const width = dimensions.width
+		// const height = dimensions.height
+		// const ratio = dimenstions.ratio
+
 
 		const progressTag = (
-
-			<progress value={this.state.value} max="100" />
-
+			<progress value={ this.state.value } max="100" />
 		)
-
 		const preloaderTag = (
-
 			<div
 				className="appear preloader"
-				style={{ background: "url(" + unloadedSrc + ") no-repeat center center" }}
+				style={ { background: "url(" + unloadedSrc + ") no-repeat center center" } }
 			/>
-
 		)
-
 		const imgTag = (
-
 			<figure className="appear">
-
 				<img
-					id={id}
-					className={className}
-					src={src}
-					title={title}
-					alt={alt}
+					id={ id }
+					className={ className }
+					src={ src }
+					title={ title }
+					alt={ alt }
 				/>
-
 			</figure>
-
 		)
-
 		const iframeTag = (
-
 			<div>
 				<iframe
-					id={id}
-					title={id}
-					src={vimeoPlayerUrl}
-					width={contentWidth}
-					height={iFrameHeight}
+					id={ id }
+					title={ id }
+					src={ vimeoPlayerUrl }
+					width={ contentWidth }
+					height={ iFrameHeight }
 					frameBorder="0"
 					webkitallowfullscreen="true"
 					mozallowfullscreen="true"
@@ -296,28 +309,25 @@ class ElementLoader extends React.Component {
 				>
 				</iframe>
 			</div>
-
 		)
-
 		const videoTag = (
-
 			<figure className="appear">
-
 				<video
-					id={id}
+					id={ id }
 					aria-hidden="true"
-					className={className}
+					className={ className }
 					autoPlay
 					loop
 					muted
 					playsInline
-					src={src}
+					src={ src }
 					tabIndex="-1"
 				/>
-
 			</figure>
-
 		)
+
+
+
 
 		let content
 		if (fileType === "image") {
@@ -327,11 +337,10 @@ class ElementLoader extends React.Component {
 			preloader = false
 			loaded = true
 		} else {
-			//            loaded = true
-			//            preloader = false
+			// loaded = true
+			// preloader = false
 			content = videoTag
 		}
-
 		const divClassName = "appear " + (
 			preloader ? "preloader-background" : ""
 		)

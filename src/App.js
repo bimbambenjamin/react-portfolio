@@ -23,6 +23,11 @@ const assetsPath = "/assets"
 const imagesPath = "/assets/img"
 
 
+
+
+
+
+
 // TODO: refactor scroll functions
 // for scroll fn
 
@@ -35,14 +40,16 @@ class App extends React.Component {
 		this.state = {
 
 			// backend files
-			showcases: [],
 			heroElements: [],
+			showcases: [],
 			backendConnected: false,
+
+			// paths
 			backendPath: backendPath,
 			showcasesPath: showcasesPath,
-
 			imagesPath: imagesPath,
 
+			// bullshit?
 			imageLoaded: false,
 			imageErrored: false,
 
@@ -64,23 +71,26 @@ class App extends React.Component {
 				}
 			},
 
+			// hero
 			heroIsActive: false,
 			heroIsVisible: true,
 			heroDidLoad: false,
+
+			// domain
 			mainTitle: "SASCHA TASSILO HOECHSTETTER",
-			targetLocation: this.handleLocation(window.location.pathname),
-			validRoutes: [
-				"/",
-				"/showcase/:folderId",
-				"/contact",
-				"/imprint",
-				"/privacy"
-			],
+			targetLocation: this.handleLocation( window.location.pathname ),
+			validRoutes: {
+				home: "/",
+				showcase: "/showcase/:folderId",
+				contact: "/contact",
+				imprint: "/imprint",
+				privacy: "/privacy"
+			},
+
+			// tech
 			windowHeight: window.innerHeight,
 			scrollPosition: window.scrollY,
-			scrollingDown: false,
-			logoIndex: 0,
-			divStyle: ""
+			scrollingDown: false
 
 		}
 
@@ -90,23 +100,11 @@ class App extends React.Component {
 		this.getViewHeight = this.handleViewHeight.bind(this)
 	}
 
-	getAlpha() {
-
-		const a = window.innerHeight
-		const b = window.innerWidth
-		const c = Math.sqrt((a * a) + (b * b))
-		const sinAlpha = a / c
-		const alpha = Math.asin(sinAlpha)
-		return Math.floor(alpha * -180 / Math.PI)
-	}
-	setAngleCss(angle) {
-		document.documentElement.style.setProperty("--logo-angle", `${angle}deg`);
-	}
-
 	componentDidMount() {
 
 		this.getViewHeight()
 
+		// TODO: refactor scroll
 		window.addEventListener("scroll", this.handleScroll)
 		window.addEventListener("resize", this.getViewHeight)
 
@@ -132,65 +130,41 @@ class App extends React.Component {
 		window.removeEventListener("resize", this.getViewHeight)
 	}
 
-	handleViewHeight() {
 
-		const vh = window.innerHeight;
-		document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-		const storedHeight = this.state.windowHeight ? this.state.windowHeight : vh
 
-		if (vh !== storedHeight) {
-			this.setState({
-				windowHeight: vh
-			})
-		}
+	getAlpha() {
 
+		const a = window.innerHeight
+		const b = window.innerWidth
+		const c = Math.sqrt((a * a) + (b * b))
+		const sinAlpha = a / c
+		const alpha = Math.asin(sinAlpha)
+		return Math.floor(alpha * -180 / Math.PI)
 	}
+	setAngleCss(angle) {
+		document.documentElement.style.setProperty("--logo-angle", `${angle}deg`);
+	}
+	validateTarget( target ) {
 
-	validateTarget(target) {
-
-		const home = this.state.validRoutes[0]
-		const validRoutes = this.state.validRoutes.slice(2)
-
-		const validFolders = this.state.showcases.map((showcase) => (
+		const validRoutes = this.state.validRoutes
+		const home = validRoutes.home
+		const validFolders = this.state.showcases.map( ( showcase ) => (
 			showcase.folder
-		))
+		) )
+		const filter = ( o ) => {
+			let b = false
+			for ( let k in o ) {
+				if ( o[ k ] === "/" + target ) b = true
+			}
+			if ( !b ) this.goTo( home )
+		}
 
-		if (validRoutes.includes("/" + target) || target === home || validFolders.includes(target)) {
-		} else {
-			this.goTo(home)
+		if ( target !== home && !validFolders.includes( target ) ) {
+			filter( validRoutes )
 		}
 
 	}
-
-	handleScroll(e) {
-
-		let previousScrollPosition = this.state.scrollPosition
-		const scrollPosition = window.scrollY
-		const windowHeight = window.innerHeight
-		const heroViewHeight = windowHeight - 100
-
-		const scrollingDown = previousScrollPosition < scrollPosition ?
-			true : false
-
-		const heroIsVisible = scrollPosition < heroViewHeight ?
-			true : false
-
-		this.setState({
-			scrollPosition: scrollPosition,
-			scrollingDown: scrollingDown,
-			heroIsVisible: heroIsVisible
-		})
-	}
-
-
-
-	heroScroll() {
-
-		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
-		this.scrollYSmooth({ from: window.scrollY, to: storedHeight, duration: 700, behavior: "ease-in-out" });
-	}
-
 	getBrowser() {
 		return navigator ? navigator.userAgent : "other";
 	}
@@ -236,13 +210,11 @@ class App extends React.Component {
 		window.requestAnimationFrame(step)
 
 	}
-
 	scrollToTop() {
 		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
 		this.scrollYSmooth({ from: storedHeight, to: 0, duration: 700, behavior: "ease-in-out" });
 		//		window.scroll( { left: 0, top: 0, behavior: "smooth" } )		
 	}
-
 	heroStatus() {
 		// TODO: place lo-res image first, then change it to hi-res
 		//		if ( i > 0 ) {
@@ -252,12 +224,58 @@ class App extends React.Component {
 		})
 		//		}	
 	}
+
+
+
+
+
+
+
+	// handlers
+	handleViewHeight() {
+
+		const vh = window.innerHeight;
+		document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+		const storedHeight = this.state.windowHeight ? this.state.windowHeight : vh
+
+		if (vh !== storedHeight) {
+			this.setState({
+				windowHeight: vh
+			})
+		}
+
+	}
+	handleScroll(e) {
+
+		let previousScrollPosition = this.state.scrollPosition
+		const scrollPosition = window.scrollY
+		const windowHeight = window.innerHeight
+		const heroViewHeight = windowHeight - 100
+
+		const scrollingDown = previousScrollPosition < scrollPosition ?
+			true : false
+
+		const heroIsVisible = scrollPosition < heroViewHeight ?
+			true : false
+
+		this.setState({
+			scrollPosition: scrollPosition,
+			scrollingDown: scrollingDown,
+			heroIsVisible: heroIsVisible
+		})
+	}
+	heroScroll() {
+
+		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
+		this.scrollYSmooth({ from: window.scrollY, to: storedHeight, duration: 700, behavior: "ease-in-out" });
+	}
 	handleHero(heroIsActive) {
+		console.log("handleHero", heroIsActive)		
 		this.setState({
 			heroIsActive: heroIsActive
 		})
 	}
-
 	handleClick(i) {
 
 		if (i === "/" || i === "heroClick") {
@@ -274,7 +292,6 @@ class App extends React.Component {
 		}
 
 	}
-
 	handleLocation(pathname) {
 
 		let newPath
@@ -324,133 +341,140 @@ class App extends React.Component {
 
 	}
 
-	goTo(target) {
-		window.location.replace(target)
+	goTo( target ) {
+		window.location.replace( target )
 		//		window.history.pushState( { target: target }, "target", target );
 	}
 
 	render() {
 
+		// is showcases data available?
 		const showcasesAvailable = this.state.showcases.length > 0 ? true : false
+		const targetLocation = this.state.targetLocation
 
 		const state = this.state
 
 		const validRoutes = this.state.validRoutes
-		const heroIsActive = this.state.heroIsActive
-		const activateHero = (i) => this.handleHero(i)
-		const heroIsVisible = this.state.heroIsVisible
+
+		// TODO: do i need this?
 		const heroDidLoad = this.state.heroDidLoad
+		const heroIsActive = this.state.heroIsActive
+		const activateHero = ( i ) => this.handleHero( i )
+		const heroIsVisible = this.state.heroIsVisible
+		
+		// TODO: do i need this?
 		const oneUp = this.oneUp
+
 		const onClick = this.onClick
 
-		const targetLocation = this.state.targetLocation
 
 
+		// TODO: do i need this?
 		const mainClass = "appear " +
-			(heroDidLoad ? "freedom-below" : "")
+			( heroDidLoad ? "freedom-below" : "" )
 
 		const headerTag = (
 			<Header
-				state={state}
-				onClick={onClick}
-				heroIsActive={heroIsActive}
-				headerId="1"
+				state = { state }
+				onClick = { onClick }
+				heroIsActive = { heroIsActive }
+				headerId = "1"
 			/>
 		)
 
 		const footerTag = (
 			<Footer
-				state={state}
-				onClick={onClick}
+				state = { state }
+				onClick = { onClick }
 			/>
 		)
 
-		const home = targetLocation === "/" ? true : false
+		const home = targetLocation === validRoutes.home ? true : false
 
 		return (
 
 			<div>
 
-				{heroDidLoad || !home ? headerTag : null}
+				{ heroDidLoad || !home ? headerTag : null }
 
 				<Switch>
 
 					<Route
 						exact
-						path={validRoutes[0]}
-						render={props => (
+						path = { validRoutes.home }
+						render = { props => (
 
 							<HomeRoute
-								{...props}
-								state={state}
-								mainClass={mainClass}
-								onClick={onClick}
-								activateHero={activateHero}
-								heroIsVisible={heroIsVisible}
-								showcasesAvailable={showcasesAvailable}
-								heroDidLoad={heroDidLoad}
-								oneUp={oneUp}
+								{ ...props }
+								state = { state }
+								showcasesAvailable = { showcasesAvailable }
+								onClick = { onClick }
+								mainClass = { mainClass }
+								activateHero = { activateHero }
+								heroIsVisible = { heroIsVisible }
+								heroDidLoad = { heroDidLoad }
+								oneUp = { oneUp }
 							/>
 
-						)}
+						) }
 					/>
 
 					<Route
 						exact
-						path={validRoutes[1]}
-						render={props => (
+						path = { validRoutes.showcase }
+						render = { props => (
 
 							<ShowcaseRoute
-								{...props}
-								state={state}
-								mainClass={mainClass}
-								onClick={onClick}
-								activateHero={activateHero}
-								goHome={() => this.goHome()}
-								showcasesAvailable={showcasesAvailable}
-								headerId="2"
+								{ ...props }
+								state = { state }
+								mainClass = { mainClass }
+								onClick = { onClick }
+								activateHero = { activateHero }
+								goHome = { () => this.goHome() }
+								showcasesAvailable = { showcasesAvailable }
+								headerId = "2"
 							/>
 
-						)}
+						) }
 					/>
 
 					<Route
-						path={validRoutes[2]}
-						render={props => (
+						path = { validRoutes.contact }
+						render = { props => (
 
 							<ContactRoute
-								{...props}
-								state={state}
-								mainClass={mainClass}
-								activateHero={activateHero}
+								{ ...props }
+								state = { state }
+								mainClass = { mainClass }
+								activateHero = { activateHero }
 							/>
 
-						)}
+						) }
 					/>
 
 					<Route
-						path={validRoutes[3]}
-						render={props => (
+						path = { validRoutes.imprint }
+						render = { props => (
 
 							<ImprintRoute
-								{...props}
-								state={state}
-								mainClass={mainClass}
-								activateHero={activateHero}
+								{ ...props }
+								state = { state }
+								mainClass = { mainClass }
+								activateHero = { activateHero }
 							/>
 
-						)}
+						) }
 					/>
 
 					<Route
-						path={validRoutes[4]}
-						render={props => (
+						path = { validRoutes.privacy }
+						render = { props => (
 
 							<PrivacyRoute
-								{...props}
-								state={state}
-								mainClass={mainClass}
-								activateHero={activateHero}
+								{ ...props }
+								state = { state }
+								mainClass = { mainClass }
+								activateHero = { activateHero }
 							/>
 
 						)}
@@ -458,7 +482,7 @@ class App extends React.Component {
 
 				</Switch>
 
-				{heroDidLoad || !home ? footerTag : null}
+				{ heroDidLoad || !home ? footerTag : null }
 
 			</div>
 

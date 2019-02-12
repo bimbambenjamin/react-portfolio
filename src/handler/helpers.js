@@ -19,7 +19,7 @@ export function getFullPath( path, folder, file ) {
 
 }
 
-export function getFiletype( filename ) {
+export function getFileType( filename ) {
 
 	if ( typeof filename === "string" ) {
 
@@ -34,7 +34,7 @@ export function getFiletype( filename ) {
 		} else if ( extension === "mp4" ) {
 			return "video"
 		} else {
-			return "not valid"
+			return "invalid"
 		}
 
 	}
