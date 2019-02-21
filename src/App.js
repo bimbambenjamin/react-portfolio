@@ -18,12 +18,17 @@ const backendPath = process.env.REACT_APP_BACKEND_URL
 const PUBLIC_JSON = backendPath + "/public.json"
 const backend = PUBLIC_JSON || 8080
 
+// TODO: get rid of these -> from json
 const showcasesPath = backendPath + "/showcases"
-const assetsPath = "/assets"
-const imagesPath = "/assets/img"
+const assetsPath = "/assets" // --> backendPath
+const imagesPath = "/assets/img" // --> backendPath + ?
 
 
 
+
+// all website content should be in here!
+// all children-components need to be dynamic
+//
 
 
 
@@ -40,11 +45,12 @@ class App extends React.Component {
 		this.state = {
 
 			// backend files
+			// TODO: refactor hero
 			heroElements: [],
 			showcases: [],
 			backendConnected: false,
 
-			// paths
+			// paths -> bullshit?
 			backendPath: backendPath,
 			showcasesPath: showcasesPath,
 			imagesPath: imagesPath,
@@ -53,7 +59,7 @@ class App extends React.Component {
 			imageLoaded: false,
 			imageErrored: false,
 
-			// server files
+			// server files -> bullshit! file-paths from json
 			preloader: helpers.getFullPath(assetsPath, "tools", "tail-spin.svg"),
 
 			logo: {
@@ -72,12 +78,13 @@ class App extends React.Component {
 			},
 
 			// hero
+			// bullshit?
 			heroIsActive: false,
 			heroIsVisible: true,
 			heroDidLoad: false,
 
-			// domain
-			mainTitle: "SASCHA TASSILO HOECHSTETTER",
+			// domain settings
+			mainTitle: "SASCHA TASSILO HOECHSTETTER", // -> from json
 			targetLocation: this.handleLocation( window.location.pathname ),
 			validRoutes: {
 				home: "/",
@@ -88,46 +95,47 @@ class App extends React.Component {
 			},
 
 			// tech
+			windowWidth: window.innerWidth,
 			windowHeight: window.innerHeight,
 			scrollPosition: window.scrollY,
 			scrollingDown: false
 
 		}
 
-		this.handleScroll = this.handleScroll.bind(this)
-		this.oneUp = this.heroStatus.bind(this)
-		this.onClick = this.handleClick.bind(this)
-		this.getViewHeight = this.handleViewHeight.bind(this)
+		this.onResize = this.handleResize.bind( this )
+		this.onScroll = this.handleScroll.bind( this )
+		this.oneUp = this.heroStatus.bind( this )
+		this.onClick = this.handleClick.bind( this )
 	}
 
 	componentDidMount() {
 
-		this.getViewHeight()
+		this.onResize()
 
 		// TODO: refactor scroll
-		window.addEventListener("scroll", this.handleScroll)
-		window.addEventListener("resize", this.getViewHeight)
+		window.addEventListener( "scroll", this.onScroll )
+		window.addEventListener( "resize", this.onResize )
 
-		if (this.state.backendConnected === false) {
+		if ( this.state.backendConnected === false ) {
 
 			axios
-				.get(backend)
-				.then(res => {
+				.get( backend )
+				.then( res => {
 					const assets = res.data
-					this.setState({
+					this.setState( {
 						showcases: assets.showcases,
 						heroElements: assets.heroElements,
 						backendConnected: true
-					})
-					this.validateTarget(this.state.targetLocation)
-				})
+					} )
+					this.validateTarget( this.state.targetLocation )
+				} )
 
 		}
 
 	}
 	componentWillUnmount() {
-		window.removeEventListener("scroll", this.handleScroll)
-		window.removeEventListener("resize", this.getViewHeight)
+		window.removeEventListener( "scroll", this.onScroll )
+		window.removeEventListener( "resize", this.onResize )
 	}
 
 
@@ -232,38 +240,57 @@ class App extends React.Component {
 
 
 	// handlers
-	handleViewHeight() {
+	// handleViewHeight() {
 
+	// 	const vh = window.innerHeight;
+	// 	document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+	// 	const storedHeight = this.state.windowHeight ? this.state.windowHeight : vh
+
+	// 	if (vh !== storedHeight) {
+	// 		this.setState({
+	// 			windowHeight: vh
+	// 		})
+	// 	}
+
+	// }
+	handleResize() {
+		const vw = window.innerWidth;
 		const vh = window.innerHeight;
+		console.log( "vw", vw )
+		console.log( "vh", vh )
+
+		// set css var
 		document.documentElement.style.setProperty("--vh", `${vh}px`);
 
+		const storedWidth = this.state.windowWidth ? this.state.windowHWidth : vw
 		const storedHeight = this.state.windowHeight ? this.state.windowHeight : vh
 
-		if (vh !== storedHeight) {
+		if ( vw !== storedWidth || vh !== storedHeight ) {
 			this.setState({
+				windowWidth: vw,
 				windowHeight: vh
 			})
 		}
-
 	}
 	handleScroll(e) {
 
-		let previousScrollPosition = this.state.scrollPosition
-		const scrollPosition = window.scrollY
-		const windowHeight = window.innerHeight
-		const heroViewHeight = windowHeight - 100
+		// let previousScrollPosition = this.state.scrollPosition
+		// const scrollPosition = window.scrollY
+		// const windowHeight = window.innerHeight
+		// const heroViewHeight = windowHeight - 100
 
-		const scrollingDown = previousScrollPosition < scrollPosition ?
-			true : false
+		// const scrollingDown = previousScrollPosition < scrollPosition ?
+		// 	true : false
 
-		const heroIsVisible = scrollPosition < heroViewHeight ?
-			true : false
+		// const heroIsVisible = scrollPosition < heroViewHeight ?
+		// 	true : false
 
-		this.setState({
-			scrollPosition: scrollPosition,
-			scrollingDown: scrollingDown,
-			heroIsVisible: heroIsVisible
-		})
+		// this.setState({
+		// 	scrollPosition: scrollPosition,
+		// 	scrollingDown: scrollingDown,
+		// 	heroIsVisible: heroIsVisible
+		// })
 	}
 	heroScroll() {
 
@@ -271,7 +298,7 @@ class App extends React.Component {
 		this.scrollYSmooth({ from: window.scrollY, to: storedHeight, duration: 700, behavior: "ease-in-out" });
 	}
 	handleHero(heroIsActive) {
-		console.log("handleHero", heroIsActive)		
+		// console.log("handleHero", heroIsActive)		
 		this.setState({
 			heroIsActive: heroIsActive
 		})

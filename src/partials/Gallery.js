@@ -89,10 +89,10 @@ class Gallery extends React.Component {
 	}
 
 	handleScroll(e) {
-		const scrollY = window.scrollY
-		if (this._isMounted && this.props.state.scrollingDown && scrollY > this.state.initialHeight * 2) {
-			this.loadNextBatch()
-		}
+		// const scrollY = window.scrollY
+		// if (this._isMounted && this.props.state.scrollingDown && scrollY > this.state.initialHeight * 2) {
+		// 	this.loadNextBatch()
+		// }
 	}
 
 	loadNextBatch() {
@@ -129,8 +129,6 @@ class Gallery extends React.Component {
 	}
 
 	nextImageHandler( i ) {
-		console.log( "oneUp", i )
-
 		const showcases = this.props.state.showcases
 		const loadedElements = this.state.loadedElements
 
@@ -192,11 +190,7 @@ class Gallery extends React.Component {
 			const index = i + 1
 			const init = count === index ? true : false
 			// TODO: upload new json to get teaser object
-			const teaser = {
-				name: showcase.teaser,
-				width: 100,
-				height: 100
-			}
+			const teaser = showcase.teaser
 
 			const width = teaser.width
 			const height = teaser.height
@@ -227,12 +221,14 @@ class Gallery extends React.Component {
 						>
 							<LoadElement 
 								init = { init }
-								className = "teaser-image"
+								className = "teaser-element"
 								unloadedSrc = { preloader }
 								element = { element }
 								allElementsLoaded = { allElementsLoaded }
 								count = { count }
 								oneUp = { oneUp }
+								windowWidth = { state.windowWidth }
+								windowHeight = { state.windowHeight }
 							/>
 							<span className = "teaser-title">{ element.title }</span>
 						</NavLink>

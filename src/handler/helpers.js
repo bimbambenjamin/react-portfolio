@@ -5,7 +5,7 @@ export const checkActive = ( match, location ) => {
 }
 
 export function getFullPath( path, folder, file ) {
-    
+	
     if ( file ) {
 
         if ( file.includes( "http" ) ) {

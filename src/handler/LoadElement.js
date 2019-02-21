@@ -17,10 +17,7 @@ class LoadElement extends React.Component {
 			preloader: false,
 			progress: false,
 			loaded: false,
-			value: 0,
-			tag: null,
-			wWidth: window.innerWidth,
-			wHeight: window.innerHeight
+			value: 0
 		}
 	}
 
@@ -60,7 +57,7 @@ class LoadElement extends React.Component {
 				console.log( "image loaded", this.props.element.index )
 				this.setState( {
 					loaded: true,
-					preloader: false
+					preloader: false,
 				} )
 				this.oneUp()
 			}
@@ -81,19 +78,18 @@ class LoadElement extends React.Component {
 	
 		iframe.onload = () => {
 			if ( this._isMounted ) {
-				this.setState( {
-					loaded: true,
-					preloader: false
-				} )
-				this.oneUp()
+				// this.setState( {
+				// 	loaded: true,
+				// 	preloader: false
+				// } )
 			}
 		}
 		if ( this._isMounted ) {
 			iframe.onerror = () => {
-				this.setState( {
-					error: true,
-					preloader: false
-				} )
+				// this.setState( {
+				// 	error: true,
+				// 	preloader: false
+				// } )
 			}
 		}
 		iframe.src = vimeoPlayerUrl
@@ -103,36 +99,37 @@ class LoadElement extends React.Component {
 		video.onloadstart = () => {
 			if ( this._isMounted ) {
 				console.log( "video loaded", this.props.element.index )
-				this.setState( {
-					loaded: true,
-					preloader: false
-				})
-				this.oneUp()
+				// this.setState( {
+				// 	loaded: true,
+				// 	preloader: false
+				// })
 			}
 		}
 		if ( this._isMounted ) {
 			video.onerror = () => {
-				this.setState( {
-					error: true,
-					preloader: false
-				} )
+				// this.setState( {
+				// 	error: true,
+				// 	preloader: false
+				// } )
 			}
 		}
 		video.src = src
 	}
 
 	oneUp() {
-		if(this.props.count < 3 ) {
+		// if(this.props.count <  ) {
+			console.log( "+1", this.props.count + 1 )
 		this.props.oneUp( this.props.count + 1 )
-		}
+		// }
 	}
 
 	// handle element
 	getDimensions() {
 		const unit = 20
-		const pageFrame = this.state.wWidth > 1112 ? unit * 5 : unit
-		const contentWidth = this.state.wWidth - ( pageFrame * 2 )
-		const maxHeight = this.state.wHeight * 0.8
+		const itemWidth = 328
+		const pageFrame = this.props.windowWidth >= 1112 ? unit * 5 : unit
+		const contentWidth = this.props.windowWidth - ( pageFrame * 2 )
+		const maxHeight = this.props.windowHeight * 0.8
 		const element = this.props.element
 		let originalWidth
 		let originalHeight
@@ -143,8 +140,8 @@ class LoadElement extends React.Component {
 		}
 		const ratio = originalWidth / originalHeight
 
-		let width = originalWidth
-		let height = originalHeight
+		let width = this.props.windowWidth >= 1366 ? originalWidth : itemWidth
+		let height = width / ratio
 
 		if ( width > contentWidth ) {
 			width = contentWidth
@@ -172,11 +169,7 @@ class LoadElement extends React.Component {
 	// const ratio = width / height
 	// return width, height, ratio
 
-	init() {
-		this.setState( {
-			preloader: true
-		} )
-	}
+
 
 	render() {
 
@@ -194,7 +187,9 @@ class LoadElement extends React.Component {
 		const element = this.props.element
 		const src = element.src
 
-		const divClassName = "appear preloader-background"
+		const divClassName = className + " appear " + (
+			preloader ? "preloader-background" : "dark-background"
+		)
 
 		const vimeoPlayerUrl = src.includes( "vimeo" ) ? 
 			VIMEO_PLAYER + src.split("/").pop() : src
@@ -210,7 +205,6 @@ class LoadElement extends React.Component {
 			<figure className = "appear">
 				<img
 					id = { element.id }
-					className = { className }
 					src = { src }
 					title = { element.title }
 					alt = { element.title }
@@ -238,7 +232,6 @@ class LoadElement extends React.Component {
 				<video
 					id = { element.id }
 					aria-hidden = "true"
-					className = { className }
 					autoPlay
 					loop
 					muted
