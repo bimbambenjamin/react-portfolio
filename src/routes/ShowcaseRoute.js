@@ -12,8 +12,10 @@ class ShowcaseRoute extends React.Component {
 		
 		const state = this.props.state
 		const showcases = state.showcases
-		const showcasesAvailable = this.props.showcasesAvailable
+
 		const onClick = this.props.onClick
+
+		const showcasesAvailable = this.props.showcasesAvailable
 		const heroIsActive = state.heroIsActive
 		
 		const onLoad = heroIsActive ? 
@@ -31,45 +33,51 @@ class ShowcaseRoute extends React.Component {
 			validFolders.indexOf( folderId ) :
 			null
 
+		const showcaseTag = (
+			<Showcase
+				key = { showcaseId }
+				state = { state }
+				showcaseId = { showcaseId }
+				mountImages = { ( images ) => this.props.mountImages ( images ) }
+			/>
+		)
+		const headerTag = (
+			<Header
+				state = { state }
+				onClick = { onClick }
+				headerId = { this.props.headerId }
+			/>
+		)
+		const sectionTag = (
+			
+			<section className = "flexbox column header-space freedom-below">
 
-		return(
+				{ showcasesAvailable ? (
+					<Gallery state = { state }/>
+				) : (
+					<div className = "message uppercase appear-delayed">
+						<h1>
+							getting showcases
+						</h1>
+					</div>
+				) }
+
+				<Social />
+
+			</section>
+		)
+
+		return (
 
 			<main 
 				className = { this.props.mainClass }
 				onLoad = { onLoad }
 			>
 			
-				{ showcaseId !== null ? (
-					<Showcase
-						key = { showcaseId }
-						state = { state }
-						showcaseId = { showcaseId }
-						mountImages = { ( images ) => this.props.mountImages ( images ) }
-					/>
-				) : ( null ) }
+				{ showcaseId ? showcaseTag : null }
+				{ headerTag }
+				{ sectionTag }
 				
-				<Header
-					state = { state }
-					onClick = { onClick }
-					headerId = { this.props.headerId }
-				/>
-				
-				<section className = "flexbox column header-space freedom-below">
-
-					{ showcasesAvailable ? (
-						<Gallery state = { state }/>
-					) : (
-						<div className = "message uppercase appear-delayed">
-							<h1>
-								getting showcases
-							</h1>
-						</div>
-					) }
-
-					<Social />
-
-				</section>
-
 			</main>
 
 		)

@@ -24,14 +24,8 @@ const assetsPath = "/assets" // --> backendPath
 const imagesPath = "/assets/img" // --> backendPath + ?
 
 
-
-
 // all website content should be in here!
 // all children-components need to be dynamic
-//
-
-
-
 
 // TODO: refactor scroll functions
 // for scroll fn
@@ -121,6 +115,7 @@ class App extends React.Component {
 			axios
 				.get( backend )
 				.then( res => {
+					console.log( "backend", backend )
 					const assets = res.data
 					this.setState( {
 						showcases: assets.showcases,
@@ -257,8 +252,6 @@ class App extends React.Component {
 	handleResize() {
 		const vw = window.innerWidth;
 		const vh = window.innerHeight;
-		console.log( "vw", vw )
-		console.log( "vh", vh )
 
 		// set css var
 		document.documentElement.style.setProperty("--vh", `${vh}px`);

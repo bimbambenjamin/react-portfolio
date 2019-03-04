@@ -675,21 +675,23 @@ header {
     font-size: 2em;
     cursor: pointer;
 
-    // -webkit-transition: all .5s ease-in-out;
-    //    -moz-transition: all .5s ease-in-out;
-    //         transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+       -moz-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
     &:hover {
         .teaser-element {
 
-            // -webkit-filter: grayscale(100%);
-            //         filter: grayscale(100%);
+            // border: solid 1px var( --primary-color );
+
+            -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
             
             -webkit-transition: all .3s ease-in-out;
                -moz-transition: all .3s ease-in-out;
                     transition: all .3s ease-in-out;
             
-            img {
-                opacity: 0.2;
+            img, video {
+                opacity: 0.1;
 
                 -webkit-transition: all .3s eas-in;
                    -moz-transition: all .3s eas-in;
@@ -707,6 +709,7 @@ header {
 }
 
 .teaser-element {
+    border: none;
     position: relative;
     pointer-events: none;
     margin: auto;
@@ -718,7 +721,7 @@ header {
        -moz-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
 
-    img {
+    img, video {
         width: 100%;
 
         -webkit-transition: all .3s ease-out;
@@ -733,7 +736,7 @@ header {
     left: 50%;
     position: absolute;
     opacity: 0;
-    color: var(--background-color);
+    color: var(--primary-color);
     line-height: 1.2em;
 
     -webkit-transform: translate(-50%, -50%);
@@ -775,6 +778,10 @@ header {
 
 
 /* showcase */
+#showcase {
+	min-height: var( --vh );
+	min-height: 100vh;
+}
 #showcase-title {
     grid-column: 1 / span 12;
     grid-row: 2 / span 1;
@@ -784,7 +791,7 @@ header {
     }
 }
 
-#showcase-work {
+#showcase-content {
     grid-row: 3 / span 1;
     min-height: var( --vh );
     min-height: 100vh;
@@ -794,14 +801,12 @@ header {
         position: relative;
         margin-bottom: var( --unit );
         img {
-            opacity: 0;
             display: block;
             max-height: var( --item-max-height );
             max-width: 100%;
             object-fit: contain;
         }
         video {
-            opacity: 0;
             display: block;
             max-height: var( --item-max-height );
             max-width: 100%;
@@ -830,6 +835,7 @@ header {
     position: absolute;
 }
 .preloader-background {
+    // border: solid 1px #eee;
     background: #eee;
 }
 .dark-background {

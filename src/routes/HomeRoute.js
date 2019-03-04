@@ -49,7 +49,7 @@ class HomeRoute extends React.Component {
 		
 		)
 
-		return(
+		return (
 
 			<main className = { this.props.mainClass }>
 

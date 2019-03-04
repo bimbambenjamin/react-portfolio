@@ -2,7 +2,54 @@ import React from 'react'
 
 // import * as helpers from './helpers'
 
-const VIMEO_PLAYER = "https://player.vimeo.com/video/"
+
+// TODO: refactor to creators.js?
+// creators
+const CreateImage = ( src, didLoad, oneUp ) => {
+
+	const img = new Image()
+	console.log( "creating image", src )
+
+	img.onload = () => {
+		console.log( "image loaded", src )
+		return didLoad( oneUp )
+
+	}
+	img.src = src
+	
+}
+const CreateIframe = ( src, didLoad, oneUp ) => {
+
+	const PLAYER_URL = "https://player.vimeo.com/video/"
+	const url = PLAYER_URL + src.split("/").pop()
+
+	const iframe = document.createElement( "iframe" )
+
+	iframe.onload = () => {
+		console.log( "iframe loaded", url )
+		return didLoad( oneUp )
+	}
+	iframe.src = url
+
+}
+const CreateVideo = ( src, didLoad, oneUp, i ) => {
+
+	const video = document.createElement( "video" )
+
+	video.onloadstart = () => {
+		console.log( "video loading", src )
+		return oneUp( i )
+	}
+	video.oncanplay = () => {
+		console.log( "video can play", src )
+		return didLoad()
+	}
+	video.src = src
+
+}
+
+
+
 
 
 
@@ -13,136 +60,132 @@ class LoadElement extends React.Component {
 	constructor( props ) {
 		super( props )
 		this.state = {
-			error: false,
-			preloader: false,
+			init: this.props.count === this.props.element.index,
+			preloader: this.props.count === this.props.element.index,
 			progress: false,
+			value: 0,
 			loaded: false,
-			value: 0
+			error: false
 		}
+		this.ref = null
+
 	}
 
 	componentDidMount() {
+
 		this._isMounted = true
-		this.handleSrc( this.props.element.src )
+
+		const i = this.props.element.index
+		console.log( "MOUNTED", i )
+		// this.handlePreloader()
+		
 	}
 	componentWillUnmount() {
 		this._isMounted = false
 	}
 
-	handleSrc( src ) {
-		if ( this._isMounted && this.state.error === false && this.state.loaded === false && this.props.count === this.props.element.index ) {
-			console.log( "fetching", this.props.count )
-			console.log( "loading", src )
-			switch ( this.props.element.type ) {
-				case "image":
-					this.createImage( src )
-					break
-				case "vimeo":
-					this.createIframe( src )
-					break
-				case "video":
-					this.createVideo( src )
-					break
-				default:
-					return
-			}
-		}
+	// handlePreloader() {
+	// 	const init = this.state.init
+	// 	this.setState( {
+	// 		preloader: init
+	// 	} )
+	// }
+	handleDidLoad( oneUp ) {
+		console.log( "HDL-1UP", oneUp )
+		this.setState( {
+			init: false,
+			preloader: false,
+			loaded: true
+		} )
+		if ( oneUp ) return oneUp( this.props.element.index )
 	}
 
-	// create content
-	createImage( src ) {
-		const img = new Image()
-		img.onload = () => {
-			if ( this._isMounted ) {
-				console.log( "image loaded", this.props.element.index )
-				this.setState( {
-					loaded: true,
-					preloader: false,
-				} )
-				this.oneUp()
-			}
+	handleSrc( src, i ) {
+
+		console.log( "HANDLE SRC", this.props.element.index )
+
+		const oneUp = this.props.oneUp
+		const didLoad = ( oneUp ) => this.handleDidLoad( oneUp )
+
+		switch ( this.props.element.type ) {
+			case "image":
+				CreateImage( src, didLoad, oneUp )
+				break
+			case "video":
+				CreateVideo( src, didLoad, oneUp, i )
+				break
+			case "vimeo":
+				CreateIframe( src, didLoad, oneUp )
+				break
+			default:
+				return
 		}
-		if ( this._isMounted ) {
-			img.onerror = () => {
-				this.setState( {
-					error: true,
-					preloader: false
-				} )
-			}
-		}
-		img.src = src
-	}
-	createIframe( src ) {
-		const iframe = document.createElement( "iframe" )
-		const vimeoPlayerUrl = VIMEO_PLAYER + src.split("/").pop()
-	
-		iframe.onload = () => {
-			if ( this._isMounted ) {
-				// this.setState( {
-				// 	loaded: true,
-				// 	preloader: false
-				// } )
-			}
-		}
-		if ( this._isMounted ) {
-			iframe.onerror = () => {
-				// this.setState( {
-				// 	error: true,
-				// 	preloader: false
-				// } )
-			}
-		}
-		iframe.src = vimeoPlayerUrl
-	}
-  createVideo ( src ) {
-		const video = document.createElement("video")
-		video.onloadstart = () => {
-			if ( this._isMounted ) {
-				console.log( "video loaded", this.props.element.index )
-				// this.setState( {
-				// 	loaded: true,
-				// 	preloader: false
-				// })
-			}
-		}
-		if ( this._isMounted ) {
-			video.onerror = () => {
-				// this.setState( {
-				// 	error: true,
-				// 	preloader: false
-				// } )
-			}
-		}
-		video.src = src
+
 	}
 
-	oneUp() {
-		// if(this.props.count <  ) {
-			console.log( "+1", this.props.count + 1 )
-		this.props.oneUp( this.props.count + 1 )
-		// }
-	}
 
+	// TODO: refactor
 	// handle element
-	getDimensions() {
-		const unit = 20
-		const itemWidth = 328
-		const pageFrame = this.props.windowWidth >= 1112 ? unit * 5 : unit
-		const contentWidth = this.props.windowWidth - ( pageFrame * 2 )
-		const maxHeight = this.props.windowHeight * 0.8
-		const element = this.props.element
-		let originalWidth
-		let originalHeight
+	getDimensions( flag ) {
 
-		if ( element.hasOwnProperty( "width" ) && element.hasOwnProperty( "height" ) ) {
-			originalWidth = element.width
-			originalHeight = element.height
-		}
+		let dimensions = {}
+
+		// window		
+		const wWidth = this.props.windowWidth
+		const wHeight = this.props.windowHeight
+
+		// element
+		const element = this.props.element
+		let originalWidth = element.width
+		let originalHeight = element.height
 		const ratio = originalWidth / originalHeight
 
-		let width = this.props.windowWidth >= 1366 ? originalWidth : itemWidth
-		let height = width / ratio
 
+		// TODO: make values dynamic
+		// css values
+
+
+		// vars
+		const unit = 20
+		const pageFrame = wWidth > 1111 ? unit * 5 : unit
+		const contentWidth = wWidth - pageFrame * 2
+		const maxHeight = wHeight * 0.8
+
+		let width = originalWidth
+		let height = originalHeight
+
+		if ( flag === "teaser" ) {
+
+			// TEASER
+			const citizenWidth = 400
+			const rebelWidth = 600
+			// is rebel? bool
+			const isRebel = originalWidth === rebelWidth || originalWidth > originalHeight
+
+			// correct original if width is incorrect
+			const correctWidth = originalWidth === citizenWidth || originalWidth === rebelWidth
+			if ( !correctWidth ) {
+				originalWidth = isRebel ? rebelWidth : citizenWidth
+				originalHeight = originalWidth / ratio
+			}
+
+			// set itemWidth
+			const item = 328
+			let itemWidth = isRebel ? item * 1.5 : item
+			if ( wWidth < 834 ) {
+				itemWidth = 320 - pageFrame * 2
+			}
+			if ( wWidth > 1365 ) {
+				itemWidth = originalWidth
+			}
+			width = itemWidth
+			height = width / ratio
+
+		} else if ( flag === "showcase" ) {
+			// SHOWCASE	
+		}
+
+		// handle ratio
 		if ( width > contentWidth ) {
 			width = contentWidth
 			height = width / ratio
@@ -152,11 +195,13 @@ class LoadElement extends React.Component {
 			width = height * ratio
 		}
 
-		const dimensions = {
-			height: height,
-			width: width
+		// return dimensions object
+		dimensions = {
+			width: width,
+			height: height
 		}
 
+		// console.log( "dimensions", element.title, dimensions )
 		return dimensions
 
 	}
@@ -173,33 +218,38 @@ class LoadElement extends React.Component {
 
 	render() {
 
-		let preloader = this.state.preloader
-		if ( this.props.init && !this.state.preloader && !this.state.loaded ) {
-			preloader = true
-		}
-		
-		const progress = this.state.progress
-		// const preloader = this.state.preloader
+		const count = this.props.count
+		const init = this.props.count === this.props.element.index
+		const showPreloader = init
 		const loaded = this.state.loaded
-		const className = this.props.className
-		const unloadedSrc = this.props.unloadedSrc
-		const tailSpin = { background: `url( ${ unloadedSrc } ) no-repeat center center` }
+
+		const preloaderSrc = this.props.preloaderSrc
+		const tailSpin = { background: `url( ${ preloaderSrc } ) no-repeat center center` }
 		const element = this.props.element
+		const i = element.index
 		const src = element.src
-
-		const divClassName = className + " appear " + (
-			preloader ? "preloader-background" : "dark-background"
-		)
-
-		const vimeoPlayerUrl = src.includes( "vimeo" ) ? 
-			VIMEO_PLAYER + src.split("/").pop() : src
-
-		const dimensions = this.getDimensions()
+		
+		const flag = this.props.flag
+		const dimensions = this.getDimensions( flag )
 		const divStyle = {
 			width: dimensions.width,
 			height: dimensions.height
 		}
+		
+		const className = this.props.className
+		const preloaderBackground = !loaded ? " preloader-background" : ""
+		const divClassName = className + " appear" + preloaderBackground
 
+		if ( init ) {
+			console.log( "count", count )
+			console.log( "i", this.props.element.index )
+			console.log( "init", init )
+			console.log( "showPreloader", showPreloader )
+			console.log( "loaded", loaded )
+		}
+
+		if ( this._isMounted && init && !loaded ) this.handleSrc( src, i )
+		
 		// create tag
 		const imgTag = (
 			<figure className = "appear">
@@ -212,9 +262,9 @@ class LoadElement extends React.Component {
 			</figure>
 		)
 		const iframeTag = (
-			<div>
+			<div className = "appear">
 				<iframe
-					src = { vimeoPlayerUrl }
+					src = { src }
 					id = { element.id }
 					title = { element.title }
 					width = { element.width }
@@ -228,8 +278,10 @@ class LoadElement extends React.Component {
 			</div>
 		)
 		const videoTag = (
-			<figure className = "appear">
-				<video
+			<figure className = "appear"
+			ref = { loadedElement => this.ref = loadedElement }
+			>
+			<video
 					id = { element.id }
 					aria-hidden = "true"
 					autoPlay
@@ -241,18 +293,19 @@ class LoadElement extends React.Component {
 				/>
 			</figure>
 		)
-		const preloaderTag = preloader ? (
+		const preloaderTag = (
 			<div
 				className = "appear preloader"
 				style = { tailSpin }
 			/>
-		) : null
-		const progressTag = progress ? (
-			<progress value = { this.state.value } max = "100" />
-		) : null
+		)
+		// const progressTag = if ( progress ) (
+		// 	<progress value = { this.state.value } max = "100" />
+		// ) : null
 
 		// switch tag content
 		const getTag = () => {
+			// console.log( "TAG?", loaded )
 			if ( loaded ) {
 				let tag
 				switch ( this.props.element.type ) {
@@ -273,7 +326,13 @@ class LoadElement extends React.Component {
 		}
 		const contentTag = getTag()
 
-		this.handleSrc( src )
+		// if ( this._isMounted && !this.state.error && !this.state.loaded && this.props.init ) {
+		// 	console.log( "fetching", this.props.count )
+		// 	console.log( "loading", this.props.element.title )
+
+		// load src
+		// if it has the correct ticket
+		// if ( validTicket ) this.handleSrc( src, oneUp )
 		
 		// div contains grey preloader background
 		return (
@@ -281,9 +340,8 @@ class LoadElement extends React.Component {
 				className = { divClassName } 
 				style = { divStyle }
 			>
-				{ progressTag }
-				{ preloaderTag }
 				{ contentTag }
+				{ showPreloader ? preloaderTag : null }
 			</div>
 		)
 

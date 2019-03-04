@@ -6,7 +6,7 @@ function Social() {
 			
 	return (
 		
-		<div className = "social uppercase">
+		<div className = "appear social uppercase">
 		
 			<h4>
 				<a 
