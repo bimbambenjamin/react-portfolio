@@ -1,51 +1,75 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import ElementLoader from '../handler/ElementLoader'
+import LoadElement from '../handler/LoadElement'
 
 
 
-const Teaser = ( { props } ) => { 
+class Teaser extends React.Component {
 
-	console.log( "TEASER PROPS", props )
-	const width = props.showcase.teaser.width
-	const className={ width === 600 ? "item rebel" : "item citizen"}
+	constructor( props ) {
+		super( props )
 
+		// TODO: do i need state?
+		// to keep it dynamic …
+		// className could be passed down from parent into state 
+		this.state = {
+			flag: "teaser",
+			headerStyle: "one-word-per-line",
+			hover: "teaser-hover"
+		}
 
-	// oneUp={oneUp}
-	// allElementsLoaded={allElementsLoaded}
-	// batch={batch}
+		this.ref = React.createRef()
+	}
 
+	onMouseEnter( i ) {
+		const className = this.ref.current.className
+		this.ref.current.className = `${ className } ${ this.state.hover }`
+	}
+	onMouseLeave( i ) {
+		const className = this.ref.current.className.replace( this.state.hover, "" )
+		this.ref.current.className = className.trim()
+	}
+	scrollToTop() {
+		// TODO: change to smooth scroll
+		window.scroll( { top: 0 } )
+	}
 
-	return (
-		
-		<div className = { className }>
-			<div className = "teaser one-word-per-line">
+	render() {
+
+		const flag = this.state.flag
+
+		const props = {
+			flag: flag,
+			loaded: this.props.loaded,
+			preloaderSrc: this.props.preloader,
+			className: `${ flag }-element`,
+			element: this.props.element,
+			count: this.props.count,
+			oneUp: this.props.oneUp,
+			windowWidth: this.props.windowWidth,
+			windowHeight: this.props.windowHeight,
+		}
+
+		return (
+			<div
+				className = { `${ flag } ${ this.state.headerStyle }` }
+				ref = { this.ref }
+				onMouseEnter = { () => this.onMouseEnter() }
+				onMouseLeave = { () => this.onMouseLeave() }
+			>
+
 				<NavLink 
-					exact
-					to = { `/showcase/${ folder }` } 
+					onClick = { this.scrollToTop }
+					to = { this.props.linkTo }
 				>
-
-					<ElementLoader 
-						className = "teaser-image"
-						title = { title } 
-						alt = { title } 
-						unloadedSrc = { props.state.preloader }
-						src = { helpers.getFullPath( showcasesPath, showcase.folder, showcase.teaser ) }
-						count = { this.state.count }
-						oneUp = { oneUp }
-						allElementsLoaded = { allElementsLoaded }
-						batch = { batch }
-						showControls = { false }
-					/>
-
-					<span className = "teaser-title">{ title }</span>
-
+					<LoadElement { ...props }/>
+					<span className = { `${ flag }-title` }>{ props.element.title }</span>
 				</NavLink>
-			</div>
-		</div>
 
-	)
+			</div>
+		)
+	}
 
 }
 

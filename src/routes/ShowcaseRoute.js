@@ -29,15 +29,22 @@ class ShowcaseRoute extends React.Component {
 			showcase.folder
 		) )
 		
-		const showcaseId = validFolders.includes( folderId ) ? 
+		const index = validFolders.includes( folderId ) ? 
 			validFolders.indexOf( folderId ) :
 			null
 
+		const id = showcases.length ? showcases[ index ].id : index
+
+		// console.log( "folderId", folderId )
+		// console.log( "includes", validFolders.includes( folderId ) )
+		// console.log( "indexOf", validFolders.indexOf( folderId ) )
+		// console.log( "id", id )
+
 		const showcaseTag = (
 			<Showcase
-				key = { showcaseId }
+				key = { id }
 				state = { state }
-				showcaseId = { showcaseId }
+				index = { index }
 				mountImages = { ( images ) => this.props.mountImages ( images ) }
 			/>
 		)
@@ -67,6 +74,8 @@ class ShowcaseRoute extends React.Component {
 			</section>
 		)
 
+		// console.log( "SCR index", index )
+
 		return (
 
 			<main 
@@ -74,7 +83,7 @@ class ShowcaseRoute extends React.Component {
 				onLoad = { onLoad }
 			>
 			
-				{ showcaseId ? showcaseTag : null }
+				{ id ? showcaseTag : null }
 				{ headerTag }
 				{ sectionTag }
 				

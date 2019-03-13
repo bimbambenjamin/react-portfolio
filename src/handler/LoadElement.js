@@ -5,46 +5,49 @@ import React from 'react'
 
 // TODO: refactor to creators.js?
 // creators
-const CreateImage = ( src, didLoad, oneUp ) => {
+const CreateImage = ( props ) => {
 
 	const img = new Image()
-	console.log( "creating image", src )
-
+	console.log( "creating image", props.src )
+	
 	img.onload = () => {
-		console.log( "image loaded", src )
-		return didLoad( oneUp )
+		console.log( "image loaded", props.src )
+		return props.didLoad( props.oneUp( props.i ) )
 
 	}
-	img.src = src
+	img.src = props.src
+	return props.loading( true )
 	
 }
-const CreateIframe = ( src, didLoad, oneUp ) => {
+const CreateIframe = ( props ) => {
 
 	const PLAYER_URL = "https://player.vimeo.com/video/"
-	const url = PLAYER_URL + src.split("/").pop()
+	const url = PLAYER_URL + props.src.split( "/" ).pop()
 
 	const iframe = document.createElement( "iframe" )
 
 	iframe.onload = () => {
 		console.log( "iframe loaded", url )
-		return didLoad( oneUp )
+		return props.didLoad( props.oneUp( props.i ) )
 	}
-	iframe.src = url
+	iframe.src = props.url
+	return props.loading( true )
 
 }
-const CreateVideo = ( src, didLoad, oneUp, i ) => {
+const CreateVideo = ( props ) => {
 
 	const video = document.createElement( "video" )
 
 	video.onloadstart = () => {
-		console.log( "video loading", src )
-		return oneUp( i )
+		console.log( "video loading", props.src )
+		return props.oneUp( props.i )
 	}
 	video.oncanplay = () => {
-		console.log( "video can play", src )
-		return didLoad()
+		console.log( "video can play", props.src )
+		return props.didLoad()
 	}
-	video.src = src
+	video.src = props.src
+	return props.loading( true )
 
 }
 
@@ -56,6 +59,7 @@ const CreateVideo = ( src, didLoad, oneUp, i ) => {
 class LoadElement extends React.Component {
 
 	_isMounted = false
+	_isLoading = false
 
 	constructor( props ) {
 		super( props )
@@ -72,50 +76,43 @@ class LoadElement extends React.Component {
 	}
 
 	componentDidMount() {
-
 		this._isMounted = true
-
-		const i = this.props.element.index
-		console.log( "MOUNTED", i )
-		// this.handlePreloader()
-		
+		console.log("MOUNTED")
 	}
 	componentWillUnmount() {
 		this._isMounted = false
 	}
 
-	// handlePreloader() {
-	// 	const init = this.state.init
-	// 	this.setState( {
-	// 		preloader: init
-	// 	} )
-	// }
-	handleDidLoad( oneUp ) {
-		console.log( "HDL-1UP", oneUp )
+	handleDidLoad( i ) {
+		this._isLoading = false
 		this.setState( {
 			init: false,
 			preloader: false,
 			loaded: true
 		} )
-		if ( oneUp ) return oneUp( this.props.element.index )
+		if ( i ) return i
 	}
 
 	handleSrc( src, i ) {
 
-		console.log( "HANDLE SRC", this.props.element.index )
-
-		const oneUp = this.props.oneUp
-		const didLoad = ( oneUp ) => this.handleDidLoad( oneUp )
+		console.log( "handling:", src )
+		const props = {
+			src: src,
+			loading: i => this._isLoading = i,
+			didLoad: ( i ) => this.handleDidLoad( i ),
+			oneUp: this.props.oneUp,
+			i: i
+		}
 
 		switch ( this.props.element.type ) {
 			case "image":
-				CreateImage( src, didLoad, oneUp )
+				CreateImage( props)
 				break
 			case "video":
-				CreateVideo( src, didLoad, oneUp, i )
+				CreateVideo( props )
 				break
 			case "vimeo":
-				CreateIframe( src, didLoad, oneUp )
+				CreateIframe( props )
 				break
 			default:
 				return
@@ -158,9 +155,9 @@ class LoadElement extends React.Component {
 
 			// TEASER
 			const citizenWidth = 400
-			const rebelWidth = 600
+			const rebelWidth = citizenWidth * 1.5
 			// is rebel? bool
-			const isRebel = originalWidth === rebelWidth || originalWidth > originalHeight
+			let isRebel = originalWidth === rebelWidth || originalWidth > originalHeight
 
 			// correct original if width is incorrect
 			const correctWidth = originalWidth === citizenWidth || originalWidth === rebelWidth
@@ -170,14 +167,17 @@ class LoadElement extends React.Component {
 			}
 
 			// set itemWidth
-			const item = 328
-			let itemWidth = isRebel ? item * 1.5 : item
-			if ( wWidth < 834 ) {
-				itemWidth = 320 - pageFrame * 2
-			}
+			let item = 328
+			
 			if ( wWidth > 1365 ) {
-				itemWidth = originalWidth
+				item = citizenWidth
+			} else if ( wWidth < 834 ) {
+				item = 320 - pageFrame * 2
+				if ( wWidth < item * 1.5 + pageFrame * 2 ) {
+					isRebel = false
+				}
 			}
+			const itemWidth = isRebel ? item * 1.5 : item
 			width = itemWidth
 			height = width / ratio
 
@@ -201,7 +201,6 @@ class LoadElement extends React.Component {
 			height: height
 		}
 
-		// console.log( "dimensions", element.title, dimensions )
 		return dimensions
 
 	}
@@ -217,11 +216,12 @@ class LoadElement extends React.Component {
 
 
 	render() {
-
-		const count = this.props.count
-		const init = this.props.count === this.props.element.index
-		const showPreloader = init
+		
+		const loading = this._isLoading
 		const loaded = this.state.loaded
+		// const count = this.props.count
+		const init = this.props.count === this.props.element.index
+		const showPreloader = !loaded && ( init || loading )
 
 		const preloaderSrc = this.props.preloaderSrc
 		const tailSpin = { background: `url( ${ preloaderSrc } ) no-repeat center center` }
@@ -235,20 +235,18 @@ class LoadElement extends React.Component {
 			width: dimensions.width,
 			height: dimensions.height
 		}
-		
+		if ( flag === "showcase" ) {
+			console.log( "---> fetching:", flag, element.src )
+			console.log( "isMounted:", this._isMounted )
+			console.log( "init:", init )
+			console.log( "loading:", loading )
+			console.log( "loaded:", loaded )
+		}
 		const className = this.props.className
 		const preloaderBackground = !loaded ? " preloader-background" : ""
 		const divClassName = className + " appear" + preloaderBackground
 
-		if ( init ) {
-			console.log( "count", count )
-			console.log( "i", this.props.element.index )
-			console.log( "init", init )
-			console.log( "showPreloader", showPreloader )
-			console.log( "loaded", loaded )
-		}
-
-		if ( this._isMounted && init && !loaded ) this.handleSrc( src, i )
+		if ( this._isMounted && init && !loading && !loaded ) this.handleSrc( src, i )
 		
 		// create tag
 		const imgTag = (
@@ -299,13 +297,12 @@ class LoadElement extends React.Component {
 				style = { tailSpin }
 			/>
 		)
-		// const progressTag = if ( progress ) (
+		// const progressTag = { progress && 
 		// 	<progress value = { this.state.value } max = "100" />
-		// ) : null
+		// }
 
 		// switch tag content
 		const getTag = () => {
-			// console.log( "TAG?", loaded )
 			if ( loaded ) {
 				let tag
 				switch ( this.props.element.type ) {
@@ -326,22 +323,13 @@ class LoadElement extends React.Component {
 		}
 		const contentTag = getTag()
 
-		// if ( this._isMounted && !this.state.error && !this.state.loaded && this.props.init ) {
-		// 	console.log( "fetching", this.props.count )
-		// 	console.log( "loading", this.props.element.title )
-
-		// load src
-		// if it has the correct ticket
-		// if ( validTicket ) this.handleSrc( src, oneUp )
-		
-		// div contains grey preloader background
 		return (
 			<div 
 				className = { divClassName } 
 				style = { divStyle }
 			>
 				{ contentTag }
-				{ showPreloader ? preloaderTag : null }
+				{ showPreloader && preloaderTag }
 			</div>
 		)
 

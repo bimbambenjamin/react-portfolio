@@ -38,6 +38,7 @@ class App extends React.Component {
 
 		this.state = {
 
+			bullshit: false,
 			// backend files
 			// TODO: refactor hero
 			heroElements: [],
@@ -100,6 +101,7 @@ class App extends React.Component {
 		this.onScroll = this.handleScroll.bind( this )
 		this.oneUp = this.heroStatus.bind( this )
 		this.onClick = this.handleClick.bind( this )
+
 	}
 
 	componentDidMount() {
@@ -115,7 +117,7 @@ class App extends React.Component {
 			axios
 				.get( backend )
 				.then( res => {
-					console.log( "backend", backend )
+					// console.log( "backend", backend )
 					const assets = res.data
 					this.setState( {
 						showcases: assets.showcases,
@@ -136,6 +138,7 @@ class App extends React.Component {
 
 
 
+	// angled logo
 	getAlpha() {
 
 		const a = window.innerHeight
@@ -203,7 +206,7 @@ class App extends React.Component {
 			const target = timingFunc(time) * distance
 			const movement = from > to ? from - target : from + target
 
-			window.scrollTo(0, movement)
+			window.scrollTo( 0, movement )
 
 			if (progress < duration) {
 				window.requestAnimationFrame(step)
@@ -266,32 +269,39 @@ class App extends React.Component {
 			})
 		}
 	}
-	handleScroll(e) {
+	handleScroll()  {
 
-		// let previousScrollPosition = this.state.scrollPosition
-		// const scrollPosition = window.scrollY
+		const storedY = this.state.scrollPosition
+		const y = window.scrollY
 		// const windowHeight = window.innerHeight
 		// const heroViewHeight = windowHeight - 100
 
-		// const scrollingDown = previousScrollPosition < scrollPosition ?
-		// 	true : false
+		const scrollingDown = storedY < y
+		const e = new Event( "scrollingDown" )
 
-		// const heroIsVisible = scrollPosition < heroViewHeight ?
-		// 	true : false
-
-		// this.setState({
-		// 	scrollPosition: scrollPosition,
-		// 	scrollingDown: scrollingDown,
+		this.setState( {
+			scrollPosition: y,
+			scrollingDown: scrollingDown
 		// 	heroIsVisible: heroIsVisible
-		// })
+		} )
+		if ( scrollingDown ) window.dispatchEvent( e )
+		// const heroIsVisible = scrollPosition < heroViewHeight
+		// this.setState( { scrollPosition: y, scrollingDown: scrollingDown } )
+
+		// if ( y !== storedY ) {
+		// 	this.setState( {
+		// 		scrollPosition: y,
+		// 		scrollingDown: scrollingDown
+		// 	// 	heroIsVisible: heroIsVisible
+		// 	} )
+		// }
+			
 	}
 	heroScroll() {
-
 		const storedHeight = this.state.windowHeight ? this.state.windowHeight : window.innerHeight
 		this.scrollYSmooth({ from: window.scrollY, to: storedHeight, duration: 700, behavior: "ease-in-out" });
 	}
 	handleHero(heroIsActive) {
-		// console.log("handleHero", heroIsActive)		
 		this.setState({
 			heroIsActive: heroIsActive
 		})

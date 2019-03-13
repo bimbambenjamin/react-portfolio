@@ -1,7 +1,9 @@
 import React from 'react'
 import Social from './Social'
-import Email from './Email'
-import Phone from './Phone'
+import * as elements from './contactElements'
+
+// import Email from './Email'
+// import Phone from './Phone'
 
 
 
@@ -40,12 +42,8 @@ class Contact extends React.Component {
 					</ul>
 
 					<ul>
-						<li>
-							<Email />
-						</li>
-						<li>
-							<Phone />
-						</li>
+						<li>{ elements.Phone() }</li>
+						<li>{ elements.Email() }</li>
 					</ul>
 
 				</div>

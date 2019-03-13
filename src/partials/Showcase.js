@@ -16,10 +16,15 @@ class Showcase extends React.Component {
 		super( props )
 		this.state = {
 
+			flag: "showcase",
+
 			// handle elements
 			allElementsLoaded: false,
 			loadedElements: [],
-			count: null
+			count: 0,
+			// batch
+			batchLoaded: false,
+			batchNumber: 1,
 
 		}
 
@@ -39,32 +44,32 @@ class Showcase extends React.Component {
 		// 	} )
 
 
-		window.scroll( { top: 0 } )
+		// window.scroll( { top: 0 } )
 		// return () => { this.props.ativateHero( false ) }
 	}
 
 	handleNextElement( i ) {
 
-		const showcases = this.props.state.showcases
-		const loadedElements = this.state.loadedElements
+		if ( i === this.state.count ) {
 
-		const previous = i - 1
-		if ( previous >= 0 ) {
-			loadedElements.push( showcases[ previous ] )
+			const oneUp = i + 1
+			const showcases = this.props.state.showcases
+			const loadedElements = this.state.loadedElements
+			loadedElements.push( showcases[ i ] )
+			const batchLoaded = i === this.state.batchSize * this.state.batchNumber
+			const remainingElements = showcases.length - loadedElements.length
+
+			if ( remainingElements === 0 ) {
+				this.stopLoading()
+			} else if ( batchLoaded ) {
+				this.setState( { batchLoaded: batchLoaded } )
+			} else {
+				if ( this._isMounted ) this.setState( { count: oneUp } )
+			}
+
 		}
-
-		if ( this.state.allElementsLoaded ) {
-			console.log( "all elements loaded" )
-		} else {
-			// console.log( "keep loading" )
-		}
-
-		this.setState( {
-			count: i
-		} )
 
 	}
-
 	getVimeoDimensions( src ) {
 
 		// GEThttps://vimeo.com/api/oembed.json?url={video_url}
@@ -84,16 +89,18 @@ class Showcase extends React.Component {
 
 	render() {
 
+
 		const state = this.props.state
 		const showcasesPath = state.showcasesPath
-		const showcaseId = this.props.showcaseId
-		const showcase = state.showcases[ showcaseId ]
+		const index = this.props.index
+		const showcase = state.showcases[ index ]
+
 		const elements= showcase.elements
 
 		const count = this.state.count
-		const oneUp = this.oneUp
-		const preloader = state.preloader
-		const allElementsLoaded = this.state.allElementsLoaded
+		// const oneUp = this.oneUp
+		// const preloader = state.preloader
+		// const allElementsLoaded = this.state.allElementsLoaded
 
 		const titleTag = (
 			<div className = "big-text uppercase" id = "showcase-title">
@@ -107,11 +114,6 @@ class Showcase extends React.Component {
 			// TODO: check if video, image or whatever
 			// e.g. vimeo has no id …
 				
-
-			console.log( "ID", e.id, e.title )
-
-			const index = i + 1
-			const init = count === index
 
 			let width
 			let height
@@ -129,7 +131,7 @@ class Showcase extends React.Component {
 			const type = helpers.getFileType( e.name )
 
 			const element = {
-				index: index,
+				index: i,
 				src: src,
 				type: type,
 				title: showcase.title,
@@ -137,23 +139,30 @@ class Showcase extends React.Component {
 				height: height
 			}
 
+			const flag = this.state.flag
+
+			const props = {
+				flag: flag,
+				loaded: this.props.loaded,
+				preloaderSrc: this.props.preloader,
+				className: `${ flag }-element`,
+				element: element,
+				count: count,
+				oneUp: this.oneUp,
+				windowWidth: this.props.windowWidth,
+				windowHeight: this.props.windowHeight,
+			}
+	
+			console.log( "SHOWCASE:", e.name )
+
 			const loader = (
 				<LoadElement 
+					{ ...props }
 					key = { e.id }
-					flag = "--showcase"
-					init = { init }
-					className = "showcase-element"
-					unloadedSrc = { preloader }
-					element = { element }
-					allElementsLoaded = { allElementsLoaded }
-					count = { count }
-					oneUp = { oneUp }
-					windowWidth = { state.windowWidth }
-					windowHeight = { state.windowHeight }
 				/>
 			)
 
-			console.log( init, element.title )
+			// console.log( init, element.title )
 
 			return loader
 
@@ -164,7 +173,6 @@ class Showcase extends React.Component {
 			<section 
 				className = "grid appear header-space freedom-below uppercase" 
 				id = "showcase" 
-				key = { showcaseId }
 			>
 
 				{ titleTag }
